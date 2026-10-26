@@ -4,16 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
+  <meta name="description" content="This page could not be found.">
   <meta name="theme-color" content="#111510">
+  <meta property="og:title" content="404 / sudo-sol">
+  <meta property="og:description" content="This page could not be found.">
+  <meta property="og:type" content="website">
   <title>404 / sudo-sol</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
 </head>
-<body>
+<body class="">
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
-    <header class="site-header"><a class="wordmark" href="/" aria-label="sudo-sol home"><span class="brand-mark" aria-hidden="true">&gt;_</span> sudo-sol<span class="accent">.</span></a></header>
-    <main class="error-page"><p class="eyebrow">404 / ROUTE NOT FOUND</p><h1>Wrong turn.<br><em>Right curiosity.</em></h1><p>There is nothing at this address. The workbench is a good place to start.</p><a class="button" href="/">Back to the workbench &#8594;</a></main>
-    <footer class="site-footer"><span class="footer-brand">sudo-sol<span class="accent">.</span></span><span>A work in progress. Always.</span></footer>
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="sudo-sol home"><span class="brand-mark" aria-hidden="true">&gt;_</span> sudo-sol<span class="accent">.</span></a>
+      <nav aria-label="Main navigation"><a href="/workbench/">Workbench</a><a href="/labs/">Labs</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+    </header>
+    <main id="main"><section class="error-page"><p class="eyebrow">404 / ROUTE NOT FOUND</p><h1>Wrong turn.<br><em>Right curiosity.</em></h1><p>There is nothing at this address. Let’s get you back to somewhere familiar.</p><a class="button" href="/">Back home <span aria-hidden="true">→</span></a></section></main>
+    <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
   </div>
 </body>
 </html>

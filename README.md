@@ -1,4 +1,4 @@
-![sudo-sol — Build. Break. Understand.](assets/readme-banner.svg)
+![sudo-sol / Build. Break. Understand.](assets/readme-banner.svg)
 
 # The workbench
 
@@ -10,9 +10,10 @@ A small personal site for infrastructure, reliability, experiments, and the note
 
 ## What is here
 
-- A responsive homepage with dark and light themes.
-- An interactive traffic simulation: toggle instances and change incoming load.
-- Expandable spaces for future projects and a starting point for field notes.
+- A personal homepage with LinkedIn/GitHub icons and dark and light themes.
+- Separate Workbench, Labs, Notes, and About pages with a shared navigation.
+- A Labs gallery that opens individual experiments; the traffic lab is the first.
+- Expandable future-project ideas, a field-notes placeholder, and an About page under construction.
 - A custom 404 page, SVG favicon, and this README banner.
 - Static HTML, CSS, and JavaScript. No installation, framework, build step, external fonts, analytics, or API keys.
 
@@ -28,7 +29,7 @@ python -m http.server 4173 --bind 127.0.0.1
 
 Open **http://127.0.0.1:4173**. Stop the server with `Ctrl+C`.
 
-Opening `index.html` directly also works for the homepage. A local server better reflects deployed paths, especially for the custom 404 page. Preview that page at `/404.html`; Python's basic server does not automatically use it for missing routes.
+Use the local server so root-relative assets and directory routes resolve correctly. Each route is a directory with its own `index.html`, so GitHub Pages serves `/workbench/`, `/labs/`, `/labs/traffic/`, `/notes/`, and `/about/` without a router or build step. Preview that page at `/404.html`; Python's basic server does not automatically use it for missing routes.
 
 ## Publish later with GitHub Pages
 
@@ -49,7 +50,12 @@ Official references: [Create a GitHub Pages site](https://docs.github.com/en/pag
 
 | File | What to change |
 | --- | --- |
-| `index.html` | Intro copy, navigation, project rows, and notes |
+| `index.html` | Short introduction and social icons; page navigation stays in the header |
+| `workbench/index.html` | Project ideas and future repositories |
+| `labs/index.html` | Gallery of playable labs |
+| `labs/traffic/index.html` | Interactive traffic simulation |
+| `notes/index.html` | Notes index |
+| `about/index.html` | About placeholder and construction visual |
 | `styles.css` | Colors, typography, spacing, and responsive layouts |
 | `app.js` | Theme preference and the interactive simulation |
 | `404.html` | Missing-page copy and home link |
@@ -57,14 +63,18 @@ Official references: [Create a GitHub Pages site](https://docs.github.com/en/pag
 
 ### Add the first real project
 
-1. Turn an idea row in `index.html` into an actual project entry.
+1. Turn an idea row in `workbench/index.html` into an actual project entry.
 2. Give it a clear title and a short problem/contribution/outcome description.
 3. Replace the `IDEA` badge with an accurate status and link to the real repository or write-up.
 4. Add a screenshot or diagram if it helps explain the work.
 
 ### Add a field note
 
-Create a plain HTML page under `notes/`, then link it from the notes section. No blog framework is required. A useful first entry can cover one problem, the options you considered, and what you learned.
+Create a plain HTML page under `notes/`, then link it from `notes/index.html`. No blog framework is required. A useful first entry can cover one problem, the options you considered, and what you learned.
+
+### Add a lab
+
+Create `labs/<slug>/index.html` with the shared navigation, stylesheet, and script. Add a linked card to `labs/index.html`. Keep simulations explicitly labeled, and only list playable experiments. The shared script exits after theme setup on pages without the traffic slider.
 
 ### Styling
 
@@ -75,6 +85,11 @@ Theme tokens are at the top of `styles.css`. The default is dark green with a li
 ```text
 .
 ├── index.html
+├── workbench/index.html
+├── labs/index.html
+├── labs/traffic/index.html
+├── notes/index.html
+├── about/index.html
 ├── styles.css
 ├── app.js
 ├── 404.html

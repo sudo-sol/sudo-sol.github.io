@@ -4,7 +4,9 @@
   const themeButton = document.getElementById("theme-toggle");
   function setTheme(theme) {
     root.dataset.theme = theme;
-    themeButton?.setAttribute("aria-label", `Switch to ${theme === "dark" ? "light" : "dark"} theme`);
+    const label = `Switch to ${theme === "dark" ? "light" : "dark"} theme`;
+    themeButton?.setAttribute("aria-label", label);
+    themeButton?.setAttribute("title", label);
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", theme === "dark" ? "#111510" : "#f2f1e9");
   }
   try {

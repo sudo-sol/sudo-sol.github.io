@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Play with a browser-only traffic simulation: change demand, toggle instances, and explore capacity.">
+  <meta name="theme-color" content="#111510">
+  <meta property="og:title" content="Traffic lab / sudo-sol">
+  <meta property="og:description" content="Play with a browser-only traffic simulation: change demand, toggle instances, and explore capacity.">
+  <meta property="og:type" content="website">
+  <title>Traffic lab / sudo-sol</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body class="interior-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="sudo-sol home"><span class="brand-mark" aria-hidden="true">&gt;_</span> sudo-sol<span class="accent">.</span></a>
+      <nav aria-label="Main navigation"><a href="/workbench/">Workbench</a><a href="/labs/" aria-current="page">Labs</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+    </header>
+    <main id="main">
+      <a class="back-link" href="/labs/">← All labs</a>
+      <section class="experiment-layout" aria-labelledby="experiment-title">
+        <div class="experiment-copy"><p class="eyebrow accent">LAB 001 / CAPACITY</p><h1 id="experiment-title">A little traffic.<br><em>A lot to learn.</em></h1><p>What happens when demand outgrows capacity? Take an instance offline, turn up the traffic, and watch the balance shift.</p><ol class="experiment-steps"><li>Each instance adds <strong>40 req/s</strong> of capacity.</li><li>Toggle A, B, or C to change what’s available.</li><li>Move the slider to see when requests exceed capacity.</li></ol><p class="experiment-note">A simplified model for exploring capacity. No network requests, real servers, or production metrics.</p></div>
+        <section class="lab-panel" id="lab" aria-labelledby="lab-title">
+          <div class="panel-heading"><span class="eyebrow">INTERACTIVE EXPERIMENT</span><span class="demo-tag">SIMULATED</span></div>
+          <h2 id="lab-title">A tiny traffic lab.</h2>
+          <p class="panel-description">Take an instance offline. See what happens to capacity.</p>
+          <div class="lab-stats">
+            <div><span class="metric-label">Incoming</span><strong><span id="incoming-value">90</span><small> req/s</small></strong></div>
+            <div><span class="metric-label">Capacity</span><strong><span id="capacity-value">120</span><small> req/s</small></strong></div>
+            <div><span class="metric-label">Served</span><strong id="served-value">100%</strong></div>
+          </div>
+          <svg class="traffic-map" viewBox="0 0 420 177" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">Load balancer and three demo instances</title>
+            <desc id="map-desc">Each online instance adds forty requests per second of simulated capacity.</desc>
+            <defs><pattern id="map-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="currentColor" opacity=".16"/></pattern></defs>
+            <rect width="420" height="177" fill="url(#map-grid)"/>
+            <path class="route" data-route="a" d="M210 56 V84 H70 V122"/>
+            <path class="route" data-route="b" d="M210 56 V122"/>
+            <path class="route" data-route="c" d="M210 56 V84 H350 V122"/>
+            <rect class="gateway" x="142" y="20" width="136" height="38" rx="8"/>
+            <text class="map-label" x="210" y="44" text-anchor="middle">LOAD BALANCER</text>
+            <g class="map-node" data-node="a"><rect x="29" y="122" width="82" height="36" rx="7"/><circle cx="47" cy="140" r="3"/><text x="78" y="144" text-anchor="middle">A</text></g>
+            <g class="map-node" data-node="b"><rect x="169" y="122" width="82" height="36" rx="7"/><circle cx="187" cy="140" r="3"/><text x="218" y="144" text-anchor="middle">B</text></g>
+            <g class="map-node" data-node="c"><rect x="309" y="122" width="82" height="36" rx="7"/><circle cx="327" cy="140" r="3"/><text x="358" y="144" text-anchor="middle">C</text></g>
+          </svg>
+          <div class="instance-controls" role="group" aria-label="Toggle demo instances">
+            <button type="button" data-instance="a" aria-pressed="true">A <span>online</span></button>
+            <button type="button" data-instance="b" aria-pressed="true">B <span>online</span></button>
+            <button type="button" data-instance="c" aria-pressed="true">C <span>online</span></button>
+          </div>
+          <div class="load-control"><label for="traffic-load">Request load</label><span><output for="traffic-load" id="load-output">90</output> req/s</span><input id="traffic-load" type="range" min="10" max="160" step="10" value="90" aria-describedby="simulation-note"></div>
+          <p id="lab-status" class="lab-status" role="status" aria-live="polite">3 instances online. All requests served.</p>
+          <p id="simulation-note" class="simulation-note">Browser-only model. 40 req/s per instance. A demonstration, not a live system.</p>
+          <noscript><p class="simulation-note">The experiment needs JavaScript. The rest of the site works without it.</p></noscript>
+        </section>
+      </section>
+</main>
+    <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+  </div>
+</body>
+</html>
