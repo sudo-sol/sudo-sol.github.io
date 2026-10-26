@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="sudo-sol's personal workbench for infrastructure, reliability, and ideas worth trying.">
+  <meta name="theme-color" content="#111510">
+  <meta property="og:title" content="sudo-sol / the workbench">
+  <meta property="og:description" content="Build. Break. Understand. A personal space for systems and experiments.">
+  <meta property="og:type" content="website">
+  <title>sudo-sol / the workbench</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="wordmark" href="./" aria-label="sudo-sol home"><span class="brand-mark" aria-hidden="true">&gt;_</span> sudo-sol<span class="accent">.</span></a>
+      <nav aria-label="Main navigation"><a href="#workbench">Workbench</a><a href="#lab">The lab</a><a href="#notes">Notes</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme"><span aria-hidden="true">&#9681;</span><span class="theme-label">Theme</span></button>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>A PERSONAL WORKBENCH <span class="muted">/ v0.1</span></p>
+          <h1 id="hero-title">Build. Break.<br><em>Understand.</em></h1>
+          <p class="hero-description">A little corner of the internet for infrastructure, reliability, and ideas worth trying. Starting small. Leaving room for what comes next.</p>
+          <div class="hero-actions">
+            <a class="button" href="#workbench">Explore the workbench <span aria-hidden="true">&#8595;</span></a>
+            <a class="text-link" href="https://github.com/sudo-sol" target="_blank" rel="noopener noreferrer">Find me on GitHub &#8599;<span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+          <p class="hero-footnote"><span class="accent">~/</span> systems <span class="divider">/</span> experiments <span class="divider">/</span> useful little things</p>
+        </div>
+        <section class="lab-panel" id="lab" aria-labelledby="lab-title">
+          <div class="panel-heading"><span class="eyebrow">INTERACTIVE EXPERIMENT</span><span class="demo-tag">SIMULATED</span></div>
+          <h2 id="lab-title">A tiny traffic lab.</h2>
+          <p class="panel-description">Take an instance offline. See what happens to capacity.</p>
+          <div class="lab-stats">
+            <div><span class="metric-label">Incoming</span><strong><span id="incoming-value">90</span><small> req/s</small></strong></div>
+            <div><span class="metric-label">Capacity</span><strong><span id="capacity-value">120</span><small> req/s</small></strong></div>
+            <div><span class="metric-label">Served</span><strong id="served-value">100%</strong></div>
+          </div>
+          <svg class="traffic-map" viewBox="0 0 420 177" role="img" aria-labelledby="map-title map-desc">
+            <title id="map-title">Load balancer and three demo instances</title>
+            <desc id="map-desc">Each online instance adds forty requests per second of simulated capacity.</desc>
+            <defs><pattern id="map-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".7" fill="currentColor" opacity=".16"/></pattern></defs>
+            <rect width="420" height="177" fill="url(#map-grid)"/>
+            <path class="route" data-route="a" d="M210 56 V84 H70 V122"/>
+            <path class="route" data-route="b" d="M210 56 V122"/>
+            <path class="route" data-route="c" d="M210 56 V84 H350 V122"/>
+            <rect class="gateway" x="142" y="20" width="136" height="38" rx="8"/>
+            <text class="map-label" x="210" y="44" text-anchor="middle">LOAD BALANCER</text>
+            <g class="map-node" data-node="a"><rect x="29" y="122" width="82" height="36" rx="7"/><circle cx="47" cy="140" r="3"/><text x="78" y="144" text-anchor="middle">A</text></g>
+            <g class="map-node" data-node="b"><rect x="169" y="122" width="82" height="36" rx="7"/><circle cx="187" cy="140" r="3"/><text x="218" y="144" text-anchor="middle">B</text></g>
+            <g class="map-node" data-node="c"><rect x="309" y="122" width="82" height="36" rx="7"/><circle cx="327" cy="140" r="3"/><text x="358" y="144" text-anchor="middle">C</text></g>
+          </svg>
+          <div class="instance-controls" role="group" aria-label="Toggle demo instances">
+            <button type="button" data-instance="a" aria-pressed="true">A <span>online</span></button>
+            <button type="button" data-instance="b" aria-pressed="true">B <span>online</span></button>
+            <button type="button" data-instance="c" aria-pressed="true">C <span>online</span></button>
+          </div>
+          <div class="load-control"><label for="traffic-load">Request load</label><span><output for="traffic-load" id="load-output">90</output> req/s</span><input id="traffic-load" type="range" min="10" max="160" step="10" value="90" aria-describedby="simulation-note"></div>
+          <p id="lab-status" class="lab-status" role="status" aria-live="polite">3 instances online. All requests served.</p>
+          <p id="simulation-note" class="simulation-note">Browser-only model. 40 req/s per instance. A demonstration, not a live system.</p>
+          <noscript><p class="simulation-note">The experiment needs JavaScript. The rest of the site works without it.</p></noscript>
+        </section>
+      </section>
+      <div class="section-rule"><span>CURIOUS BY DEFAULT</span><span>BUILT ONE EXPERIMENT AT A TIME</span></div>
+      <section class="workbench-section" id="workbench" aria-labelledby="workbench-title">
+        <div class="section-intro"><div><p class="eyebrow">01 / THE WORKBENCH</p><h2 id="workbench-title">Room for the<br>next good idea.</h2></div><p>Starting with a few directions. Real repositories and write-ups will land here as they take shape. Open a row to see the idea.</p></div>
+        <div class="project-list">
+          <details class="project-row"><summary><span class="project-number">01</span><span class="project-name">Infrastructure, made repeatable<small>Environments, modules, and the decisions behind them.</small></span><span class="project-state">IDEA</span><span class="project-arrow" aria-hidden="true">+</span></summary><div class="project-detail"><p>A future home for infrastructure experiments: a clear diagram, reproducible setup, and a short explanation of the tradeoffs.</p><p class="detail-note">When there is a real repository, its link and a case study can go here.</p></div></details>
+          <details class="project-row"><summary><span class="project-number">02</span><span class="project-name">A field guide to failure<small>Small reliability labs and useful observations.</small></span><span class="project-state">IDEA</span><span class="project-arrow" aria-hidden="true">+</span></summary><div class="project-detail"><p>A place for controlled failures, monitoring experiments, recovery notes, and the lessons worth keeping.</p><p class="detail-note">The traffic experiment above is a small starting point.</p></div></details>
+          <details class="project-row"><summary><span class="project-number">03</span><span class="project-name">Tools for the boring bits<small>Less repetition. More room to think.</small></span><span class="project-state">IDEA</span><span class="project-arrow" aria-hidden="true">+</span></summary><div class="project-detail"><p>Space for small scripts and utilities that turn a repeated task into something more predictable.</p><p class="detail-note">Future entries can explain the problem, show usage, and link to the code.</p></div></details>
+        </div>
+      </section>
+      <section class="notes-section" id="notes" aria-labelledby="notes-title">
+        <div><p class="eyebrow">02 / FIELD NOTES</p><h2 id="notes-title">Some things are<br>worth writing down.</h2><p>The problem. The choices. What worked. What I would try next. A place for notes that outlive the terminal session.</p></div>
+        <div class="note-placeholder"><span class="eyebrow">THE NEXT BLANK PAGE</span><span class="note-index" aria-hidden="true">001</span><h3>The next useful<br>thing I learn.</h3><p>No entries yet. A good notebook starts somewhere.</p><span class="note-line" aria-hidden="true"></span></div>
+      </section>
+      <section class="closing"><p class="eyebrow">SMALL START. OPEN POSSIBILITIES.</p><h2>Let’s see what<br>this turns into<span class="accent">.</span></h2><a class="button" href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source &#8599;<span class="sr-only"> (opens in a new tab)</span></a></section>
+    </main>
+    <footer class="site-footer"><span class="footer-brand">sudo-sol<span class="accent">.</span></span><span>A work in progress. Always.</span><a href="#main">Back to top &#8593;</a></footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Local tools and generated files
+.DS_Store
+Thumbs.db
+*.log
+__pycache__/
+.venv/
+node_modules/
+.vscode/
+.idea/
+
+# Local environment values
+.env
+.env.*
+!.env.example
