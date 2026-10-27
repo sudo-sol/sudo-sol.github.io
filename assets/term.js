@@ -34,7 +34,7 @@
   }
   const LINKS = {
     resume:   { url: null, label: "résumé (PDF)" }, // set url once the public PDF is in assets/
-    contact:  { url: "/about/#contact", label: "contact form" },
+    contact:  { url: "/about/#contact", label: "say hi" },
     linkedin: { url: "https://www.linkedin.com/in/asriniva/", label: "LinkedIn", ext: true },
     github:   { url: "https://github.com/sudo-sol", label: "GitHub", ext: true },
     source:   { url: "https://github.com/sudo-sol/sudo-sol.github.io", label: "this site's source", ext: true },
@@ -102,7 +102,7 @@
   const pageChips = document.body.dataset.termChips?.split(",").map(c => c.trim()).filter(Boolean);
   const chipCmds = pageChips?.length ? pageChips
     : cwd ? ["ls", "cd ~", "help"]
-    : ["help", "ls", "cd experience", "cat now.txt", "man addy", "neofetch"];
+    : ["help", "ls", "cd experience", "man addy", "neofetch"];
   for (const c of chipCmds) {
     const b = h("button", null, c);
     b.type = "button";
@@ -141,8 +141,27 @@
 
   // ---------- output (persisted so the terminal "follows" you) ----------
   const isPart = x => typeof x === "string" || (Array.isArray(x) && typeof x[0] === "string" && typeof x[1] === "string");
+  function stripLegacyStartup(lines) {
+    const textOf = line => line.map(part => typeof part === "string" ? part : part[0]).join("");
+    const text = lines.map(textOf);
+    const oldStartup = lines.length >= 12
+      && text[0] === "Welcome to sudo-sol v0.1, a small corner of the internet."
+      && text[1].startsWith("Last login: ") && text[2] === ""
+      && lines[3][4]?.[0] === "systemctl status addy"
+      && text[4] === "● addy.service: curious by default"
+      && text[5] === "   Active: active (running)"
+      && lines[6][4]?.[0] === "cat now.txt"
+      && FILES["now.txt"].every((line, i) => text[i + 7] === textOf(line))
+      && text[11] === "type help to look around. I follow you to every page: press / anywhere.";
+    return oldStartup ? [...lines.slice(3, 6), ...lines.slice(12)] : lines;
+  }
   let transcript = store.json(KEY.log);
   transcript = Array.isArray(transcript) ? transcript.filter(l => Array.isArray(l) && l.every(isPart)).slice(-MAX_LOG) : [];
+  const migratedTranscript = stripLegacyStartup(transcript);
+  if (migratedTranscript !== transcript) {
+    transcript = migratedTranscript;
+    store.set(KEY.log, JSON.stringify(transcript));
+  }
   const render = parts => {
     const p = h("p", "l");
     for (const part of parts) p.append(typeof part === "string" ? part : h("span", part[1], part[0]));
@@ -379,12 +398,7 @@
   store.del(KEY.arrived);
   transcript.forEach(render);
   if (!transcript.length) {
-    out(["Welcome to sudo-sol v0.1, a small corner of the internet.", "t"]);
-    out(["Last login: " + new Date().toDateString() + " from your browser", "m"]);
-    out("");
     exec("systemctl status addy", false);
-    exec("cat now.txt", false);
-    out(["type ", "m"], ["help", "ok"], [" to look around. I follow you to every page: press ", "m"], ["/", "ok"], [" anywhere.", "m"]);
   } else if (arrived) {
     out(["→ ", "ok"], "arrived at ", [here, "cwd"], ["   (ls to see what's here)", "m"]);
   }

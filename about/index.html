@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="/assets/cyber.css">
   <script src="/assets/theme.js"></script>
   <script src="/app.js" defer></script>
-  <script src="/assets/term.js" defer></script>
+  <script src="/assets/term.js?v=3fd68170c2f3" defer></script>
 </head>
 <body class="interior-page" data-term-chips="ls, open skills, open contact, cd experience, cd ~, help">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -87,7 +87,8 @@
             <div class="man-body">
               <dl>
                 <dt>Learning</dt><dd>Mandarin, app development, and experimenting with personal AI assistants and MCP.</dd>
-                <dt>Playing</dt><dd>Cyberpunk 2077, Skyrim, and Stardew Valley. If you worked on any part of Cyberpunk 2077: I salute you. It’s a masterpiece and my absolute favourite.</dd>
+                <dt>Playing</dt><dd>Cyberpunk 2077, Skyrim, and Stardew Valley. If you worked on any part of Cyberpunk 2077: I thank you! It is a masterpiece and my absolute favourite.</dd>
+                <dt>Watching</dt><dd>Ted Lasso, Avatar: Seven Havens, and waiting eagerly for Dunesday!</dd>
                 <dt>Hobbies</dt><dd>Archery for the mind, boxing for the body, volunteering for the soul. Golf and hiking with friends.</dd>
                 <dt>Reading</dt><dd><cite>Dune Messiah</cite> and <cite>Project Hail Mary</cite>.</dd>
                 <dt>Ask me about</dt><dd>Why archery and boxing are more alike than you’d think.</dd>
@@ -101,7 +102,7 @@
               <ul class="bugs">
                 <li data-id="#111"><span>Can’t stand repetitive manual work. Automates it just to feel better.</span><span class="st feat">feature</span></li>
                 <li data-id="#204"><span>Can’t walk past a messy diagram without redrawing it.</span><span class="st">won't fix</span></li>
-                <li data-id="#369"><span>Can’t leave work half-done. Unfinished tasks keep running in the background until they ship.</span><span class="st">confirmed</span></li>
+                <li data-id="#369"><span>Can’t leave work half-done. Unfinished tasks keep me awake at night.</span><span class="st">confirmed</span></li>
                 <li data-id="#429"><span>Has strong opinions about espresso ice cream.</span><span class="st">won't fix</span></li>
               </ul>
             </div>
@@ -118,11 +119,13 @@
             </div>
           </section>
 
-          <section id="contact" data-term-item="contact" data-term-desc="say hi: the contact form" aria-labelledby="h-contact">
+          <section id="contact" data-term-item="contact" data-term-desc="say hi on LinkedIn; email form coming soon" aria-labelledby="h-contact">
             <h2 id="h-contact">SAY HI</h2>
             <div class="man-body">
-              <p>Want to talk about a role, a project, or anything on this site? Send me a note. I read everything.</p>
-              <form class="contact" id="contact-form" data-endpoint="" novalidate>
+              <p>Want to talk about a role, a project, or anything on this site? Reach me on LinkedIn.</p>
+              <p class="actions"><a class="btn primary" href="https://www.linkedin.com/in/asriniva/" target="_blank" rel="noopener noreferrer">Message me on LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></p>
+              <p class="fine" id="email-coming-soon">Email form coming soon.</p>
+              <form class="contact" id="contact-form" data-endpoint="" aria-describedby="email-coming-soon" hidden novalidate>
                 <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
                 <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
                 <div class="field full"><label for="f-msg">Message</label><textarea id="f-msg" name="message" required></textarea></div>
@@ -132,7 +135,6 @@
                   <span class="form-status" id="form-status" role="status" aria-live="polite"></span>
                 </div>
               </form>
-              <p class="fine">Sent securely via Formspree. Your email is only used to reply.</p>
             </div>
           </section>
         </article>

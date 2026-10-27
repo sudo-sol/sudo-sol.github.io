@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Projects I'm building and the ones I want to build next: the problem, the approach, the stack, and the outcome.">
+  <meta name="description" content="Personal projects, from apps I use every day to work in progress: the problems behind them, my approach, and where they stand.">
   <meta name="theme-color" content="#111510">
   <meta property="og:title" content="Workbench / sudo-sol">
-  <meta property="og:description" content="Projects I'm building and the ones I want to build next: the problem, the approach, the stack, and the outcome.">
+  <meta property="og:description" content="Personal projects, from apps I use every day to work in progress: the problems behind them, my approach, and where they stand.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sudo-sol.github.io/workbench/">
   <link rel="canonical" href="https://sudo-sol.github.io/workbench/">
@@ -17,9 +17,9 @@
   <link rel="stylesheet" href="/assets/cyber.css">
   <script src="/assets/theme.js"></script>
   <script src="/app.js" defer></script>
-  <script src="/assets/term.js" defer></script>
+  <script src="/assets/term.js?v=3fd68170c2f3" defer></script>
 </head>
-<body class="interior-page" data-term-chips="ls, open guardrails, open sudo-sol, cd notes, help">
+<body class="interior-page" data-term-chips="ls, open ascend, open pulse, cd notes, help">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
     <header class="site-header">
@@ -28,47 +28,74 @@
       <button id="theme-toggle" class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
     </header>
     <main id="main"><section class="workbench-section" aria-labelledby="workbench-title">
-        <div class="section-intro"><div><p class="eyebrow page-path">~/workbench/</p><h1 id="workbench-title">Things I'm<br><em>building next.</em></h1></div><p>Projects I'm working on and the ones I want to tackle next. Each one says what problem it solves, how I'm approaching it, what it runs on, and what came out of it.</p></div>
+        <div class="section-intro"><div><p class="eyebrow page-path">~/workbench/</p><h1 id="workbench-title">Things I've<br><em>been building.</em></h1></div><p>Personal projects, from tools I use every day to apps still taking shape. The problems behind them, the approach I took, and where they stand.</p></div>
         <div class="filters" data-filter="#projects" data-filter-key="status" role="group" aria-label="Filter projects by status" hidden></div>
         <div class="proj-list" id="projects">
           <!--
             One <article class="proj"> per project. Keep them ordered: building, planned, shipped.
             data-status: building | planned | shipped (drives the badge colour and the filter).
             Facts: problem, approach, outcome (numbers beat adjectives), next (drop it once shipped).
-            Delete the <span class="tag sample"> once an entry is real.
           -->
 
-          <!-- SAMPLE: replace with a real project -->
-          <article class="proj" id="guardrails" data-status="building" data-term-item="guardrails" data-term-desc="sample · policy checks for Terraform IAM" aria-labelledby="p-guardrails">
+          <article class="proj" id="ascend" data-status="building" data-term-item="ascend" data-term-desc="a personal app for following through on goals" aria-labelledby="p-ascend">
             <header class="proj-head">
-              <p class="proj-meta"><span class="status">building</span><span>started Sep 2026</span><span>updated Oct 2026</span></p>
-              <h2 id="p-guardrails">tf-guardrails <span class="tag sample">sample</span></h2>
-              <p class="proj-sum">Policy checks that catch risky IAM in Terraform before it merges.</p>
-              <ul class="stack" aria-label="Stack"><li>Terraform</li><li>OPA / Conftest</li><li>GitHub Actions</li><li>Python</li></ul>
-              <p class="proj-links"><span class="soon">repo: coming soon</span></p>
+              <p class="proj-meta"><span class="status">building</span><span><time datetime="2026-10">Oct 2026</time> – present</span><span>personal project</span></p>
+              <h2 id="p-ascend">Ascend</h2>
+              <p class="proj-sum">An app I'm building to turn personal goals into something I can keep showing up for, with a clearer sense of progress along the way.</p>
+              <ul class="stack" aria-label="Stack"><li>Java</li><li>JavaScript</li><li>Android WebView</li><li>SQLite</li><li>HTML / CSS</li></ul>
+              <p class="proj-links"><span class="soon">in development</span></p>
             </header>
             <dl class="proj-facts">
-              <dt>problem</dt><dd>On a shared Terraform platform, overly broad IAM (wildcard actions, <code>*</code> resources) slips through review and gets fixed after it ships.</dd>
-              <dt>approach</dt><dd>Run policies against the <code>terraform plan</code> JSON in CI and post a plain-English summary on the pull request, so reviewers see the risk, not the diff.</dd>
-              <dt>outcome</dt><dd>Target: <strong>zero wildcard IAM merged</strong>. Tracking findings caught before merge, per month.</dd>
-              <dt>next</dt><dd>Write the first five policies and test them against real plans.</dd>
+              <dt>problem</dt><dd>I had goals I cared about, but starting a routine and keeping it going were different problems. I wanted a clearer next step and a reason to come back when the initial motivation wore off.</dd>
+              <dt>approach</dt><dd>I'm building one place to turn those goals into manageable daily actions and see the effort add up. The focus is on following through and getting back into a routine after a missed day.</dd>
+              <dt>outcome</dt><dd><strong>A working Android version, still under development.</strong> The next step is to use it over time and learn whether it helps me stay consistent.</dd>
             </dl>
           </article>
 
-          <!-- SAMPLE: replace with a real project -->
-          <article class="proj" id="timeline" data-status="planned" data-term-item="timeline" data-term-desc="sample · incident chatter → RCA timeline" aria-labelledby="p-timeline">
+          <article class="proj" id="private-agent" data-status="planned" data-term-item="private-agent" data-term-desc="a private AI assistant with context from my own apps" aria-labelledby="p-private-agent">
             <header class="proj-head">
-              <p class="proj-meta"><span class="status">planned</span><span>idea logged Oct 2026</span></p>
-              <h2 id="p-timeline">incident-timeline <span class="tag sample">sample</span></h2>
-              <p class="proj-sum">One command that turns incident chatter into an RCA-ready timeline.</p>
-              <ul class="stack" aria-label="Stack"><li>Python</li><li>PagerDuty API</li><li>Slack API</li><li>Markdown</li></ul>
-              <p class="proj-links"><span class="soon">not started</span></p>
+              <p class="proj-meta"><span class="status">planned</span><span>idea recorded <time datetime="2026-10">Oct 2026</time></span></p>
+              <h2 id="p-private-agent">Private AI agent</h2>
+              <p class="proj-sum">A personal assistant that runs AI locally, understands context from Pulse, Ascend, and future apps, and helps me manage everyday life while keeping my data on hardware I control.</p>
+              <ul class="stack" aria-label="Proposed stack"><li>Python</li><li>llama.cpp</li><li>SQLite</li><li>Linux</li><li>Docker</li><li>WireGuard</li></ul>
+              <p class="proj-links"><span class="soon">proposed stack · hardware pending</span></p>
             </header>
             <dl class="proj-facts">
-              <dt>problem</dt><dd>Building the timeline for a root-cause write-up means hours of copying timestamps out of Slack, PagerDuty, and deploy logs.</dd>
-              <dt>approach</dt><dd>A CLI that pulls events for an incident window from each source and writes one sorted Markdown timeline you can edit.</dd>
-              <dt>outcome</dt><dd>Goal: a <strong>first-draft timeline in under 5 minutes</strong>.</dd>
-              <dt>next</dt><dd>Prototype against PagerDuty and Slack exports.</dd>
+              <dt>problem</dt><dd>My apps can hold useful pieces of my life, but I want an assistant that can connect that context and help me act on it, without depending on cloud AI processing.</dd>
+              <dt>approach</dt><dd>Run the model and personal context locally, with limited, permissioned access to my apps and approval before it makes changes. The goal is offline operation at home, plus access from away through a private encrypted connection when a network is available.</dd>
+              <dt>challenge</dt><dd><strong>Enough local compute for useful offline AI.</strong> Model quality, response time, and memory requirements need to be tested before choosing a powerful enough machine.</dd>
+              <dt>next</dt><dd>Benchmark local models and size the hardware, then prototype read-only context from my apps before adding actions or remote access.</dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="home-server" data-status="planned" data-term-item="home-server" data-term-desc="a NAS and home automation platform for the future agent" aria-labelledby="p-home-server">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">planned</span><span>idea recorded <time datetime="2026-10">Oct 2026</time></span></p>
+              <h2 id="p-home-server">Home server &amp; automation</h2>
+              <p class="proj-sum">A NAS home server and local home automation setup, with a longer-term goal of connecting both to my private AI agent.</p>
+              <ul class="stack" aria-label="Proposed stack"><li>Linux</li><li>OpenZFS</li><li>Samba</li><li>Home Assistant</li><li>MQTT</li></ul>
+              <p class="proj-links"><span class="soon">proposed stack · hardware pending</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>I want a home base for files, backups, and everyday automation, with room to connect those services to the personal apps and assistant I'm building.</dd>
+              <dt>approach</dt><dd>Build the NAS and home automation services first, with local control and recoverable backups. Keep them useful on their own, then add a permissioned connection to the offline agent.</dd>
+              <dt>challenge</dt><dd><strong>Hardware capacity for the wider setup.</strong> The eventual offline AI workload needs substantial local compute, alongside storage and always-on home services. Memory, power use, noise, and keeping those services responsive will shape the build.</dd>
+              <dt>next</dt><dd>Size the storage and compute requirements, validate backup recovery, and start with a small set of local automations before integrating the agent.</dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="pulse" data-status="shipped" data-term-item="pulse" data-term-desc="one personal app for everyday life, used daily" aria-labelledby="p-pulse">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">shipped</span><span>built <time datetime="2026-08">Aug</time> – <time datetime="2026-10">Oct 2026</time></span><span>in daily use</span></p>
+              <h2 id="p-pulse">Pulse</h2>
+              <p class="proj-sum">One app for my everyday life. I built Pulse because I was tired of needing a separate app for everything, and now I use it day to day.</p>
+              <ul class="stack" aria-label="Stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Room / SQLite</li><li>SQLCipher</li><li>WorkManager</li></ul>
+              <p class="proj-links"><span class="soon">built for my own use</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>My tasks, calendar, habits, notes, and recordings each needed their own app. Keeping track of my life meant switching between tools, even when everything belonged to the same day.</dd>
+              <dt>approach</dt><dd>I brought those everyday needs into one personal app, shaped around how I actually organize my life. The aim was to spend less time managing separate tools and have one place to return to throughout the day.</dd>
+              <dt>outcome</dt><dd><strong>Built and used in my daily life.</strong> Pulse is the personal app I wanted for myself: one place for everyday planning and information.</dd>
             </dl>
           </article>
 

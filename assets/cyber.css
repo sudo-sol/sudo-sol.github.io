@@ -58,11 +58,10 @@
 @keyframes cy-glitch{0%,92%,100%{text-shadow:0 0 10px rgba(0,240,255,.6);transform:none}93%{text-shadow:-2px 0 var(--mag),2px 0 var(--cy);transform:translateX(1px)}95%{text-shadow:2px 0 var(--mag),-2px 0 var(--cy);transform:translateX(-1px)}97%{text-shadow:0 0 10px rgba(0,240,255,.6);transform:none}}
 @media (prefers-reduced-motion:reduce){:root[data-theme=cyber] .wordmark>a,:root[data-theme=cyber] .footer-brand{animation:none}}
 
-/* workbench, notes, experience logos */
-:root[data-theme=cyber] .proj,:root[data-theme=cyber] .takeaway,:root[data-theme=cyber] .co-logo{border-radius:0;background:linear-gradient(180deg,rgba(14,20,42,.92),rgba(7,10,22,.92));clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+/* workbench and notes */
+:root[data-theme=cyber] .proj,:root[data-theme=cyber] .takeaway{border-radius:0;background:linear-gradient(180deg,rgba(14,20,42,.92),rgba(7,10,22,.92));clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
 :root[data-theme=cyber] .proj:hover,:root[data-theme=cyber] .proj:target{border-color:var(--mag)}
 :root[data-theme=cyber] .status,:root[data-theme=cyber] .filters button,:root[data-theme=cyber] .stack li,:root[data-theme=cyber] .tag{border-radius:0}
 :root[data-theme=cyber] .filters button[aria-pressed=true]{background:var(--cy);border-color:var(--cy);color:#000;box-shadow:0 0 12px rgba(0,240,255,.4)}
 :root[data-theme=cyber] [data-status=building] .status{text-shadow:0 0 8px rgba(0,240,255,.6)}
 :root[data-theme=cyber] .year-label,:root[data-theme=cyber] .post-body h2::before{color:var(--mag);text-shadow:0 0 10px rgba(255,42,109,.6)}
-:root[data-theme=cyber] .co-logo{color:var(--cy);text-shadow:0 0 10px rgba(0,240,255,.5)}

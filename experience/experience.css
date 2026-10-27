@@ -1,0 +1,37 @@
+/* Experience-page refinements. Shared layout and company logos stay in styles.css. */
+.xp .resume-pending {
+  color:var(--muted);
+  font:12px/1.5 var(--mono);
+  align-self:center;
+  padding:8px 0;
+}
+.xp .stats { grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:32px; }
+.xp .stat { min-width:0; padding:22px 24px; border-top:0; }
+.xp .stat+.stat { border-left:1px solid var(--line); }
+.xp .stat b { font-size:clamp(25px,2.6vw,34px); line-height:1.2; overflow-wrap:anywhere; }
+.xp .stat h2 { margin:10px 0 8px; font:600 14px/1.45 var(--sans); color:var(--text); letter-spacing:0; }
+.xp .stat p { margin:0; color:var(--muted); font:13px/1.65 var(--sans); }
+.xp .role-more { margin-top:14px; }
+.xp .role-more summary {
+  width:fit-content;
+  max-width:100%;
+  cursor:pointer;
+  color:var(--accent);
+  font:12px/1.7 var(--mono);
+  padding:5px 0;
+}
+.xp details summary:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
+.xp .role-more[open] summary { margin-bottom:10px; }
+.xp .toolbox-intro { color:var(--muted); font-size:14px; margin:0 0 22px; }
+.xp .tools { margin-bottom:64px; }
+@media(max-width:1100px) {
+  .xp .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .xp .stat:nth-child(odd) { border-left:0; }
+  .xp .stat:nth-child(n+3) { border-top:1px solid var(--line); }
+}
+@media(max-width:760px) {
+  .xp .stats { grid-template-columns:1fr; }
+  .xp .stat { padding:20px; }
+  .xp .stat+.stat { border-left:0; border-top:1px solid var(--line); }
+  .xp .stat b { font-size:30px; }
+}

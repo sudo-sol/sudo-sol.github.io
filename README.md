@@ -75,6 +75,7 @@ Official references: [Create a GitHub Pages site](https://docs.github.com/en/pag
 - **Pages come from the header nav.** `cd`, `ls`, and the tmux windows read `header nav a` (link text = name, `data-term-desc` = description). Add a page to the nav and the terminal knows about it.
 - **Page items are opt-in markup.** Add `data-term-item="name"` (plus optional `data-term-desc`) to a section, `<details>`, or link. `ls` lists them and `open name` scrolls to them, opens them, or follows the link.
 - **Suggested commands:** set `data-term-chips="ls, open x, cd ~"` on `<body>`.
+- A fresh terminal starts with only `systemctl status addy`. `cat now.txt` remains available when typed manually.
 - Output, history, and open/closed state persist per browser tab (sessionStorage). Output is built with `textContent`; input is never parsed as HTML.
 
 ### Keyboard shortcuts
@@ -91,12 +92,14 @@ The résumé buttons are intentionally inactive (`data-resume`, `aria-disabled="
 
 ### Contact form
 
-The About page form posts to [Formspree](https://formspree.io/) once it is connected. Until then it tells visitors to use LinkedIn. To connect it:
+The About page currently offers LinkedIn as its working contact option and shows “Email form coming soon.” The unconfigured form is retained with `hidden` so visitors cannot fill it out before delivery is available. To connect it:
 
-1. Create a free Formspree form and copy its endpoint (`https://formspree.io/f/<id>`).
+1. Create a [Formspree](https://formspree.io/) form, verify the receiving inbox, and copy its endpoint (`https://formspree.io/f/<id>`).
 2. In `about/index.html`, set `data-endpoint="https://formspree.io/f/<id>"` on `#contact-form`.
+3. Remove `hidden` and `aria-describedby="email-coming-soon"` from the form. Replace the coming-soon paragraph with accurate Formspree processing/privacy text and remove its unused ID.
+4. Test delivery and reply handling before publishing. Keep the LinkedIn option available.
 
-The `_gotcha` field is a honeypot for bots. Submissions go to Formspree, a third party.
+The `_gotcha` field is a honeypot for bots. Once connected, submissions go to Formspree, a third party.
 
 ### Add a page
 

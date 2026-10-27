@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Nine years of keeping customer-facing systems up: Staff SRE at Visier, Senior Platform Engineer at Lululemon. Timeline, outcomes, and toolbox.">
+  <meta name="description" content="SRE and platform engineering experience: incident recovery, cloud networking, infrastructure automation, cost reduction, and technical mentoring.">
   <meta name="theme-color" content="#111510">
   <meta property="og:title" content="Experience / sudo-sol">
-  <meta property="og:description" content="Nine years of keeping customer-facing systems up: Staff SRE at Visier, Senior Platform Engineer at Lululemon. Timeline, outcomes, and toolbox.">
+  <meta property="og:description" content="SRE and platform engineering experience: incident recovery, cloud networking, infrastructure automation, cost reduction, and technical mentoring.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sudo-sol.github.io/experience/">
   <link rel="canonical" href="https://sudo-sol.github.io/experience/">
@@ -15,9 +15,10 @@
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/assets/term.css">
   <link rel="stylesheet" href="/assets/cyber.css">
+  <link rel="stylesheet" href="/experience/experience.css">
   <script src="/assets/theme.js"></script>
   <script src="/app.js" defer></script>
-  <script src="/assets/term.js" defer></script>
+  <script src="/assets/term.js?v=3fd68170c2f3" defer></script>
 </head>
 <body class="interior-page" data-term-chips="ls, open visier, open toolbox, cd about, cd ~, help">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,70 +33,74 @@
       <section class="xp-hero" aria-labelledby="xp-title">
         <p class="prompt" aria-hidden="true"><span class="u">~/experience</span>$ git log --graph<span class="cursor"></span></p>
         <h1 id="xp-title">Nine years of <em>keeping things up.</em></h1>
-        <p class="lede">Staff-level SRE who keeps customer-facing systems running on <strong>AWS, Azure, and Linux</strong>. I lead the response when things break, write up the root cause, and ship the fix. I build platforms and guardrails that make systems safe and efficient.</p>
+        <p class="lede">I’m an SRE and platform engineer with 9+ years operating production systems. My work spans <strong>incident recovery, cloud networking, infrastructure automation, and cost reduction</strong>.</p>
         <div class="actions">
-          <button class="btn primary" type="button" data-resume aria-disabled="true" title="Coming soon">Résumé <span aria-hidden="true">↓</span></button>
-          <a class="btn" href="/about/#contact">Say hi <span aria-hidden="true">→</span></a>
+          <span class="resume-pending">Resume coming soon</span>
+          <a class="btn primary" href="/about/#contact">Say hi <span aria-hidden="true">→</span></a>
           <a class="btn" href="https://www.linkedin.com/in/asriniva/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
         </div>
-        <div class="stats">
-          <div class="stat"><b>9+</b><span>years in production</span></div>
-          <div class="stat"><b>$200K+</b><span>saved per year</span></div>
-          <div class="stat"><b>6</b><span>SREs led, 2 countries</span></div>
-          <div class="stat"><b>14</b><span>AWS accounts hardened</span></div>
+        <div class="stats xp-highlights" role="group" aria-label="Selected career impact">
+          <div class="stat"><b>US$200K+</b><h2>Annualized cost savings</h2><p>Across firewall, DNS, and shared-endpoint initiatives.</p></div>
+          <div class="stat"><b>5 regions</b><h2>Zero-downtime migration</h2><p>Palo Alto to AWS Network Firewall, preserving customer-allowlisted IPs.</p></div>
+          <div class="stat"><b>Terraform</b><h2>Re-usable modules with guardrails built-in</h2><p>Built easy to use YAML based modules that manages instances, networking and security end-to-end.</p></div>
+          <div class="stat"><b>6 SREs</b><h2>Technical leadership</h2><p>Planning, prioritization, and guidance for my team across Vancouver and Singapore.</p></div>
         </div>
       </section>
 
       <section aria-labelledby="tl-title">
-        <!-- Logos: drop an SVG/PNG in /assets/logos/ and replace a monogram with <img src="/assets/logos/<name>.svg" alt="">. -->
         <h2 class="sec" id="tl-title">timeline</h2>
         <div class="graph">
 
           <article class="commit head has-logo" id="lululemon" data-term-item="lululemon" data-term-desc="Senior Platform Engineer · 2026–now" aria-labelledby="c-lulu">
-            <span class="co-logo" aria-hidden="true">LU</span>
+            <span class="co-logo co-logo--lululemon" aria-hidden="true"><img src="/assets/logos/lululemon.png" alt="" width="256" height="256"></span>
             <p class="meta"><span class="h">a1f3c9e</span><span class="ref">(HEAD → now)</span><span>Jul 2026 – present</span><span>Vancouver, BC</span></p>
             <h3 id="c-lulu">Senior Platform Engineer <span class="at">@ Lululemon</span><span class="tag">contract</span></h3>
             <ul class="diff">
-              <li><span>Lead root-cause analysis for high-severity platform incidents and drive the follow-up fixes: <strong>better alerting, centralized secrets, and clear ownership</strong>.</span></li>
-              <li><span>Rolled out <strong>least-privilege access across a shared Terraform platform used by 100+ teams</strong>, with zero downtime.</span></li>
-              <li><span>Driving infrastructure-as-code adoption: built a module that keeps secrets out of Terraform state, and used data on <strong>1,300+ manual cloud changes</strong> to decide what to automate next.</span></li>
+              <li><span>Led the response to a company-wide Terraform automation incident during credential rotation, then coordinated alerting, secrets management, and agent-ownership fixes.</span></li>
+              <li><span>Restored Terraform automation across 36 workspaces, including 11 production workspaces, by fixing shared VCS authentication with one central read-only service account.</span></li>
+              <li><span>Restricted access to Terraform state with least-privilege workspace permissions and built a reusable module that keeps secret values out of state.</span></li>
             </ul>
           </article>
 
           <article class="commit has-logo" id="visier" data-term-item="visier" data-term-desc="intern → Staff SRE · 2018–2025" aria-labelledby="c-visier">
-            <span class="co-logo" aria-hidden="true">VI</span>
+            <span class="co-logo" aria-hidden="true"><img src="/assets/logos/visier.png" alt="" width="72" height="72"></span>
             <p class="meta"><span class="h">7d20b4a</span><span>Sep 2018 – Oct 2025</span><span>Vancouver, BC</span></p>
-            <h3 id="c-visier">Visier <span class="at">· intern → Staff SRE in 7 years</span></h3>
+            <h3 id="c-visier">Visier <span class="at">· progressed from intern to Staff SRE</span></h3>
             <div class="roles">
               <div class="role">
                 <h4>Staff Site Reliability Engineer</h4>
                 <p class="when">Aug 2024 – Oct 2025</p>
                 <ul class="diff">
-                  <li><span>Led on-call response for major production incidents, from a cloud-region outage to a database recovery, then added guardrails so they couldn't repeat: <strong>change control and DNS managed as code</strong>.</span></li>
-                  <li><span><strong>Saved ~$67K/yr</strong> moving from Palo Alto firewalls to AWS Network Firewall across 5 regions, with zero downtime.</span></li>
-                  <li><span><strong>Led and mentored a six-person SRE team</strong> across Vancouver and Singapore, with threat models and secrets-free engineering as the default.</span></li>
-                  <li><span>Built a <strong>multi-account AWS platform with Terraform and Terragrunt</strong> that enforces guardrails and eliminates manual drift.</span></li>
-                  <li><span>Centralized network connectivity between IT and SRE: <strong>100+ routes and rules down to under 20</strong>, with no single points of failure.</span></li>
-                  <li><span>Kept the fleet patched: critical CVEs fixed on schedule and a fleet-wide Ubuntu 16.04 → 24.04 upgrade.</span></li>
+                  <li><span>Led on-call recovery from DNS and production database outages, then introduced change controls and DNS managed as code to reduce recurrence.</span></li>
+                  <li><span>Saved approximately US$67K per year by leading a zero-downtime migration from Palo Alto to AWS Network Firewall across five AWS regions.</span></li>
+                  <li><span>Mentored a six-person SRE team across Vancouver and Singapore, coordinating planning, prioritizing work, and unblocking engineers.</span></li>
                 </ul>
+                <details class="role-more"><summary>More Staff SRE work</summary><ul class="diff">
+                  <li><span>Streamlined connectivity between IT and SRE, reducing single points of failure and the chance of manual errors.</span></li>
+                  <li><span>Remediated critical and high-priority CVEs and coordinated an Ubuntu fleet upgrade, reviewing and signing off on upgrade procedures.</span></li>
+                </ul></details>
               </div>
               <div class="role">
                 <h4>Senior Site Reliability Engineer</h4>
                 <p class="when">Sep 2022 – Aug 2024</p>
                 <ul class="diff">
-                  <li><span><strong>Saved ~$36K/yr</strong> by centralizing DNS resolution for every AWS account and Azure subscription.</span></li>
-                  <li><span>Moved Splunk from 7.x on EC2 to 9.x on immutable, containerized ECS.</span></li>
-                  <li><span>Managed firewalls as code with Terraform and Vault, and wrote the on-call runbooks that sped up onboarding and incident response.</span></li>
+                  <li><span>Saved approximately US$36K per year by centralizing shared DNS configuration across AWS accounts and Azure subscriptions.</span></li>
+                  <li><span>Contributed migration architecture and data transfer to a Splunk 7-to-9 upgrade, moving 16 TB from EBS to S3 with zero downtime or data loss.</span></li>
                 </ul>
+                <details class="role-more"><summary>More Senior SRE work</summary><ul class="diff">
+                  <li><span>Managed Palo Alto firewalls with Terraform and Vault, and wrote on-call runbooks that sped up onboarding and incident response.</span></li>
+                </ul></details>
               </div>
               <div class="role">
                 <h4>Site Reliability Engineer II</h4>
                 <p class="when">Jan 2021 – Sep 2022</p>
                 <ul class="diff">
-                  <li><span><strong>Saved ~$108K/yr</strong> with a central network hub: shared VPC endpoints for 30+ AWS services across 10+ accounts.</span></li>
-                  <li><span>Hardened IAM across 14 AWS accounts: key rotation, bucket policies, KMS, and role cleanup.</span></li>
-                  <li><span>Moved 150+ users from legacy jump boxes to AWS WorkSpaces and redesigned Transit Gateway routing for better segmentation.</span></li>
+                  <li><span>Saved approximately US$108K per year by building a central network hub with shared VPC endpoints and segmented Transit Gateway connectivity across 14 AWS accounts.</span></li>
+                  <li><span>Hardened AWS access controls through key rotation, S3 bucket policies, KMS configuration, and IAM role and policy cleanup.</span></li>
                 </ul>
+                <details class="role-more"><summary>More SRE II work</summary><ul class="diff">
+                  <li><span>Moved 200+ users from legacy Windows jump boxes to AWS WorkSpaces and defined provisioning, security, maintenance, and lifecycle standards.</span></li>
+                </ul></details>
               </div>
               <div class="role">
                 <h4>Site Reliability Engineer I</h4>
@@ -116,13 +121,13 @@
           </article>
 
           <article class="commit has-logo" id="education" data-term-item="education" data-term-desc="M.Eng · Simon Fraser University" aria-labelledby="c-edu">
-            <span class="co-logo" aria-hidden="true">SFU</span>
+            <span class="co-logo" aria-hidden="true"><img src="/assets/logos/sfu.png" alt="" width="180" height="91" loading="lazy"></span>
             <p class="meta"><span class="h">5e1f8a2</span><span>graduated Aug 2019</span><span>BC, Canada</span></p>
             <h3 id="c-edu">M.Eng, Engineering Science <span class="at">@ Simon Fraser University</span></h3>
           </article>
 
           <article class="commit has-logo" id="accenture" data-term-item="accenture" data-term-desc="DevOps Analyst · 2014–2017" aria-labelledby="c-acc">
-            <span class="co-logo" aria-hidden="true">AC</span>
+            <span class="co-logo" aria-hidden="true"><img src="/assets/logos/accenture.svg" alt="" width="32" height="32" loading="lazy"></span>
             <p class="meta"><span class="h">3c88e01</span><span>Jul 2014 – Jul 2017</span><span>Bangalore, India</span></p>
             <h3 id="c-acc">DevOps Analyst <span class="at">@ Accenture</span></h3>
             <ul class="diff">
@@ -137,15 +142,16 @@
         </div>
       </section>
 
-      <section id="toolbox" data-term-item="toolbox" data-term-desc="tools I use day to day" aria-labelledby="tb-title">
+      <section id="toolbox" data-term-item="toolbox" data-term-desc="tools behind the work" aria-labelledby="tb-title">
         <h2 class="sec" id="tb-title">toolbox</h2>
+        <p class="toolbox-intro">Tools used across my infrastructure, reliability, and platform engineering work.</p>
         <dl class="tools">
-          <dt>Cloud &amp; IaC</dt><dd><span>AWS</span><span>Azure</span><span>Terraform</span><span>Terragrunt</span><span>CloudFormation</span><span>Ansible</span><span>Puppet</span></dd>
+          <dt>Cloud &amp; infrastructure</dt><dd><span>AWS</span><span>Azure</span><span>Terraform</span><span>Terragrunt</span><span>CloudFormation</span><span>Ansible</span><span>Puppet</span></dd>
           <dt>Networking &amp; security</dt><dd><span>VPC</span><span>Transit Gateway</span><span>Route 53 / DNS</span><span>AWS Network Firewall</span><span>Palo Alto</span><span>Vault</span><span>IAM</span><span>KMS</span></dd>
           <dt>Containers &amp; load balancing</dt><dd><span>Docker</span><span>Kubernetes (EKS)</span><span>ECS</span><span>Nginx</span><span>ELB</span></dd>
           <dt>Monitoring &amp; incidents</dt><dd><span>Splunk</span><span>Prometheus</span><span>Grafana</span><span>CloudWatch</span><span>PagerDuty</span><span>RCAs</span></dd>
           <dt>CI/CD</dt><dd><span>Jenkins</span><span>GitLab</span><span>Bitbucket</span><span>JFrog Artifactory</span></dd>
-          <dt>Linux &amp; systems</dt><dd><span>Ubuntu</span><span>Amazon Linux</span><span>RHEL / CentOS</span><span>Windows Server</span><span>Python</span><span>Shell</span><span>SQL</span></dd>
+          <dt>Systems &amp; scripting</dt><dd><span>Linux</span><span>Ubuntu</span><span>Amazon Linux</span><span>RHEL / CentOS</span><span>Windows Server</span><span>Python</span><span>Shell</span><span>SQL</span></dd>
           <dt>Data &amp; messaging</dt><dd><span>PostgreSQL</span><span>Cassandra</span><span>RDS</span><span>Kafka</span></dd>
         </dl>
       </section>
