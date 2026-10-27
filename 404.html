@@ -12,15 +12,19 @@
   <title>404 / sudo-sol</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/term.css">
+  <link rel="stylesheet" href="/assets/cyber.css">
+  <script src="/assets/theme.js"></script>
   <script src="/app.js" defer></script>
+  <script src="/assets/term.js" defer></script>
 </head>
-<body class="">
+<body data-term-cwd="404" data-term-chips="cd ~, ls ~, help">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
     <header class="site-header">
-      <a class="wordmark" href="/" aria-label="sudo-sol home"><span class="brand-mark" aria-hidden="true">&gt;_</span> sudo-sol<span class="accent">.</span></a>
-      <nav aria-label="Main navigation"><a href="/workbench/">Workbench</a><a href="/labs/">Labs</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+      <div class="wordmark"><button class="brand-mark" type="button" data-term-open aria-label="Open terminal" title="Terminal ( / )">&gt;<i aria-hidden="true">_</i></button><a href="/" aria-label="sudo-sol home">sudo-sol<span class="accent">.</span></a></div>
+      <nav aria-label="Main navigation"><a href="/experience/" data-term-desc="where I've worked">experience</a><a href="/workbench/" data-term-desc="projects and case studies">workbench</a><!-- labs: hidden for now <a href="/labs/" data-term-desc="small interactive experiments">labs</a> --><a href="/notes/" data-term-desc="things worth writing down">notes</a><a href="/about/" data-term-desc="the human behind the terminal">about</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
     </header>
     <main id="main"><section class="error-page"><p class="eyebrow">404 / ROUTE NOT FOUND</p><h1>Wrong turn.<br><em>Right curiosity.</em></h1><p>There is nothing at this address. Let’s get you back to somewhere familiar.</p><a class="button" href="/">Back home <span aria-hidden="true">→</span></a></section></main>
     <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How every post on sudo-sol is put together, and the template to copy for the next one.">
+  <meta name="theme-color" content="#111510">
+  <meta property="og:title" content="The anatomy of a note / sudo-sol">
+  <meta property="og:description" content="How every post on sudo-sol is put together, and the template to copy for the next one.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sudo-sol.github.io/notes/anatomy-of-a-note/">
+  <meta property="article:published_time" content="2026-10-26">
+  <link rel="canonical" href="https://sudo-sol.github.io/notes/anatomy-of-a-note/">
+  <title>The anatomy of a note / sudo-sol</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/term.css">
+  <link rel="stylesheet" href="/assets/cyber.css">
+  <script src="/assets/theme.js"></script>
+  <script src="/app.js" defer></script>
+  <script src="/assets/term.js" defer></script>
+</head>
+<!--
+  NOTE TEMPLATE. To write a new note:
+  1. Copy this folder to notes/<slug>/.
+  2. Update <title>, description, og:*, canonical, article:published_time, and the header below.
+  3. Write the sections (keep the ids in sync with the "on this page" links).
+  4. Add the note to notes/index.html under its year.
+-->
+<body class="interior-page post-page" data-term-chips="ls, open choices, cd ~/notes, help">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="wordmark"><button class="brand-mark" type="button" data-term-open aria-label="Open terminal" title="Terminal ( / )">&gt;<i aria-hidden="true">_</i></button><a href="/" aria-label="sudo-sol home">sudo-sol<span class="accent">.</span></a></div>
+      <nav aria-label="Main navigation"><a href="/experience/" data-term-desc="where I've worked">experience</a><a href="/workbench/" data-term-desc="projects and case studies">workbench</a><!-- labs: hidden for now <a href="/labs/" data-term-desc="small interactive experiments">labs</a> --><a href="/notes/" aria-current="true" data-term-desc="things worth writing down">notes</a><a href="/about/" data-term-desc="the human behind the terminal">about</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+    </header>
+    <main id="main">
+      <article class="post" aria-labelledby="post-title">
+        <header class="post-head">
+          <a class="back-link" href="/notes/">← ~/notes</a>
+          <p class="prompt" aria-hidden="true"><span class="u">~/notes</span>$ cat anatomy-of-a-note.md<span class="cursor"></span></p>
+          <h1 id="post-title">The anatomy of <em>a note.</em></h1>
+          <p class="dek">How every post here is put together, and the template to copy for the next one.</p>
+          <p class="post-meta"><time datetime="2026-10-26">Oct 26, 2026</time><span data-read-time>1 min read</span><span>#writing</span><span>#meta</span><span class="tag sample">sample</span></p>
+        </header>
+
+        <div class="post-layout">
+          <div class="post-body">
+            <aside class="takeaway" aria-label="Key takeaway">
+              <b>tl;dr</b>
+              <p>Every note follows the same shape: <strong>the problem, the context, the choices, what happened, and what I'd do next.</strong> Copy this page to start a new one.</p>
+            </aside>
+
+            <section id="problem" data-term-item="problem" data-term-desc="start here" aria-labelledby="h-problem">
+              <h2 id="h-problem">The problem</h2>
+              <p>Open with one or two sentences a stranger could follow. What broke, or what was slow, and who felt it? If the reader stops here, they should still know why the note exists.</p>
+            </section>
+
+            <section id="context" data-term-item="context" data-term-desc="just enough background" aria-labelledby="h-context">
+              <h2 id="h-context">Context</h2>
+              <p>Just enough background to make the choices make sense: the environment, the constraints, and the scale. <strong>Numbers beat adjectives.</strong> "14 AWS accounts" says more than "a lot of accounts".</p>
+              <p>Keep it public-safe: outcomes and patterns, never incident or security specifics, internal names, or anything a former team wouldn't want shared.</p>
+            </section>
+
+            <section id="choices" data-term-item="choices" data-term-desc="options and tradeoffs" aria-labelledby="h-choices">
+              <h2 id="h-choices">The choices</h2>
+              <p>List the options you weighed and why one won. A small table keeps it honest:</p>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th scope="col">Option</th><th scope="col">Good</th><th scope="col">Not so good</th></tr></thead>
+                  <tbody>
+                    <tr><td>Do nothing</td><td>Free today</td><td>The problem keeps costing time</td></tr>
+                    <tr><td>Buy a tool</td><td>Fast to start</td><td>Another bill and another login</td></tr>
+                    <tr><td>Build a small script</td><td>Fits exactly</td><td>You own it now</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section id="what-happened" data-term-item="what-happened" data-term-desc="the work and the result" aria-labelledby="h-happened">
+              <h2 id="h-happened">What happened</h2>
+              <p>Show the work. Commands and config go in code blocks:</p>
+<pre><code>$ terraform plan -out=tfplan
+$ terraform show -json tfplan | conftest test -</code></pre>
+              <p>Then the result, with a number if you have one. Inline code looks like <code>this</code>.</p>
+              <blockquote><p>A short quote or a lesson worth pulling out goes here.</p></blockquote>
+            </section>
+
+            <section id="next" data-term-item="next" data-term-desc="what I'd change" aria-labelledby="h-next">
+              <h2 id="h-next">What I'd do next</h2>
+              <ul>
+                <li>What you'd change with hindsight.</li>
+                <li>What's still open, or the next experiment.</li>
+                <li>A link to the project on the <a class="inline-link" href="/workbench/">workbench</a>, if there is one.</li>
+              </ul>
+            </section>
+          </div>
+
+          <nav class="toc" aria-label="On this page">
+            <a href="#problem">problem</a><a href="#context">context</a><a href="#choices">choices</a><a href="#what-happened">what happened</a><a href="#next">next</a>
+          </nav>
+        </div>
+
+        <footer class="post-foot">
+          <a href="/notes/">← all notes</a>
+          <span>Thoughts? <a class="inline-link" href="https://www.linkedin.com/in/asriniva/" target="_blank" rel="noopener noreferrer">Reply on LinkedIn<span class="sr-only"> (opens in a new tab)</span></a> or <a class="inline-link" href="/about/#contact">say hi</a>.</span>
+        </footer>
+      </article>
+    </main>
+    <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+  </div>
+</body>
+</html>

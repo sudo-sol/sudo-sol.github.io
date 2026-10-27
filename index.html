@@ -3,38 +3,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A peek into Addy’s mind: systems, experiments, and things worth learning.">
+  <meta name="description" content="Addy is a Staff Site Reliability Engineer working on reliability, platforms, and cloud infrastructure. Experience, projects, and notes.">
   <meta name="theme-color" content="#111510">
   <meta property="og:title" content="Addy / sudo-sol">
-  <meta property="og:description" content="A peek into Addy’s mind: systems, experiments, and things worth learning.">
+  <meta property="og:description" content="Addy is a Staff Site Reliability Engineer working on reliability, platforms, and cloud infrastructure. Experience, projects, and notes.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sudo-sol.github.io/">
+  <link rel="canonical" href="https://sudo-sol.github.io/">
   <title>Addy / sudo-sol</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/term.css">
+  <link rel="stylesheet" href="/assets/cyber.css">
+  <script src="/assets/theme.js"></script>
   <script src="/app.js" defer></script>
+  <script src="/assets/term.js" defer></script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
     <header class="site-header">
-      <a class="wordmark" href="/" aria-label="sudo-sol home"><span class="brand-mark" aria-hidden="true">&gt;_</span> sudo-sol<span class="accent">.</span></a>
-      <nav aria-label="Main navigation"><a href="/workbench/">Workbench</a><a href="/labs/">Labs</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+      <div class="wordmark"><button class="brand-mark" type="button" data-term-open aria-label="Open terminal" title="Terminal ( / )">&gt;<i aria-hidden="true">_</i></button><a href="/" aria-label="sudo-sol home">sudo-sol<span class="accent">.</span></a></div>
+      <nav aria-label="Main navigation"><a href="/experience/" data-term-desc="where I've worked">experience</a><a href="/workbench/" data-term-desc="projects and case studies">workbench</a><!-- labs: hidden for now <a href="/labs/" data-term-desc="small interactive experiments">labs</a> --><a href="/notes/" data-term-desc="things worth writing down">notes</a><a href="/about/" data-term-desc="the human behind the terminal">about</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
     </header>
     <main id="main">
-      <section class="hero home-hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow hero-eyebrow"><span class="status-dot" aria-hidden="true"></span>MY PERSONAL CORNER OF THE INTERNET</p>
-          <h1 id="hero-title">Build. Break.<br><em>Understand.</em></h1>
-          <p class="hero-description">Hi, I’m Addy. Here’s a peek into my mind, the systems I’m curious about, and what I’m learning along the way.</p>
-          <div class="social-links" aria-label="Find me online">
-            <a href="https://www.linkedin.com/in/asriniva/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3ZM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4ZM19 19h-3v-4.9c0-1.2-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.61V19h-3V9h2.88v1.37h.04A3.15 3.15 0 0 1 15.2 8.8c3.03 0 3.8 1.99 3.8 4.58Z"/></svg></a>
-            <a href="https://github.com/sudo-sol" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.07c-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.24-1.62-1.24-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.71-1.49-2.47-.28-5.06-1.24-5.06-5.49 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.2-5.08 5.48.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg></a>
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="prompt" aria-hidden="true"><span class="user">addy@sudo-sol</span>:~$ <span id="typed"></span><span class="cursor"></span></p>
+          <h1 id="hero-title">Build. <span class="glitch" data-text="Break.">Break.</span><br><em>Understand.</em></h1>
+          <p class="lede">Hi, I’m <strong>Addy</strong>. Welcome to my little corner of the internet. To get to know me, check out <a class="pill" href="/about/">~/about</a>, and for my professional story, take a peek at <a class="pill" href="/experience/">~/experience</a>.</p>
+          <div class="actions">
+            <button class="btn primary" type="button" data-resume aria-disabled="true" title="Coming soon">Résumé <span aria-hidden="true">↓</span></button>
+            <a class="btn" href="/about/#contact">Say hi <span aria-hidden="true">→</span></a>
+            <div class="icons">
+              <a class="icon" href="https://www.linkedin.com/in/asriniva/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5V9h3ZM6.5 7.7a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4ZM19 19h-3v-4.9c0-1.2-.02-2.7-1.65-2.7-1.65 0-1.9 1.29-1.9 2.61V19h-3V9h2.88v1.37h.04A3.15 3.15 0 0 1 15.2 8.8c3.03 0 3.8 1.99 3.8 4.58Z"/></svg></a>
+              <a class="icon" href="https://github.com/sudo-sol" target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.55.1.76-.24.76-.54v-2.07c-3.09.67-3.74-1.31-3.74-1.31-.5-1.28-1.24-1.62-1.24-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.59 1.21 3.22.92.1-.72.39-1.21.71-1.49-2.47-.28-5.06-1.24-5.06-5.49 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.2-5.08 5.48.4.35.75 1.02.75 2.06v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg></a>
+            </div>
           </div>
         </div>
+
+        <a class="win exp" href="/experience/" aria-label="Experience, the short version. Open the full timeline.">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>~/experience: git log --oneline</span></div>
+          <ol class="gitlog">
+            <li><span class="g" aria-hidden="true">*</span><span class="h">a1f3c9e</span><span><span class="ref">(HEAD → now)</span> <strong>Senior Platform Engineer</strong> @ Lululemon</span></li>
+            <li><span class="g" aria-hidden="true">*</span><span class="h">7d20b4a</span><span><strong>Staff SRE</strong> @ Visier <em>· intern → staff, 7 yrs</em></span></li>
+            <li><span class="g" aria-hidden="true">*</span><span class="h">3c88e01</span><span><strong>DevOps Analyst</strong> @ Accenture</span></li>
+            <li><span class="g" aria-hidden="true">*</span><span class="h">0000001</span><span>initial commit: got curious about how things break</span></li>
+          </ol>
+          <div class="exp-body"><div><h2>The short version.</h2><p>9+ years · $200K+/yr saved · led a 6-person SRE team</p></div><span class="arrow" aria-hidden="true">→</span></div>
+        </a>
       </section>
-      <div class="section-rule home-rule"><span>CURIOUS BY DEFAULT</span><span>BUILT ONE EXPERIMENT AT A TIME</span></div>
-</main>
+
+      <section class="home-console" aria-labelledby="console-title">
+        <div class="section-head"><h2 id="console-title">explore from the terminal</h2><span>it’s real. type <kbd>help</kbd>, or press <kbd>/</kbd> on any page</span></div>
+        <div data-term-dock><noscript><p class="muted">JavaScript is off, so the terminal is asleep. The navigation above works fine.</p></noscript></div>
+      </section>
+    </main>
     <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
   </div>
 </body>

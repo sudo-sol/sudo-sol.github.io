@@ -12,3 +12,7 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+# Note drafts stay local until published (anything committed is public on Pages)
+drafts/*
+!drafts/_template.md

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An access audit that would have taken weeks of clicking, done in days with a small read-only tool I built for myself.">
+  <meta name="theme-color" content="#111510">
+  <meta property="og:title" content="Mapping who can change what in Terraform Cloud / sudo-sol">
+  <meta property="og:description" content="An access audit that would have taken weeks of clicking, done in days with a small read-only tool I built for myself.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sudo-sol.github.io/notes/tf-access-map/">
+  <meta property="article:published_time" content="2026-10-26">
+  <link rel="canonical" href="https://sudo-sol.github.io/notes/tf-access-map/">
+  <title>Mapping who can change what in Terraform Cloud / sudo-sol</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/term.css">
+  <link rel="stylesheet" href="/assets/cyber.css">
+  <script src="/assets/theme.js"></script>
+  <script src="/app.js" defer></script>
+  <script src="/assets/term.js" defer></script>
+</head>
+<body class="interior-page post-page" data-term-chips="ls, open choices, cd ~/notes, help">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="wordmark"><button class="brand-mark" type="button" data-term-open aria-label="Open terminal" title="Terminal ( / )">&gt;<i aria-hidden="true">_</i></button><a href="/" aria-label="sudo-sol home">sudo-sol<span class="accent">.</span></a></div>
+      <nav aria-label="Main navigation"><a href="/experience/" data-term-desc="where I've worked">experience</a><a href="/workbench/" data-term-desc="projects and case studies">workbench</a><!-- labs: hidden for now <a href="/labs/" data-term-desc="small interactive experiments">labs</a> --><a href="/notes/" aria-current="true" data-term-desc="things worth writing down">notes</a><a href="/about/" data-term-desc="the human behind the terminal">about</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+    </header>
+    <main id="main">
+      <article class="post" aria-labelledby="post-title">
+        <header class="post-head">
+          <a class="back-link" href="/notes/">← ~/notes</a>
+          <p class="prompt" aria-hidden="true"><span class="u">~/notes</span>$ cat tf-access-map.md<span class="cursor"></span></p>
+          <h1 id="post-title">Mapping <em>who can change what</em> in Terraform Cloud</h1>
+          <p class="dek">An access audit that would have taken weeks of clicking, done in days with a small read-only tool I built for myself.</p>
+          <p class="post-meta"><time datetime="2026-10-26">Oct 26, 2026</time><span data-read-time>4 min read</span><span>#terraform</span><span>#security</span><span>#tooling</span></p>
+        </header>
+
+        <div class="post-layout">
+          <div class="post-body">
+            <aside class="takeaway" aria-label="Key takeaway">
+              <b>tl;dr</b>
+              <p>I had an access audit that would have taken weeks in the Terraform Cloud UI. I spent a few days on a read-only tool that pulls everything into one local snapshot, turns it into an access graph, and answers <em>"who can change this, and how?"</em> in seconds. <strong>Its first run matched the manual numbers exactly.</strong></p>
+            </aside>
+
+            <section id="problem" data-term-item="problem" data-term-desc="why this exists" aria-labelledby="h-problem">
+              <h2 id="h-problem">The problem</h2>
+              <p>Terraform Cloud is good at telling you what a workspace is. It is much worse at telling you who can change it.</p>
+              <p>Access is additive and comes from several places at once: an SSO group maps to a team, the team gets access to a workspace, or to a whole project, or to the entire organization. To answer <em>"who can apply to this, or read its state?"</em> for a single workspace, you click through several screens and add it up in your head. I needed that answer across thousands of workspaces and hundreds of teams.</p>
+              <p>By hand, that was weeks of work, and the answer would have been stale before I finished.</p>
+            </section>
+
+            <section id="context" data-term-item="context" data-term-desc="scale and constraints" aria-labelledby="h-context">
+              <h2 id="h-context">Context</h2>
+              <ul>
+                <li><strong>Scale:</strong> thousands of workspaces, hundreds of teams, a few dozen projects, and self-hosted agents running on Kubernetes.</li>
+                <li><strong>Most access was managed as code</strong> in a Terraform repository using the <code>tfe</code> provider. Most, not all.</li>
+                <li><strong>The built-in tooling covers the rest.</strong> Terraform Cloud's Explorer already reports inventory, drift, and versions. It has no access view at all. So I didn't rebuild inventory; I built the missing part.</li>
+                <li><strong>One rule I set myself:</strong> the tool must not become the risk it is auditing. Anything holding an org-wide token is a target.</li>
+              </ul>
+            </section>
+
+            <section id="choices" data-term-item="choices" data-term-desc="options and tradeoffs" aria-labelledby="h-choices">
+              <h2 id="h-choices">The choices</h2>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th scope="col">Option</th><th scope="col">Good</th><th scope="col">Not so good</th></tr></thead>
+                  <tbody>
+                    <tr><td>Click through the UI</td><td>No new tooling</td><td>Weeks of work, easy to miss a path, stale on arrival</td></tr>
+                    <tr><td>Parse the Terraform repo only</td><td>Needs no credentials</td><td>Misses access granted outside code</td></tr>
+                    <tr><td>Hosted dashboard with a service token</td><td>Always fresh, easy to share</td><td>A privileged token and a new service to secure</td></tr>
+                    <tr><td>Local read-only snapshot, under my own login</td><td>Accurate, nothing new to secure</td><td>Only as fresh as the last run</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>I went with the last one, then added repo parsing back as a second layer.</p>
+              <p>My first plan was actually "parse the repo only". It would have been wrong in the worst possible way: it would have reported <em>no access</em> where there was broad access, because some of the most consequential grants were never written in code. <strong>Code shows intent. The API shows reality. The gap between them is the finding.</strong></p>
+            </section>
+
+            <section id="what-happened" data-term-item="what-happened" data-term-desc="how it works and what came out" aria-labelledby="h-happened">
+              <h2 id="h-happened">What happened</h2>
+              <figure>
+                <a href="architecture.svg" title="Open full size"><img src="architecture.svg" alt="How tf-access-map fits together: read-only collectors feed a local snapshot, a model turns it into an access graph, and a static page shows it." width="1120" height="480" loading="lazy"></a>
+                <figcaption>Read-only end to end: collectors, a local snapshot, a model, and one static page. Click any image for full size.</figcaption>
+              </figure>
+              <p>The vision and the design rules were mine: what to answer, what it must never touch, and what "safe" meant. I built it with an AI coding assistant, which is how an idea became a working tool in days instead of weeks.</p>
+              <p>Five pieces, all plain Python standard library plus one HTML file:</p>
+              <ul>
+                <li><strong>Collectors.</strong> GET-only by construction: the HTTP client has no method that can send anything else, and every path is checked against an allowlist <em>before</em> a request goes out. State, variables, runs, and tokens are unreachable. They run under my own login; the tool stores no credentials. The snapshot is a local file with owner-only permissions and is never committed. A preflight check confirms the login can see everything, and stops rather than quietly under-reporting.</li>
+                <li><strong>Access model.</strong> Turns the snapshot into a graph and answers <code>who-can &lt;workspace&gt;</code>, <code>what-can &lt;team&gt;</code>, and <code>person &lt;name&gt;</code>, plus a list of findings.</li>
+                <li><strong>Declared vs actual.</strong> A small, strict evaluator for the subset of HCL the repo uses resolves every grant to a file and line. Anything it can't evaluate is marked <em>unclear</em>, never guessed.</li>
+                <li><strong>Linkage and health.</strong> Does each workspace's repo and deploy branch still exist, and is the branch protected? Which identity-provider group sits behind each team? Plus the run queue, stuck runs, agent pools, pod restarts and out-of-memory kills, and the vendor's status page.</li>
+                <li><strong>Dashboard.</strong> One static HTML page with the data embedded and no server: an overview, a faceted explorer, team pages, severity-sorted findings, platform health, and CSV export.</li>
+              </ul>
+              <figure>
+                <a href="overview.png" title="Open full size"><img src="overview.png" alt="The tf-access-map overview page in dark mode: workspace, access-in-code, read-all-state and failing-run counts, a platform health strip, and the top findings." width="1440" height="1000" loading="lazy"></a>
+                <figcaption>The overview. Screenshots use a mockup with fictional data.</figcaption>
+              </figure>
+              <p>Refreshing everything is one command:</p>
+<pre><code>python refresh.py
+python model.py who-can &lt;workspace&gt;</code></pre>
+              <p>The findings that mattered most were the kinds a UI hides: teams that can read every workspace's state, access granted outside code review, and auto-apply workspaces where a push to the deploy branch goes straight to a live change.</p>
+              <figure>
+                <a href="findings.png" title="Open full size"><img src="findings.png" alt="The findings page: hot-spot workspaces ranked by how many findings pile up on them, tagged cross-team write, access not in code, direct push plus auto-apply, drifted, and no owner." width="1440" height="1000" loading="lazy"></a>
+                <figcaption>Findings, ranked by where they pile up.</figcaption>
+              </figure>
+              <figure>
+                <a href="health.png" title="Open full size"><img src="health.png" alt="The platform health page: a needs-attention banner, current issues like a saturated agent pool, the vendor status page, and the run queue." width="1440" height="1000" loading="lazy"></a>
+                <figcaption>Platform health: agents, run queue, and the vendor's status page in one place.</figcaption>
+              </figure>
+              <p>The results:</p>
+              <ul>
+                <li><strong>Weeks of manual auditing done in days.</strong></li>
+                <li><strong>Its first run matched the earlier manual numbers exactly</strong>, which is what made me trust the rest.</li>
+                <li><strong>Zero writes, no stored tokens, 150+ offline tests</strong> using fake API responses.</li>
+              </ul>
+              <blockquote><p>See everything, change nothing. Anything that changes something goes through a human-reviewed request.</p></blockquote>
+            </section>
+
+            <section id="next" data-term-item="next" data-term-desc="what I'd change" aria-labelledby="h-next">
+              <h2 id="h-next">What I'd do next</h2>
+              <ul>
+                <li><strong>Freshness over cleverness.</strong> A visible "last synced" banner saved me from trusting stale data more than once. Webhooks would beat re-running collectors.</li>
+                <li><strong>"Fix this" links</strong> that open a pre-filled merge request, so a finding turns into a reviewed change instead of a manual UI edit.</li>
+                <li><strong>A read-only API or MCP server</strong>, so an AI assistant could query it under the asker's own permissions.</li>
+                <li><strong>Keep it personal.</strong> I built it for my own use, and that is exactly why it could stay this simple: no server, no shared token, no new service to secure. It's on the <a class="inline-link" href="/workbench/#access-map">workbench</a> too.</li>
+              </ul>
+            </section>
+          </div>
+
+          <nav class="toc" aria-label="On this page">
+            <a href="#problem">problem</a><a href="#context">context</a><a href="#choices">choices</a><a href="#what-happened">what happened</a><a href="#next">next</a>
+          </nav>
+        </div>
+
+        <footer class="post-foot">
+          <a href="/notes/">← all notes</a>
+          <span>Thoughts? <a class="inline-link" href="https://www.linkedin.com/in/asriniva/" target="_blank" rel="noopener noreferrer">Reply on LinkedIn<span class="sr-only"> (opens in a new tab)</span></a> or <a class="inline-link" href="/about/#contact">say hi</a>.</span>
+        </footer>
+      </article>
+    </main>
+    <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+  </div>
+</body>
+</html>

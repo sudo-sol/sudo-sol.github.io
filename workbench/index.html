@@ -3,30 +3,104 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A space for future infrastructure projects, reliability experiments, and useful tools.">
+  <meta name="description" content="Projects I'm building and the ones I want to build next: the problem, the approach, the stack, and the outcome.">
   <meta name="theme-color" content="#111510">
   <meta property="og:title" content="Workbench / sudo-sol">
-  <meta property="og:description" content="A space for future infrastructure projects, reliability experiments, and useful tools.">
+  <meta property="og:description" content="Projects I'm building and the ones I want to build next: the problem, the approach, the stack, and the outcome.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sudo-sol.github.io/workbench/">
+  <link rel="canonical" href="https://sudo-sol.github.io/workbench/">
   <title>Workbench / sudo-sol</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/term.css">
+  <link rel="stylesheet" href="/assets/cyber.css">
+  <script src="/assets/theme.js"></script>
   <script src="/app.js" defer></script>
+  <script src="/assets/term.js" defer></script>
 </head>
-<body class="interior-page">
+<body class="interior-page" data-term-chips="ls, open guardrails, open sudo-sol, cd notes, help">
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="page-shell">
     <header class="site-header">
-      <a class="wordmark" href="/" aria-label="sudo-sol home"><span class="brand-mark" aria-hidden="true">&gt;_</span> sudo-sol<span class="accent">.</span></a>
-      <nav aria-label="Main navigation"><a href="/workbench/" aria-current="page">Workbench</a><a href="/labs/">Labs</a><a href="/notes/">Notes</a><a href="/about/">About</a></nav>
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+      <div class="wordmark"><button class="brand-mark" type="button" data-term-open aria-label="Open terminal" title="Terminal ( / )">&gt;<i aria-hidden="true">_</i></button><a href="/" aria-label="sudo-sol home">sudo-sol<span class="accent">.</span></a></div>
+      <nav aria-label="Main navigation"><a href="/experience/" data-term-desc="where I've worked">experience</a><a href="/workbench/" aria-current="page" data-term-desc="projects and case studies">workbench</a><!-- labs: hidden for now <a href="/labs/" data-term-desc="small interactive experiments">labs</a> --><a href="/notes/" data-term-desc="things worth writing down">notes</a><a href="/about/" data-term-desc="the human behind the terminal">about</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
     </header>
-    <main id="main"><section class="workbench-section" id="workbench" aria-labelledby="workbench-title">
-        <div class="section-intro"><div><p class="eyebrow page-path">~/workbench/</p><h1 id="workbench-title">Room for the<br><em>next good idea.</em></h1></div><p>Starting with a few directions. Real repositories and write-ups will land here as they take shape. Open a row to see the idea.</p></div>
-        <div class="project-list">
-          <details class="project-row"><summary><span class="project-number">01</span><span class="project-name">Infrastructure, made repeatable<small>Environments, modules, and the decisions behind them.</small></span><span class="project-state">IDEA</span><span class="project-arrow" aria-hidden="true">+</span></summary><div class="project-detail"><p>A future home for infrastructure experiments: a clear diagram, reproducible setup, and a short explanation of the tradeoffs.</p><p class="detail-note">When there is a real repository, its link and a case study can go here.</p></div></details>
-          <details class="project-row"><summary><span class="project-number">02</span><span class="project-name">A field guide to failure<small>Small reliability labs and useful observations.</small></span><span class="project-state">IDEA</span><span class="project-arrow" aria-hidden="true">+</span></summary><div class="project-detail"><p>A place for controlled failures, monitoring experiments, recovery notes, and the lessons worth keeping.</p><p class="detail-note">Try the <a class="inline-link" href="/labs/traffic/">traffic lab</a> for a small starting point.</p></div></details>
-          <details class="project-row"><summary><span class="project-number">03</span><span class="project-name">Tools for the boring bits<small>Less repetition. More room to think.</small></span><span class="project-state">IDEA</span><span class="project-arrow" aria-hidden="true">+</span></summary><div class="project-detail"><p>Space for small scripts and utilities that turn a repeated task into something more predictable.</p><p class="detail-note">Future entries can explain the problem, show usage, and link to the code.</p></div></details>
+    <main id="main"><section class="workbench-section" aria-labelledby="workbench-title">
+        <div class="section-intro"><div><p class="eyebrow page-path">~/workbench/</p><h1 id="workbench-title">Things I'm<br><em>building next.</em></h1></div><p>Projects I'm working on and the ones I want to tackle next. Each one says what problem it solves, how I'm approaching it, what it runs on, and what came out of it.</p></div>
+        <div class="filters" data-filter="#projects" data-filter-key="status" role="group" aria-label="Filter projects by status" hidden></div>
+        <div class="proj-list" id="projects">
+          <!--
+            One <article class="proj"> per project. Keep them ordered: building, planned, shipped.
+            data-status: building | planned | shipped (drives the badge colour and the filter).
+            Facts: problem, approach, outcome (numbers beat adjectives), next (drop it once shipped).
+            Delete the <span class="tag sample"> once an entry is real.
+          -->
+
+          <!-- SAMPLE: replace with a real project -->
+          <article class="proj" id="guardrails" data-status="building" data-term-item="guardrails" data-term-desc="sample · policy checks for Terraform IAM" aria-labelledby="p-guardrails">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">building</span><span>started Sep 2026</span><span>updated Oct 2026</span></p>
+              <h2 id="p-guardrails">tf-guardrails <span class="tag sample">sample</span></h2>
+              <p class="proj-sum">Policy checks that catch risky IAM in Terraform before it merges.</p>
+              <ul class="stack" aria-label="Stack"><li>Terraform</li><li>OPA / Conftest</li><li>GitHub Actions</li><li>Python</li></ul>
+              <p class="proj-links"><span class="soon">repo: coming soon</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>On a shared Terraform platform, overly broad IAM (wildcard actions, <code>*</code> resources) slips through review and gets fixed after it ships.</dd>
+              <dt>approach</dt><dd>Run policies against the <code>terraform plan</code> JSON in CI and post a plain-English summary on the pull request, so reviewers see the risk, not the diff.</dd>
+              <dt>outcome</dt><dd>Target: <strong>zero wildcard IAM merged</strong>. Tracking findings caught before merge, per month.</dd>
+              <dt>next</dt><dd>Write the first five policies and test them against real plans.</dd>
+            </dl>
+          </article>
+
+          <!-- SAMPLE: replace with a real project -->
+          <article class="proj" id="timeline" data-status="planned" data-term-item="timeline" data-term-desc="sample · incident chatter → RCA timeline" aria-labelledby="p-timeline">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">planned</span><span>idea logged Oct 2026</span></p>
+              <h2 id="p-timeline">incident-timeline <span class="tag sample">sample</span></h2>
+              <p class="proj-sum">One command that turns incident chatter into an RCA-ready timeline.</p>
+              <ul class="stack" aria-label="Stack"><li>Python</li><li>PagerDuty API</li><li>Slack API</li><li>Markdown</li></ul>
+              <p class="proj-links"><span class="soon">not started</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>Building the timeline for a root-cause write-up means hours of copying timestamps out of Slack, PagerDuty, and deploy logs.</dd>
+              <dt>approach</dt><dd>A CLI that pulls events for an incident window from each source and writes one sorted Markdown timeline you can edit.</dd>
+              <dt>outcome</dt><dd>Goal: a <strong>first-draft timeline in under 5 minutes</strong>.</dd>
+              <dt>next</dt><dd>Prototype against PagerDuty and Slack exports.</dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="access-map" data-status="shipped" data-term-item="access-map" data-term-desc="my own tool for a big Terraform access audit" aria-labelledby="p-access-map">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">shipped</span><span>built Sep – Oct 2026</span><span>personal tool</span></p>
+              <h2 id="p-access-map">tf-access-map</h2>
+              <p class="proj-sum">A read-only dashboard I built for myself to untangle a large access problem: who can change what across a Terraform Cloud estate, how they got that access, and whether the platform is healthy right now.</p>
+              <ul class="stack" aria-label="Stack"><li>Python</li><li>HCP Terraform API</li><li>GitLab API</li><li>Microsoft Graph</li><li>Kubernetes</li><li>HTML / CSS / JS</li></ul>
+              <p class="proj-links"><a href="/notes/tf-access-map/">case study →</a><span class="soon">built for my own use</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>I had to work out, across thousands of workspaces and hundreds of teams, <em>"who can apply to this, or read its state, and how?"</em> Access chained through SSO groups, teams, projects, and org-wide permissions, and some of it was never written in code. By hand, that was weeks of clicking through a UI.</dd>
+              <dt>approach</dt><dd>Read-only collectors with an endpoint allowlist snapshot Terraform Cloud, Git, the identity provider, and the agents' Kubernetes pods, using my own login. A model turns the snapshot into an access graph, and a strict HCL evaluator finds where each grant is declared. One static page shows it all, with no server to run.</dd>
+              <dt>outcome</dt><dd><strong>Weeks of manual auditing done in days.</strong> Its first run matched the manual numbers exactly. Surfaced access granted outside code, teams that can read all state, and auto-apply workspaces with unprotected deploy branches. <strong>Zero writes, no stored tokens, 150+ tests.</strong></dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="sudo-sol" data-status="shipped" data-term-item="sudo-sol" data-term-desc="this site" aria-labelledby="p-site">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">shipped</span><span>started Oct 2026</span><span>updated Oct 2026</span></p>
+              <h2 id="p-site">sudo-sol.github.io</h2>
+              <p class="proj-sum">This site: experience, projects, and notes, with a real terminal on every page.</p>
+              <ul class="stack" aria-label="Stack"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub Pages</li></ul>
+              <p class="proj-links"><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">repo ↗<span class="sr-only"> (opens in a new tab)</span></a><a href="/">live →</a></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>I wanted one place for my experience, projects, and notes that feels like how I work, without a framework to keep patched.</dd>
+              <dt>approach</dt><dd>Plain HTML, CSS, and JavaScript. One folder per page, a shared terminal that builds itself from the header nav, and three themes.</dd>
+              <dt>outcome</dt><dd><strong>No build step, no dependencies, no tracking.</strong> About 100 KB for the homepage, and every page still works with JavaScript off.</dd>
+            </dl>
+          </article>
         </div>
       </section></main>
     <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
