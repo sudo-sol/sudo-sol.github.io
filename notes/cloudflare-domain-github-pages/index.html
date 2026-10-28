@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Buy a domain on Cloudflare, take care of the essentials, and connect it to GitHub Pages with the right DNS records and HTTPS.">
+  <meta name="theme-color" content="#111510">
+  <meta property="og:title" content="From a Cloudflare domain to GitHub Pages / sudo-sol">
+  <meta property="og:description" content="Buy a domain on Cloudflare, take care of the essentials, and connect it to GitHub Pages with the right DNS records and HTTPS.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://sudo-sol.github.io/notes/cloudflare-domain-github-pages/">
+  <meta property="article:published_time" content="2026-10-27">
+  <link rel="canonical" href="https://sudo-sol.github.io/notes/cloudflare-domain-github-pages/">
+  <title>From a Cloudflare domain to GitHub Pages / sudo-sol</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/term.css">
+  <link rel="stylesheet" href="/assets/cyber.css">
+  <script src="/assets/theme.js"></script>
+  <script src="/app.js" defer></script>
+  <script src="/assets/term.js?v=3fd68170c2f3" defer></script>
+</head>
+<body class="interior-page post-page" data-term-chips="ls, open dns, open checks, cd ~/notes, help">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <div class="wordmark"><button class="brand-mark" type="button" data-term-open aria-label="Open terminal" title="Terminal ( / )">&gt;<i aria-hidden="true">_</i></button><a href="/" aria-label="sudo-sol home">sudo-sol<span class="accent">.</span></a></div>
+      <nav aria-label="Main navigation"><a href="/experience/" data-term-desc="where I've worked">experience</a><a href="/workbench/" data-term-desc="projects and case studies">workbench</a><!-- labs: hidden for now <a href="/labs/" data-term-desc="small interactive experiments">labs</a> --><a href="/notes/" aria-current="true" data-term-desc="things worth writing down">notes</a><a href="/about/" data-term-desc="the human behind the terminal">about</a></nav>
+      <button id="theme-toggle" class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme" title="Switch theme"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor"/></svg></button>
+    </header>
+    <main id="main">
+      <article class="post" aria-labelledby="post-title">
+        <header class="post-head">
+          <a class="back-link" href="/notes/">← ~/notes</a>
+          <p class="prompt" aria-hidden="true"><span class="u">~/notes</span>$ cat cloudflare-domain-github-pages.md<span class="cursor"></span></p>
+          <h1 id="post-title">From a Cloudflare domain to <em>GitHub Pages.</em></h1>
+          <p class="dek">Buy a domain on Cloudflare, take care of the essentials, and connect it to GitHub Pages with the right DNS records and HTTPS.</p>
+          <p class="post-meta"><time datetime="2026-10-27">Oct 27, 2026</time><span data-read-time>6 min read</span><span>#cloudflare</span><span>#dns</span><span>#github-pages</span></p>
+        </header>
+        <div class="post-layout">
+          <div class="post-body">
+            <aside class="takeaway" aria-label="Key takeaway">
+              <b>tl;dr</b>
+              <p>Register the name, verify ownership, tell GitHub which domain to serve, then point DNS at GitHub Pages. This guide uses <strong>Cloudflare for registration and DNS</strong>, and <strong>GitHub Pages for hosting</strong>. Keep the website records set to <strong>DNS only</strong> for this setup.</p>
+            </aside>
+
+            <section id="plan" data-term-item="plan" data-term-desc="what each service does" aria-labelledby="h-plan">
+              <h2 id="h-plan">The plan: one name, three jobs</h2>
+              <p>Buying a domain reserves the name; it does not upload a website. The registrar manages the registration, DNS tells visitors where to go, and the host serves the files.</p>
+              <p>The examples below use <code>example.com</code> as the primary address and <code>www.example.com</code> as its alternate. Replace <code>example.com</code> with your domain and <code>USERNAME</code> with the GitHub account or organization that owns the site. For this repository, that account is <code>sudo-sol</code>, so the DNS target would be <code>sudo-sol.github.io</code>.</p>
+              <figure>
+                <a href="domain-flow.svg" title="Open full-size diagram"><img src="domain-flow.svg" alt="Cloudflare Registrar maintains the domain registration. A visitor's DNS lookup reaches Cloudflare through a resolver; the returned GitHub Pages address lets the browser connect directly to GitHub over HTTPS." width="960" height="600" loading="lazy"></a>
+                <figcaption>The lookup and the web request are separate. In this DNS-only setup, GitHub serves the website and its certificate. Click diagrams or screenshots for full size.</figcaption>
+              </figure>
+              <p>This walkthrough assumes a new domain and an existing static website. If the domain already serves a website or email, inventory its current records before changing anything.</p>
+            </section>
+
+            <section id="register" data-term-item="register" data-term-desc="register a new domain in Cloudflare" aria-labelledby="h-register">
+              <h2 id="h-register">1. Register the domain</h2>
+              <ol>
+                <li>Create or sign in to your Cloudflare account and verify the account email.</li>
+                <li>Open <strong>Domain Registration → Register domains</strong>. Search for the name you want and choose an available result.</li>
+                <li>Check the spelling, extension, registration term, total price, and renewal date before proceeding. Use the checkout price rather than a price from a tutorial.</li>
+                <li>Enter accurate registrant contact information and payment details. Review the agreements, then complete the purchase.</li>
+                <li>Confirm that the domain appears under <strong>Manage domains</strong> and save the confirmation email.</li>
+              </ol>
+              <p>Domains registered here use Cloudflare nameservers; you cannot change to another DNS provider’s nameservers while Cloudflare remains the registrar. Hosting the website at GitHub is still possible. See <a class="inline-link" href="https://developers.cloudflare.com/registrar/get-started/register-domain/">Cloudflare’s registration instructions</a>.</p>
+            </section>
+
+            <section id="after-purchase" data-term-item="after-purchase" data-term-desc="email verification, renewal and DNSSEC" aria-labelledby="h-after">
+              <h2 id="h-after">2. Do the housekeeping</h2>
+              <ul>
+                <li><strong>Verify the registrant email.</strong> This is separate from verifying the Cloudflare account email. Follow the registration verification message; an unverified registrant email can put the domain on hold. <a class="inline-link" href="https://developers.cloudflare.com/registrar/get-started/register-domain/">Registration requirements</a>.</li>
+                <li><strong>Check renewal.</strong> Auto-renew starts enabled, but payment failures can still let a domain expire. Confirm the payment method, renewal date and notification inbox, and keep an independent reminder. <a class="inline-link" href="https://developers.cloudflare.com/registrar/account-options/renew-domains/">Renewal settings</a>.</li>
+                <li><strong>Protect the accounts.</strong> Enable two-factor authentication for Cloudflare and GitHub, and store recovery codes somewhere you can reach if a device is lost.</li>
+                <li><strong>Enable DNSSEC if it is not already active.</strong> Under <strong>Manage domains → Manage → Configuration</strong>, enable DNSSEC. Cloudflare Registrar handles the registry side; allow one to two days and check the confirmed status in <strong>DNS → Settings</strong>. DNSSEC authenticates DNS answers; HTTPS encrypts the web connection. <a class="inline-link" href="https://developers.cloudflare.com/registrar/get-started/enable-dnssec/">Cloudflare’s DNSSEC guide</a>.</li>
+              </ul>
+              <p>Buying a domain does not create an email inbox. Leave mail setup for a separate step, and preserve any existing MX, SPF, DKIM and DMARC records.</p>
+            </section>
+
+            <section id="verify" data-term-item="verify" data-term-desc="verify domain ownership with a TXT record" aria-labelledby="h-verify">
+              <h2 id="h-verify">3. Verify ownership in GitHub</h2>
+              <p>For a personal site, open <strong>GitHub profile → Settings → Pages → Add a domain</strong>. Enter the apex domain, <code>example.com</code>. For an organization, use the organization’s Pages settings.</p>
+              <figure>
+                <a href="github-verify-dns.png" title="Open full-size GitHub documentation screenshot"><img src="github-verify-dns.png" alt="Official GitHub Docs example of the Add a DNS TXT record screen, with a challenge hostname, verification value and Verify button. Use the values generated for your own account." width="1600" height="690" loading="lazy"></a>
+                <figcaption>Example screenshot from <a class="inline-link" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages">GitHub Docs</a>, © GitHub, Inc., <a class="inline-link" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, unchanged. These are documentation examples, not values to reuse. Dashboard wording can change.</figcaption>
+              </figure>
+              <p>Add GitHub’s generated record in <strong>Cloudflare → your domain → DNS → Records → Add record</strong>:</p>
+              <div class="table-wrap"><table>
+                <thead><tr><th scope="col">Type</th><th scope="col">Name</th><th scope="col">Content</th><th scope="col">TTL</th></tr></thead>
+                <tbody><tr><td>TXT</td><td><code>_github-pages-challenge-USERNAME</code></td><td>The exact code GitHub supplies</td><td>Auto</td></tr></tbody>
+              </table></div>
+              <p>Use the generated challenge label; Cloudflare appends the zone name. TXT records have no proxy toggle. Return to GitHub and select <strong>Verify</strong> once the record resolves. Keep the TXT record afterward. <a class="inline-link" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/verifying-your-custom-domain-for-github-pages">GitHub’s verification guide</a>.</p>
+            </section>
+
+            <section id="github-pages" data-term-item="github-pages" data-term-desc="publishing source and custom domain" aria-labelledby="h-pages">
+              <h2 id="h-pages">4. Tell GitHub Pages about the domain</h2>
+              <ol>
+                <li>First make sure the website works at its existing <code>github.io</code> address.</li>
+                <li>In the website repository, open <strong>Settings → Pages</strong>. For a plain static site, the publishing source can be <strong>Deploy from a branch</strong>, with the intended branch and <strong>/(root)</strong>. Keep an existing working deployment workflow if you already have one. <a class="inline-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">Publishing-source options</a>.</li>
+                <li>Under <strong>Custom domain</strong>, enter <code>example.com</code> and save. Do this before adding the website DNS records. The initial DNS check may fail until the next step is complete. <a class="inline-link" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">Custom-domain setup</a>.</li>
+              </ol>
+              <p>With branch publishing, GitHub adds a <code>CNAME</code> file to the publishing source. Keep that commit in your local checkout before subsequent pushes. Its entire content for this example is:</p>
+<pre><code>example.com</code></pre>
+              <p>The file uses uppercase <code>CNAME</code> and contains one hostname, without a scheme or path. A custom Actions deployment does not require this file; set the domain in Pages settings. <a class="inline-link" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages">CNAME-file details</a>.</p>
+            </section>
+
+            <section id="dns" data-term-item="dns" data-term-desc="the Cloudflare DNS records for GitHub Pages" aria-labelledby="h-dns">
+              <h2 id="h-dns">5. Add the Cloudflare DNS records</h2>
+              <p>Open the domain’s <strong>DNS → Records → Add record</strong>. Create one record per row, with <strong>TTL: Auto</strong>. Here <code>@</code> means the apex, <code>example.com</code>. The <code>www</code> label means <code>www.example.com</code>. Save each entry. <a class="inline-link" href="https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-dns-records/">Cloudflare’s record editor</a>.</p>
+              <p><strong>Required for the apex + www setup in this guide:</strong></p>
+              <div class="table-wrap"><table>
+                <thead><tr><th scope="col">Type</th><th scope="col">Name</th><th scope="col">Content / target</th><th scope="col">Proxy status</th></tr></thead>
+                <tbody>
+                  <tr><td>A</td><td><code>@</code></td><td><code>185.199.108.153</code></td><td>DNS only</td></tr>
+                  <tr><td>A</td><td><code>@</code></td><td><code>185.199.109.153</code></td><td>DNS only</td></tr>
+                  <tr><td>A</td><td><code>@</code></td><td><code>185.199.110.153</code></td><td>DNS only</td></tr>
+                  <tr><td>A</td><td><code>@</code></td><td><code>185.199.111.153</code></td><td>DNS only</td></tr>
+                  <tr><td>CNAME</td><td><code>www</code></td><td><code>USERNAME.github.io</code></td><td>DNS only</td></tr>
+                </tbody>
+              </table></div>
+              <p><strong>Optional IPv6:</strong> add all four AAAA records alongside the A records.</p>
+              <div class="table-wrap"><table>
+                <thead><tr><th scope="col">Type</th><th scope="col">Name</th><th scope="col">Content</th><th scope="col">Proxy status</th></tr></thead>
+                <tbody>
+                  <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8000::153</code></td><td>DNS only</td></tr>
+                  <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8001::153</code></td><td>DNS only</td></tr>
+                  <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8002::153</code></td><td>DNS only</td></tr>
+                  <tr><td>AAAA</td><td><code>@</code></td><td><code>2606:50c0:8003::153</code></td><td>DNS only</td></tr>
+                </tbody>
+              </table></div>
+              <p>The addresses and CNAME target format come from <a class="inline-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https#verifying-the-dns-configuration">GitHub’s DNS reference</a>. Use the account hostname, such as <code>sudo-sol.github.io</code>, with no <code>https://</code> or repository path.</p>
+              <figure>
+                <a href="dns-record-editor.svg" title="Open full-size DNS editor illustration"><img src="dns-record-editor.svg" alt="Illustrated DNS editor example: Type A, Name at sign, IPv4 address 185.199.108.153, proxy status DNS only and TTL Auto. Repeat for the other addresses in the table." width="960" height="560" loading="lazy"></a>
+                <figcaption>Illustrated field map, not a Cloudflare screenshot. The table above is the complete record list; this shows the first A record.</figcaption>
+              </figure>
+              <p><strong>Why the gray cloud?</strong> DNS-only records return GitHub’s addresses and send web traffic directly there. Orange-cloud proxying returns Cloudflare addresses and puts Cloudflare in the web request path. This guide chooses DNS only to keep GitHub’s DNS checks and certificate setup straightforward; leave it that way for this configuration. Cloudflare’s SSL/TLS mode does not control the direct connection to GitHub. <a class="inline-link" href="https://developers.cloudflare.com/dns/proxy-status/">Proxy behavior explained</a>.</p>
+              <p>Replace conflicting parking or old hosting records at <code>@</code> and <code>www</code>; do not combine them with the new records. Leave unrelated records intact. Avoid wildcard records such as <code>*</code>. <a class="inline-link" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">GitHub’s DNS guidance</a>.</p>
+            </section>
+
+            <section id="https" data-term-item="https" data-term-desc="enable HTTPS and the www redirect" aria-labelledby="h-https">
+              <h2 id="h-https">6. Let HTTPS catch up</h2>
+              <p>Return to <strong>repository Settings → Pages</strong>. Once the DNS check succeeds, GitHub requests the certificate. When available, enable <strong>Enforce HTTPS</strong>. Serve images, styles and scripts through HTTPS or relative URLs to avoid mixed content. <a class="inline-link" href="https://docs.github.com/en/pages/getting-started-with-github-pages/securing-your-github-pages-site-with-https">GitHub’s HTTPS guide</a>.</p>
+              <p>DNS propagation and availability of the HTTPS checkbox can take up to 24 hours. With both apex and <code>www</code> configured, GitHub redirects the alternate to the hostname saved as the custom domain. This example chooses <code>example.com</code>, so <code>www.example.com</code> should redirect there. DNS resolves names; GitHub sends the HTTP redirect. <a class="inline-link" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">Propagation and redirects</a>.</p>
+            </section>
+
+            <section id="checks" data-term-item="checks" data-term-desc="check DNS, TLS and the finished website" aria-labelledby="h-checks">
+              <h2 id="h-checks">7. Check each layer</h2>
+              <p>Run these from a terminal with <code>dig</code> and <code>curl</code> installed, substituting your real domain and account:</p>
+<pre><code># Ownership: expect the code GitHub generated
+dig +short TXT _github-pages-challenge-USERNAME.example.com
+
+# Apex: expect the four IPv4 addresses above (order may differ)
+dig +short A example.com
+
+# Only if IPv6 was configured: expect the four IPv6 addresses
+dig +short AAAA example.com
+
+# www: expect USERNAME.github.io.
+dig +short CNAME www.example.com
+
+# Inspect responses, certificate validation and redirects
+curl -I https://example.com/
+curl -IL https://www.example.com/
+curl -IL http://example.com/</code></pre>
+              <p>The primary HTTPS URL should serve the site; the alternate and HTTP URLs should end at the primary HTTPS URL. Do not use <code>curl -k</code>: a certificate error is something to fix, not skip. These commands are a checklist, not results from a live domain.</p>
+              <ul>
+                <li>Open both hostnames in a browser and confirm the final address and valid certificate.</li>
+                <li>Check a nested page, images, styles, navigation and the 404 page.</li>
+                <li>Update absolute canonical URLs, Open Graph URLs and any sitemap or feed to the chosen domain when you actually migrate the website.</li>
+                <li>Keep the verification TXT record and the publishing source’s <code>CNAME</code> file where applicable.</li>
+              </ul>
+            </section>
+
+            <section id="troubleshooting" data-term-item="troubleshooting" data-term-desc="common DNS and HTTPS problems" aria-labelledby="h-trouble">
+              <h2 id="h-trouble">When something does not line up</h2>
+              <div class="table-wrap"><table>
+                <thead><tr><th scope="col">Symptom</th><th scope="col">Check first</th></tr></thead>
+                <tbody>
+                  <tr><td>No DNS answer</td><td>Domain status, registrant-email verification, spelling, record name and DNS propagation.</td></tr>
+                  <tr><td>Cloudflare addresses in an A lookup</td><td>Confirm every website A, AAAA and CNAME record is DNS only. A proxied record at the same name can affect the others.</td></tr>
+                  <tr><td>GitHub 404</td><td>Pages deployment succeeded, the intended branch is published, and the custom hostname is saved in the correct repository.</td></tr>
+                  <tr><td>Certificate still pending</td><td>Conflicting A/AAAA/CNAME records, proxy status, and existing CAA restrictions. If CAA is configured, it must permit <code>letsencrypt.org</code>.</td></tr>
+                  <tr><td>Only www fails</td><td>Its CNAME points to the account’s <code>github.io</code> hostname, without a path, and its certificate is ready.</td></tr>
+                </tbody>
+              </table></div>
+              <p>See <a class="inline-link" href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages">GitHub’s troubleshooting guide</a> and <a class="inline-link" href="https://developers.cloudflare.com/dns/proxy-status/">Cloudflare’s proxy-status rules</a>. Fix the record set before repeatedly removing and re-adding the domain. If you later retire the site, remove its website DNS records when you disconnect Pages, and keep ownership verification.</p>
+              <p class="fine">Reference checked October 27, 2026 against the linked official documentation. This is a setup guide; it does not record a domain purchase or a live migration.</p>
+            </section>
+          </div>
+          <nav class="toc" aria-label="On this page"><a href="#plan">the plan</a><a href="#register">register</a><a href="#after-purchase">housekeeping</a><a href="#verify">verify ownership</a><a href="#github-pages">GitHub Pages</a><a href="#dns">DNS records</a><a href="#https">HTTPS</a><a href="#checks">checks</a><a href="#troubleshooting">troubleshooting</a></nav>
+        </div>
+
+        <footer class="post-foot">
+          <a href="/notes/">← all notes</a>
+          <span>Thoughts? <a class="inline-link" href="https://www.linkedin.com/in/asriniva/" target="_blank" rel="noopener noreferrer">Reply on LinkedIn<span class="sr-only"> (opens in a new tab)</span></a> or <a class="inline-link" href="/about/#contact">say hi</a>.</span>
+        </footer>
+      </article>
+    </main>
+    <footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+  </div>
+</body>
+</html>

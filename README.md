@@ -51,13 +51,14 @@ Official references: [Create a GitHub Pages site](https://docs.github.com/en/pag
 
 | File | What it holds |
 | --- | --- |
-| `index.html` | Home: intro, experience card, inline terminal |
+| `index.html` | Home: intro, experience card, inline terminal; browser tab title `Home / sudo-sol` |
 | `experience/index.html` | Timeline, stats, toolbox |
 | `about/index.html` | About (man-page frame) and the contact form |
 | `workbench/index.html` | Project cards |
 | `labs/index.html`, `labs/traffic/index.html` | Lab gallery and the traffic simulation (hidden for now) |
 | `notes/index.html` | Notes archive (the blog) |
 | `notes/anatomy-of-a-note/index.html` | Sample post and the template for new ones |
+| `notes/cloudflare-domain-github-pages/` | Domain registration → Cloudflare DNS → GitHub Pages guide, with local diagrams and an attributed GitHub Docs screenshot |
 | `drafts/_template.md` | Markdown template for new notes (see [Write a note](#write-a-note)) |
 | `404.html` | Missing-page copy |
 | `styles.css` | Theme tokens, layout, and page components |
@@ -120,6 +121,8 @@ Write in markdown and ask Somi (your Copilot agent) to publish it:
 3. Ask: "publish drafts/<slug>.md". Put images in `drafts/<slug>/`.
 
 `drafts/` is gitignored (except the template), so drafts never go public by accident. Only the generated page is committed.
+
+The Cloudflare/GitHub Pages note has a local Markdown counterpart at `drafts/cloudflare-domain-github-pages.md`, with its images in `drafts/cloudflare-domain-github-pages/`. It was reconstructed from the HTML on request; the two files do not sync automatically.
 
 **Conversion rules** (so every post looks the same):
 

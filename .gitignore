@@ -16,3 +16,6 @@ node_modules/
 # Note drafts stay local until published (anything committed is public on Pages)
 drafts/*
 !drafts/_template.md
+
+# Private local coordination briefs; never serve/publish as website source.
+/memory/
