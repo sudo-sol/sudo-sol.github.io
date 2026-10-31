@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "inventory": "STRUCTURE.md",
+  "exclude": [
+    "memory/*",
+    "backups/*",
+    "**/history/*",
+    "**/archive/*",
+    "**/__pycache__/*",
+    "**/node_modules/*",
+    "**/.gradle/*",
+    "**/.terraform/*",
+    "*.pyc",
+    "*.pem",
+    "*.key",
+    "*.jks",
+    "*.keystore"
+  ],
+  "rules": [
+    {
+      "patterns": [
+        "*.html",
+        "*.js",
+        "*.css",
+        "assets/*",
+        "about/*",
+        "experience/*",
+        "notes/*",
+        "workbench/*",
+        "labs/*"
+      ],
+      "owners": [
+        "README.md"
+      ]
+    },
+    {
+      "patterns": [
+        ".github/*"
+      ],
+      "owners": [
+        ".github/README.md"
+      ]
+    }
+  ],
+  "required_text": [
+    {
+      "path": "README.md",
+      "text": "python3 -m http.server 4173 --bind 127.0.0.1"
+    }
+  ]
+}

@@ -76,12 +76,6 @@
     }
   }
 
-  // ---------- résumé: not published yet ----------
-  document.querySelectorAll("[data-resume]").forEach(b => b.addEventListener("click", e => {
-    e.preventDefault();
-    toast("The résumé is on its way. LinkedIn has the details for now.");
-  }));
-
   // ---------- about: highlight the section being read ----------
   const tocLinks = [...document.querySelectorAll(".toc a")];
   if (tocLinks.length) {

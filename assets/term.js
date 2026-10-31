@@ -33,7 +33,7 @@
     PAGES[a.textContent.trim().toLowerCase()] = { url: a.dataset.termUrl || a.getAttribute("href"), desc: a.dataset.termDesc || "" };
   }
   const LINKS = {
-    resume:   { url: null, label: "résumé (PDF)" }, // set url once the public PDF is in assets/
+    resume:   { url: "/assets/resume.pdf", label: "résumé (PDF)" },
     contact:  { url: "/about/#contact", label: "say hi" },
     linkedin: { url: "https://www.linkedin.com/in/asriniva/", label: "LinkedIn", ext: true },
     github:   { url: "https://github.com/sudo-sol", label: "GitHub", ext: true },

@@ -1,0 +1,23 @@
+# Managed completion gate
+name: Documentation completion
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review]
+permissions:
+  contents: read
+jobs:
+  documentation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Check structure, documentation and completion evidence
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          python3 -c 'import os,pathlib; pathlib.Path("/tmp/completion-pr-body.md").write_text(os.environ.get("PR_BODY", ""))'
+          python3 .github/scripts/check_completion.py check --base "$BASE_SHA" --pr-body /tmp/completion-pr-body.md

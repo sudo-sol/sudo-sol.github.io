@@ -25,7 +25,7 @@ The traffic simulation runs entirely in the browser. Each online instance contri
 From this repository, run:
 
 ```sh
-python -m http.server 4173 --bind 127.0.0.1
+python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
 Open **http://127.0.0.1:4173**. Stop the server with `Ctrl+C`.
@@ -62,7 +62,7 @@ Official references: [Create a GitHub Pages site](https://docs.github.com/en/pag
 | `drafts/_template.md` | Markdown template for new notes (see [Write a note](#write-a-note)) |
 | `404.html` | Missing-page copy |
 | `styles.css` | Theme tokens, layout, and page components |
-| `app.js` | Keyboard shortcuts, home intro, résumé button, contact form, section highlighting, workbench/notes filters, read time, traffic lab |
+| `app.js` | Keyboard shortcuts, home intro, contact form, section highlighting, workbench/notes filters, read time, traffic lab |
 | `assets/theme.js` | Dark → light → cyber theme switching (loaded in `<head>` to avoid a flash) |
 | `assets/cyber.css` | The cyber theme skin (purely visual) |
 | `assets/term.js`, `assets/term.css` | The site-wide terminal |
@@ -83,13 +83,11 @@ Official references: [Create a GitHub Pages site](https://docs.github.com/en/pag
 
 `/` terminal · `?` shortcuts panel · `t` theme · `g` then `h`/`e`/`w`/`n`/`a` to jump to a page. Shortcuts are ignored while typing in a field.
 
-### Résumé (not published yet)
+### Résumé download
 
-The résumé buttons are intentionally inactive (`data-resume`, `aria-disabled="true"`) and show a "coming soon" note. To publish:
+Home and Experience offer a native download link to `assets/resume.pdf`; the terminal opens the same PDF with `open resume` or `open resume.pdf`. The website copy omits the phone number; the original document is kept separately.
 
-1. Add a public PDF **without phone number or home address** as `assets/resume.pdf`.
-2. Replace each `<button … data-resume …>` with `<a class="btn primary" href="/assets/resume.pdf" download>`.
-3. In `assets/term.js`, set `LINKS.resume.url` to `"/assets/resume.pdf"`.
+To update it, replace `assets/resume.pdf` with the approved public PDF **without phone number or home address**, then check the download links and terminal command in local preview. Replacing this asset does not itself publish the website.
 
 ### Contact form
 
@@ -153,32 +151,8 @@ Theme tokens are at the top of `styles.css`; cyber overrides live in `assets/cyb
 
 ## Structure
 
-```text
-.
-├── index.html
-├── experience/index.html
-├── workbench/index.html
-├── labs/index.html            (hidden)
-├── labs/traffic/index.html    (hidden)
-├── notes/index.html
-├── notes/anatomy-of-a-note/index.html
-├── drafts/_template.md         (drafts/ is gitignored)
-├── about/index.html
-├── 404.html
-├── styles.css
-├── app.js
-├── assets/
-│   ├── theme.js
-│   ├── term.js
-│   ├── term.css
-│   ├── cyber.css
-│   ├── favicon.svg
-│   └── readme-banner.svg
-├── .nojekyll
-├── .editorconfig
-├── .gitattributes
-├── .gitignore
-└── README.md
-```
+[STRUCTURE.md](STRUCTURE.md) is the generated source-file inventory, including new notes, assets and repository quality checks. The **Make it yours** table above explains the main source owners. Refresh the inventory as part of each structural change; see [change completion](.github/README.md).
 
 Small enough to understand. Open enough to grow.
+
+[Change completion](.github/README.md) · [Generated source structure](STRUCTURE.md).
