@@ -401,7 +401,7 @@ function initContent() {
   const readTime = document.querySelector("[data-read-time]");
   const postBody = document.querySelector(".post-body");
   if (readTime && postBody) {
-    const words = postBody.textContent.trim().split(/\s+/).length;
+    const words = postBody.innerText.trim().split(/\s+/).length;
     readTime.textContent = `${Math.max(1, Math.round(words / 225))} min read`;
   }
 

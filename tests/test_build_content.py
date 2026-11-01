@@ -1,3 +1,5 @@
+import importlib.util
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -8,6 +10,26 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class ContentBuildTests(unittest.TestCase):
+    def test_build_excludes_local_history_and_template(self):
+        spec = importlib.util.spec_from_file_location('build_content', ROOT / 'scripts/build_content.py')
+        builder = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(builder)
+        with tempfile.TemporaryDirectory() as tmp:
+            source = Path(tmp) / 'source'
+            shutil.copytree(ROOT / 'src', source)
+            (source / 'experience/linkedIn_history').write_text('local reference only')
+            legacy = source / 'experience/linkedIn'
+            legacy.mkdir(exist_ok=True)
+            (legacy / 'history.txt').write_text('local reference only')
+            output = Path(tmp) / 'site'
+            builder.build(source, ROOT / 'tests/fixtures/content', output)
+            self.assertFalse((output / 'experience/linkedIn_history').exists())
+            self.assertFalse((output / 'experience/linkedIn').exists())
+            self.assertFalse((output / 'notes/anatomy-of-a-note').exists())
+            self.assertTrue((output / 'notes/test-note/index.html').exists())
+            self.assertTrue((output / 'assets/resume.pdf').exists())
+            self.assertTrue((source / 'experience/linkedIn_history').exists())
+
     def test_fixture_build_preserves_existing_content_and_links(self):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp) / 'site'

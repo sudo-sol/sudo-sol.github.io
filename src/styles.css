@@ -426,6 +426,7 @@ ul.diff strong { color:var(--text); font-weight:600; }
 .post-body th,.post-body td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line); }
 .post-body th { font:600 12px var(--mono); color:var(--muted); background:var(--surface); }
 .post-body tr:last-child td { border-bottom:0; }
+.post-body img { max-width:100%; height:auto; }
 .post-body figure { margin:6px 0 26px; }
 .post-body figure img { display:block; width:100%; height:auto; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
 .post-body figcaption { margin-top:10px; font:12px/1.6 var(--mono); color:var(--muted); }

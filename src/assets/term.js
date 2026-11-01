@@ -53,7 +53,7 @@
     ],
     "contact.txt": [
       ["Best way to reach me:"],
-      [["  open contact   ", "ok"], ["the contact form", "m"]],
+      [["  open contact   ", "ok"], ["contact options (LinkedIn)", "m"]],
       [["  open linkedin  ", "ok"], ["LinkedIn", "m"]],
     ],
   };

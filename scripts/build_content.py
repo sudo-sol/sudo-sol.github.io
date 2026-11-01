@@ -3,6 +3,7 @@
 import argparse
 import datetime as dt
 import html
+from html.parser import HTMLParser
 import math
 from pathlib import Path
 import re
@@ -15,6 +16,26 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 ESC = html.escape
 SLUG = re.compile(r'^[a-z0-9]+(?:-[a-z0-9]+)*$')
+
+
+class ReadingText(HTMLParser):
+    BLOCKS = {'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'li', 'pre', 'blockquote',
+              'tr', 'th', 'td', 'ul', 'ol', 'section', 'aside', 'div', 'br'}
+
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+
+    def handle_data(self, data):
+        self.parts.append(data)
+
+    def handle_starttag(self, tag, attrs):
+        if tag in self.BLOCKS:
+            self.parts.append(' ')
+
+    def handle_endtag(self, tag):
+        if tag in self.BLOCKS:
+            self.parts.append(' ')
 
 
 def read_entry(path, kind):
@@ -56,7 +77,7 @@ def render_md(text):
 
 def note_html(template, slug, meta, body):
     title, summary, date = map(str, (meta['title'], meta['summary'], meta['date']))
-    url = f'https://sudo-sol.github.io/notes/{slug}/'
+    url = f'https://sudosol.dev/notes/{slug}/'
     replacements = {
         r'<meta name="description" content="[^"]*">': f'<meta name="description" content="{ESC(summary, quote=True)}">',
         r'<meta property="og:title" content="[^"]*">': f'<meta property="og:title" content="{ESC(title, quote=True)} / sudo-sol">',
@@ -85,7 +106,11 @@ def note_html(template, slug, meta, body):
         sections.append(f'<section id="{anchor}" data-term-item="{anchor}"><h2>{ESC(heading)}</h2>{rendered}</section>')
         links.append(f'<a href="#{anchor}">{ESC(heading)}</a>')
     tags = ''.join(f'<span>#{ESC(t)}</span>' for t in meta['tags'])
-    mins = max(1, math.ceil(len(re.findall(r'\b\w+\b', body)) / 200))
+    # Match the browser estimate: rendered words at 225 words/minute.
+    reading_html = 'tl;dr ' + render_md(str(meta['tldr'])) + ''.join(sections)
+    reading_text = ReadingText()
+    reading_text.feed(reading_html)
+    mins = max(1, math.floor(len(''.join(reading_text.parts).split()) / 225 + 0.5))
     main = f'''<main id="main"><article class="post" aria-labelledby="post-title">
 <header class="post-head page-intro"><a class="back-link" href="/notes/">← ~/notes</a><p class="prompt" aria-hidden="true"><span class="u">~/notes</span>$ cat {slug}.md<span class="cursor"></span></p><h1 class="page-title" id="post-title">{ESC(title)}</h1><p class="lede">{ESC(summary)}</p><p class="post-meta"><time datetime="{date}">{meta['date'].strftime('%b %d, %Y')}</time><span data-read-time>{mins} min read</span>{tags}</p></header>
 <div class="post-layout"><div class="post-body"><aside class="takeaway" aria-label="Key takeaway"><b>tl;dr</b>{render_md(str(meta['tldr']))}</aside>{''.join(sections)}</div><nav class="toc" aria-label="On this page">{''.join(links)}</nav></div>
@@ -149,7 +174,13 @@ def build(source, content, output):
             later = next((m for m in years if int(m.group(1)) < date.year), None)
             pos = later.start() if later else (archive.index('</section>', years[-1].end()) + len('</section>') if years else archive.index('<div id="posts">') + len('<div id="posts">'))
             archive = archive[:pos] + section + archive[pos:]
-    shutil.copytree(source, output, ignore=shutil.ignore_patterns('*.md'))
+    # Authoring references and the note template must never enter a deployment,
+    # even when building from a working tree containing ignored local files.
+    excluded = {'experience/linkedIn', 'experience/linkedIn_history', 'notes/anatomy-of-a-note'}
+    def ignore_source(directory, names):
+        relative = Path(directory).relative_to(source)
+        return [name for name in names if name.endswith('.md') or (relative / name).as_posix() in excluded]
+    shutil.copytree(source, output, ignore=ignore_source)
     (output / 'notes/index.html').write_text(archive)
     (output / 'workbench/index.html').write_text(workbench)
     for slug, meta, page, mins, path in generated:

@@ -8,18 +8,18 @@
   <meta property="og:title" content="Experience / sudo-sol">
   <meta property="og:description" content="SRE and platform engineering experience: incident recovery, cloud networking, infrastructure automation, cost reduction, and technical mentoring.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://sudo-sol.github.io/experience/">
-  <link rel="canonical" href="https://sudo-sol.github.io/experience/">
+  <meta property="og:url" content="https://sudosol.dev/experience/">
+  <link rel="canonical" href="https://sudosol.dev/experience/">
   <title>Experience / sudo-sol</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <!-- shared:assets:start -->
-  <link rel="stylesheet" href="/styles.css?v=d68ea1921e08">
+  <link rel="stylesheet" href="/styles.css?v=b7c0a14ed65b">
   <link rel="stylesheet" href="/assets/term.css?v=394105ec6afa">
   <link rel="stylesheet" href="/assets/cyber.css?v=f710b538a7c3">
   <link rel="stylesheet" href="/assets/themes.css?v=f37a59d1d5a3">
   <script src="/assets/theme.js?v=43b4675c167e"></script>
-  <script src="/app.js?v=5628ce8cd751" defer></script>
-  <script src="/assets/term.js?v=48cc32230142" defer></script>
+  <script src="/app.js?v=2eda6d62b24d" defer></script>
+  <script src="/assets/term.js?v=f0fa56f2c5df" defer></script>
 <!-- shared:assets:end -->
 </head>
 <body class="interior-page" data-term-chips="ls, open visier, open toolbox, cd about, cd ~, help">
@@ -80,8 +80,9 @@
             <h3 id="c-lulu">Senior Platform Engineer <span class="at">@ Lululemon</span><span class="tag">contract</span></h3>
             <p class="role-context">Platform reliability and infrastructure automation, with a focus on recovery, access controls, and reusable tooling.</p>
             <ul class="diff">
-              <li><span>Led recovery of Terraform automation, then coordinated follow-up improvements to monitoring and operational ownership.</span></li>
-              <li><span>Built Codex skills to answer recurring developer support questions from engineering documentation and tooling, reducing support toil so the team could focus on project work.</span></li>
+              <li><span>Strengthened Terraform state access controls through infrastructure as code, making workspace permissions explicit and aligned with least privilege.</span></li>
+              <li><span>Led incident recovery for Terraform automation and coordinated root-cause analysis and follow-up improvements to monitoring and secrets management.</span></li>
+              <li><span>Built AI skills that answer recurring developer support questions using engineering documentation and platform tooling, saving platform engineers at least 2–3 hours per week.</span></li>
               <li><span>Developed reusable Terraform modules for AWS identity, certificates, and secrets management, and supported infrastructure-as-code adoption across engineering teams.</span></li>
             </ul>
           </article>
@@ -90,6 +91,12 @@
             <span class="co-logo" aria-hidden="true"><img src="/assets/logos/career-break.svg" alt="" width="72" height="72" loading="lazy"></span>
             <p class="meta"><span class="h">9b6e2d4</span><span>Nov 2025 – Jun 2026</span></p>
             <h3 id="c-break">Voluntary career break</h3>
+            <p class="role-context">Took a break from career to focus on family, personal development and well-being. </p>
+            <ul class="diff">
+              <li><span>Solo travelled 38,258 km across the world, visiting 7 countries in 72 days with a backpack, talking with locals, doing community service and immersing myself in different cultures.</span></li>
+              <li><span>Worked on personal development projects and android app builds tailored to my use case.</span></li>
+              <li><span>Spent some peaceful time with my family and friends, focusing on personal relationships and well-being.</span></li>
+            </ul>
           </article>
 
           <article class="commit has-logo" id="visier" data-term-item="visier" data-term-desc="intern → Staff SRE · 2018–2025" aria-labelledby="c-visier">
@@ -101,15 +108,13 @@
               <div class="role">
                 <h4>Staff Site Reliability Engineer</h4>
                 <p class="when">Aug 2024 – Oct 2025</p>
-                <p class="role-context">Combined production recovery and cloud networking work with planning, prioritization, and mentoring.</p>
+                <p class="role-context">Led a six-person SRE team across Vancouver and Singapore, coordinating quarterly planning, project progress, and day-to-day operations alongside hands-on reliability work.</p>
                 <ul class="diff">
-                  <li><span>Led on-call recovery of production services, then introduced change controls and DNS managed as code to reduce recurrence.</span></li>
+                  <li><span>Led recovery and root-cause analysis for a company-wide CI outage and restored production database, Kubernetes, and Kafka services during incidents. Introduced code-reviewed DNS changes through Terraform to reduce recurrence.</span></li>
                   <li><span>Saved approximately US$67K per year by leading a zero-downtime migration from Palo Alto to AWS Network Firewall across five AWS regions.</span></li>
-                  <li><span>Mentored a six-person SRE team across Vancouver and Singapore, coordinating planning, prioritizing work, and unblocking engineers.</span></li>
-
                   <li><span>Supported a production Artifactory migration from EC2 to highly available ECS through technical oversight, design review, and threat-model review.</span></li>
-                  <li><span>Partnered with the Azure team on cross-cloud connectivity and service onboarding, and simplified connectivity between IT and SRE to reduce single points of failure.</span></li>
-                  <li><span>Coordinated an Ubuntu fleet upgrade and security maintenance, reviewing and signing off on upgrade procedures.</span></li>
+                  <li><span>Partnered with the Azure team on cross-cloud networking, Cassandra operations, and Jenkins CI/CD for initial service onboarding. Simplified IT–SRE connectivity to reduce single points of failure and opportunities for manual error.</span></li>
+                  <li><span>Remediated 25+ critical and high-severity vulnerabilities across 100+ hosts within 24-hour critical and 48-hour high-severity SLAs. Contributed to and oversaw Packer image builds and Ubuntu upgrades, and partnered with Product Security on security-tool rollouts.</span></li>
                 </ul>
               </div>
               <div class="role">
@@ -119,9 +124,9 @@
                 <ul class="diff">
                   <li><span>Saved approximately US$36K per year by centralizing shared DNS configuration across AWS accounts and Azure subscriptions.</span></li>
                   <li><span>Contributed migration architecture and data transfer to a Splunk 7-to-9 upgrade, moving 16 TB from EBS to S3 with zero downtime or data loss.</span></li>
-                  <li><span>Built YAML-driven Terraform modules for instances, networking, and security, with guardrails built in.</span></li>
+                  <li><span>Built reusable Terraform modules with YAML-based definitions for infrastructure across AWS accounts and regions, improving consistency and reducing manual configuration errors.</span></li>
 
-                  <li><span>Centralized firewall management with Terraform and Vault to simplify updates. Refactored Terraform modules and resolved versioning inconsistencies so VPC infrastructure could be reused across accounts.</span></li>
+                  <li><span>Centralized firewall management in a shared network hub using Terraform and Vault, simplifying management and updates.</span></li>
                   <li><span>Wrote on-call and network operations runbooks that sped up onboarding and incident response.</span></li>
                 </ul>
               </div>
@@ -130,7 +135,7 @@
                 <p class="when">Jan 2021 – Sep 2022</p>
                 <p class="role-context">Built common networking and access foundations across AWS accounts.</p>
                 <ul class="diff">
-                  <li><span>Saved approximately US$108K per year by building a central network hub with shared VPC endpoints and segmented Transit Gateway connectivity across 14 AWS accounts.</span></li>
+                  <li><span>Saved approximately US$108K per year by building a central network hub with 30+ shared VPC endpoints and segmented Transit Gateway connectivity across 14 AWS accounts.</span></li>
                   <li><span>Reduced security scan findings by 92% through AWS access-control and encryption improvements.</span></li>
 
                   <li><span>Moved 200+ users from legacy Windows jump boxes to AWS WorkSpaces and defined provisioning, security, maintenance, and lifecycle standards.</span></li>
@@ -139,18 +144,21 @@
               <div class="role">
                 <h4>Site Reliability Engineer I</h4>
                 <p class="when">Mar 2020 – Jan 2021</p>
+                <p class="role-context">Dedicated SRE for the Data Science team, building its AWS accounts and development environments from the ground up.</p>
                 <ul class="diff">
-                  <li><span>Served as the dedicated SRE for Data Science: provisioned AWS accounts and built highly available, immutable development environments with controlled cross-account connectivity.</span></li>
+                  <li><span>Built highly available, immutable infrastructure with CloudFormation, ECS, and AWS data services including SageMaker, Glue, and Athena. Established controlled cross-account connectivity and data replication.</span></li>
                   <li><span>Built self-service tooling so data scientists and engineers could provision AWS resources independently, reducing dependency on the SRE team.</span></li>
                 </ul>
               </div>
               <div class="role">
                 <h4>Site Reliability Engineer Intern</h4>
                 <p class="when">Sep 2018 – May 2019</p>
+                <p class="role-context">Supported build infrastructure, Linux operations, and the team’s support queue while developing reusable automation.</p>
                 <ul class="diff">
-                  <li><span>Built self-service AWS provisioning and a company-wide Jenkins CI/CD environment with auto-scaling workers, including a migration from TeamCity.</span></li>
-                  <li><span>Managed 100+ Linux servers and used Splunk for monitoring and alerting across operating system, network, and data-layer issues.</span></li>
-                  <li><span>Used Ansible and Puppet to manage team-specific server configurations without duplicating code, and documented automation and onboarding procedures.</span></li>
+                  <li><span>Built a Jenkins CI/CD environment for the TeamCity migration, with auto-scaling AWS workers and scripts to handle repositories larger than 50 GB per build. The setup supported builds, tests, and deployments across teams.</span></li>
+                  <li><span>Maintained 100+ Linux servers and troubleshot operating system, network, Cassandra, and PostgreSQL processing issues. Built Splunk dashboards for recurring errors to make repeat investigations faster.</span></li>
+                  <li><span>Used Ansible and Puppet to manage team-specific server configurations without duplicating code. Created Jira dashboards to organize the support queue and identify recurring issues.</span></li>
+                  <li><span>Automated weekly screenshots of 40+ webpages using Python and Selenium, removing a recurring manual preparation task.</span></li>
                 </ul>
               </div>
             </div>
@@ -176,13 +184,14 @@
 
           <article class="commit has-logo" id="accenture" data-term-item="accenture" data-term-desc="DevOps Analyst · 2014–2017" aria-labelledby="c-acc">
             <span class="co-logo" aria-hidden="true"><img src="/assets/logos/accenture.svg" alt="" width="32" height="32" loading="lazy"></span>
-            <p class="meta"><span class="h">3c88e01</span><span>Jul 2014 – Jul 2017</span><span>Bangalore, India</span></p>
+            <p class="meta"><span class="h">3c88e01</span><span>Aug 2014 – Aug 2017</span><span>Bangalore, India</span></p>
             <h3 id="c-acc">DevOps Analyst <span class="at">@ Accenture</span></h3>
+            <p class="role-context">Worked with application teams and clients on build infrastructure and release automation, supporting five project setups and seven deployment setups.</p>
             <ul class="diff">
               <li><span>Ran Windows build servers on AWS and Jenkins CI/CD pipelines, upgrading and installing toolchains for application teams.</span></li>
               <li><span>Worked with application teams and clients on project setup and release automation, troubleshooting build scripts, deployment tooling, and server issues.</span></li>
 
-              <li><span>Automated data collection across 500+ repositories, reducing a migration preparation process from three weeks to a few hours.</span></li>
+              <li><span>Automated data collection across 500+ repositories, reducing migration preparation from three weeks to a few hours. The reusable automation helped finish ahead of schedule and earned a Trailblazer Award.</span></li>
               <li><span>Coordinated a three-person request queue and mentored teammates during onboarding.</span></li>
             </ul>
           </article>

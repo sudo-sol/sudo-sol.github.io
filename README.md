@@ -4,12 +4,12 @@
 
 Addy's personal site: experience, projects, notes, and the person behind the terminal.
 
-[Live site](https://sudo-sol.github.io/) · [GitHub profile](https://github.com/sudo-sol) · [LinkedIn](https://www.linkedin.com/in/asriniva/)
+[Live site](https://sudosol.dev/) · [GitHub profile](https://github.com/sudo-sol) · [LinkedIn](https://www.linkedin.com/in/asriniva/)
 
 ## What is here
 
 - **Home:** a short intro, a working Build / Break / Understand headline, a public `src/about.json` source peek, the experience "git log" card, and an interactive terminal.
-- **Experience:** a git-graph timeline with role scope, selected contributions, supporting work, and a toolbox. All role details and the Simon Fraser University course list are visible without expanding sections. The timeline also includes the voluntary career break and the Anna University bachelor’s degree. Home’s git-log window mirrors the timeline’s company, education, and career-break entries with matching decorative commit hashes. Company logos and career highlights support scanning; role context explains the progression from hands-on infrastructure work to technical leadership. Keep employer details public-safe: describe recovery and security work at the outcome level, without internal incident mechanisms or access configurations.
+- **Experience:** a git-graph timeline with role scope, selected contributions, supporting work, and a toolbox. All role details and the Simon Fraser University course list are visible without expanding sections. The timeline also includes the voluntary career break and the Anna University bachelor’s degree. Home’s git-log window mirrors the timeline’s company, education, and career-break entries with matching decorative commit hashes. Role summaries pair scope with selected, substantiated contributions from the supplied career history; SRE I and internship work retain distinct attribution. Keep dates and metrics aligned with that history, and link project stories only when approved public material exists. Company logos and career highlights support scanning; role context explains the progression from hands-on infrastructure work to technical leadership. Keep employer details public-safe: describe recovery and security work at the outcome level, without internal incident mechanisms or access configurations.
 - **About:** a man-page-styled page (`man addy`) with the story, how I work, skills, interests, known bugs & features, and a contact form.
 - **Workbench:** project cards (status, problem, approach, outcome, stack, links) with a status filter.
 - **Notes:** the blog. A year-grouped archive with topic filters. New Markdown notes can be built locally (see [Build Markdown content locally](#build-markdown-content-locally)); existing HTML entries remain in place.
@@ -45,13 +45,13 @@ cd src
 python3 -m http.server 4173 --bind 127.0.0.1
 ```
 
-Open **http://127.0.0.1:4173**. Stop the server with `Ctrl+C`.
+Open **http://127.0.0.1:4173**. Stop the server with `Ctrl+C`. If port 4173 is already in use, preserve the existing server and use `4174` in both the command and preview URL; this also applies to full-build previews.
 
 Run the server inside `src/`, so the site root contains only public files. Keep sync, test and completion commands at the repository root (stop the server and `cd ..` if using the same terminal). Use the local server so root-relative assets and directory routes resolve correctly. Each route is a directory with its own `index.html`, so GitHub Pages serves `/experience/`, `/workbench/`, `/notes/`, `/notes/<slug>/`, and `/about/` (plus the hidden `/labs/`) without a router or build step. Preview that page at `/404.html`; Python's basic server does not automatically use it for missing routes.
 
 ## Set up GitHub Actions for Pages
 
-The Pages workflow builds on pushes to every branch, pull requests, and manual runs. Each successful build uploads the generated site as a seven-day Actions artifact named `site-preview-<run-id>-<attempt>`; branch pushes and pull requests do not publish the site. Only a push to `main` deploys to GitHub Pages after the build and checks pass. GitHub Pages was set to use Actions on 2026-10-31. Push the workflow with the branch to run its checks and generate a preview.
+The Pages workflow builds on pushes to every branch, pull requests, and manual runs. Each successful build uploads the generated site as a seven-day Actions artifact named `site-preview-<run-id>-<attempt>`; branch pushes and pull requests do not publish the site. Only a push to `main` deploys to GitHub Pages after the build and checks pass. The configured public domain is `sudosol.dev`; canonical and Open Graph URLs use `https://sudosol.dev/`, including generated notes. GitHub Pages was set to use Actions on 2026-10-31. Push the workflow with the branch to run its checks and generate a preview.
 
 The workflow is in [`.github/workflows/pages.yml`](.github/workflows/pages.yml). Open the successful run in **Actions → Build and deploy Pages** and download its `site-preview` artifact to inspect the generated HTML before merging. After the change is merged to `main`, the push runs the same checks and deploys the generated site. The Actions workflow artifact is a preview download; the Pages deployment artifact is published only from `main`.
 
@@ -67,7 +67,7 @@ To check or restore this setting, open **Settings → Pages → Build and deploy
 | `src/workbench/index.html` | Project cards |
 | `src/labs/index.html`, `src/labs/traffic/index.html` | Lab gallery and the traffic simulation (hidden for now) |
 | `src/notes/index.html` | Notes archive (the blog) |
-| `src/notes/anatomy-of-a-note/index.html` | Sample post and the template for new ones |
+| `src/notes/anatomy-of-a-note/index.html` | Local note template, excluded from deployment builds |
 | `src/notes/cloudflare-domain-github-pages/` | Markdown guide and images; the builder generates its public page |
 | `src/notes/<slug>/note.md`, `src/workbench/<slug>/project.md` | Markdown sources for generated entries |
 | `scripts/build_content.py`, `requirements-content.txt` | Content builder and its Python dependencies |
@@ -129,7 +129,7 @@ python3 -m pip install -r requirements-content.txt
 python3 scripts/build_content.py --output /tmp/sudo-sol-content-build
 ```
 
-The output directory must not already exist. Preview it by running `python3 -m http.server 4173 --bind 127.0.0.1 --directory /tmp/sudo-sol-content-build` from the repository root. Use a different output directory for each build, or remove an old output you no longer need. The build does not deploy or update checked-in HTML. GitHub Actions runs this build on every branch and provides a downloadable preview; only a push to `main` deploys. The workflow must first be pushed to GitHub.
+The output directory must not already exist. Deployment builds exclude the local note template (`src/notes/anatomy-of-a-note/`) and temporary career-history references (`src/experience/linkedIn/` and `src/experience/linkedIn_history`), as well as Markdown sources. Git ignore rules alone do not protect files from a directory-copy build; keep new private authoring material outside `src/`. Preview it by running `python3 -m http.server 4173 --bind 127.0.0.1 --directory /tmp/sudo-sol-content-build` from the repository root. Use a different output directory for each build, or remove an old output you no longer need. The build does not deploy or update checked-in HTML. GitHub Actions runs this build on every branch and provides a downloadable preview; only a push to `main` deploys. The workflow must first be pushed to GitHub.
 
 For a note, copy `src/notes/_template.md` to `src/notes/<slug>/note.md` and put its images alongside it. Use the front matter shown in `tests/fixtures/content/notes/test-note/note.md`: title, summary, date (YYYY-MM-DD), comma-separated tags, status (`publish` or `draft`) and tldr. Begin the body with a `##` heading; each heading becomes a section and table-of-contents link. A draft gets an unlinked archive entry and no page. Use a relative image path such as `diagram.svg` in the Markdown image syntax. Image files are copied alongside the generated page. The source Markdown remains in the repository and is public when committed.
 
@@ -137,7 +137,7 @@ For a workbench card, create `src/workbench/<slug>/project.md` with title, summa
 
 Each run reads the current Markdown sources and builds into a new directory. Adding a source adds an entry; editing it updates the generated entry; removing its Markdown file omits the entry and its generated assets from the next fresh build. Existing output directories are not changed, and the currently published site changes only after a successful deployment. Existing hand-written HTML under `src/` is copied as-is and must be edited or removed separately. The builder does not check or update links elsewhere when an entry is renamed or deleted; check those links yourself. An existing HTML page or card with the same slug prevents a Markdown entry from being generated.
 
-The builder supports standard Markdown, fenced code and tables. Keep images directly in the entry folder. Test fixtures are examples and are not included in normal builds. To build them instead, use `python3 scripts/build_content.py --content tests/fixtures/content --output /tmp/sudo-sol-content-test` and preview that output directory.
+The builder supports standard Markdown, fenced code and tables. Generated note and archive read times use rendered text at 225 words per minute, matching the browser estimate. Article images scale to the reading column; wide tables and code blocks scroll within their containers. Keep images directly in the entry folder. Test fixtures are examples and are not included in normal builds. To build them instead, use `python3 scripts/build_content.py --content tests/fixtures/content --output /tmp/sudo-sol-content-test` and preview that output directory.
 
 ### Edit a hand-written project
 
@@ -145,7 +145,7 @@ For the existing HTML cards, copy an `<article class="proj">` in `src/workbench/
 
 ### Sample content
 
-Entries marked with a dashed **SAMPLE** tag (and an `<!-- SAMPLE -->` comment) are placeholders. Replace or delete them before publishing.
+The Notes archive contains only real entries. The sample note remains a local authoring template and is excluded from deployment builds. Remove any new placeholder entries before publishing.
 
 ### Company logos
 

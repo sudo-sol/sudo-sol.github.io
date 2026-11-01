@@ -108,6 +108,8 @@ Keep source-peek data public-safe. Do not copy private memory, employer details,
 - Run `sync_site.py --check`, the regression suite, appropriate JavaScript syntax checks, and the repository completion workflow. Keep README and this guide aligned with actual commands and contracts.
 - Preserve the site's deliberate terminal identity when using Taste Skill. Its generic bans on monospace, prompt labels, compact UI, panel lines and text-led pages are not reasons to redesign the approved site. Record retained style findings and genuine regressions separately.
 
+Article images, including plain Markdown images outside figures, must fit their reading column with `max-width:100%` and proportional height. Wide tables and code blocks scroll inside their own containers.
+
 Markdown notes are authored in `src/notes/<slug>/note.md` with adjacent images, starting from `src/notes/_template.md`. Use the content builder for full-site previews; generated note routes are not registered as checked-in HTML in `templates/site.json`. No separate drafts directory is used.
 
 ## Theme backgrounds
