@@ -39,12 +39,13 @@ Owning documents and verification rules: [.github/README.md](.github/README.md).
 - `src/assets/readme-banner.svg`
 - `src/assets/resume.pdf`
 - `src/assets/scripts/about.js`
+- `src/assets/scripts/backgrounds.js`
 - `src/assets/scripts/common.js`
 - `src/assets/scripts/content.js`
 - `src/assets/scripts/home.js`
 - `src/assets/scripts/navigation.js`
 - `src/assets/scripts/traffic.js`
-- `src/assets/solar-pattern.svg`
+- `src/assets/solarpunk-landscape.webp`
 - `src/assets/styles/about.css`
 - `src/assets/styles/base.css`
 - `src/assets/styles/components.css`

@@ -9,9 +9,21 @@ to{transform:rotate(0) scale(1);opacity:1}
 50%{transform:translateX(-2px);opacity:1}
 75%{transform:translateY(1px);opacity:.6}
 }
-/* The botanical trellis is the daylight counterpart to the cyber grid. */
-:root[data-theme="light"] body{isolation:isolate}
-:root[data-theme="light"] body::before{background-image:url("/assets/solar-pattern.svg");background-size:224px 224px;opacity:.09}
+/* One background owner per theme; generated landscape is self-hosted. */
+:root[data-theme="light"] {
+  --solar-landscape:url("/assets/solarpunk-landscape.webp");
+  --solar-background-wash:rgba(242,241,233,.5);
+  --solar-background-position:center;
+}
+:root[data-theme="light"] body::before {
+  background-image:linear-gradient(var(--solar-background-wash),var(--solar-background-wash)),var(--solar-landscape);
+  background-size:cover;
+  background-position:var(--solar-background-position);
+  opacity:1;
+}
+@media(max-width:560px) {
+  :root[data-theme="light"] { --solar-background-position:65% center; --solar-background-wash:rgba(242,241,233,.65); }
+}
 /* Break keeps its existing glitch only in Cyberpunk, including the startup burst. */
 :root[data-theme="light"] .home-page .glitch::before,:root[data-theme="light"] .home-page .glitch::after{content:none!important;opacity:0!important;animation:none!important;transform:none!important}
 :root[data-theme="light"] .home-page .glitch:hover,:root[data-theme="light"] .home-page .glitch:focus-visible{text-decoration:none}

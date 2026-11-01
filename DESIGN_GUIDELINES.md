@@ -36,6 +36,7 @@ Authoring requires a Git checkout and Python 3; the content builder and regressi
 | Theme state/persistence | `src/assets/theme.js` |
 | Working terminal service and its own interface styling | `src/assets/term.js`, `src/assets/term.css` |
 | Theme-specific colour, background and effects | `src/assets/cyber.css`, `src/assets/themes.css` |
+| Shared Cyberpunk trail lifecycle | `src/assets/scripts/backgrounds.js`, registered in `templates/site.json` |
 
 `src/styles.css` and `src/app.js` are generated, readable concatenations with source comments. Shared HTML regions are marked `shared:*`. Edit their source, not the generated output. Page-specific content and SEO metadata stay directly editable outside those regions. Avoid adding an override at the bottom of a file to defeat another module; change the component that owns the rule.
 
@@ -108,3 +109,11 @@ Keep source-peek data public-safe. Do not copy private memory, employer details,
 - Preserve the site's deliberate terminal identity when using Taste Skill. Its generic bans on monospace, prompt labels, compact UI, panel lines and text-led pages are not reasons to redesign the approved site. Record retained style findings and genuine regressions separately.
 
 Markdown notes are authored in `src/notes/<slug>/note.md` with adjacent images, starting from `src/notes/_template.md`. Use the content builder for full-site previews; generated note routes are not registered as checked-in HTML in `templates/site.json`. No separate drafts directory is used.
+
+## Theme backgrounds
+
+Solarpunk uses the approved generated `src/assets/solarpunk-landscape.webp` illustration. Its image, wash and responsive focal position are CSS properties in `src/assets/themes.css`. Keep the ivory wash strong enough for reading content. The previous repeated trellis has been removed.
+
+Cyberpunk grid spacing and trail tuning live together in `src/assets/cyber.css`: `--cyber-grid-size` and `--cyber-trail-*`. The shared background module reads these settings rather than maintaining a separate grid definition. Its single noninteractive canvas stays behind content, caps density and frame rate, and stops for reduced motion, forced colours, hidden documents and the other theme. Trails may cross the whole viewport at equal brightness; shared CSS properties control their count (five) and original 220-pixel tail length. Use the existing behaviors configuration and sync command; do not add per-page background implementations.
+
+The shared header terminal button uses a solid theme surface, 2px accent border and bold symbol for contrast over background imagery. Its hover state uses the higher surface token and text-coloured edge; retain its native button action and visible keyboard focus.

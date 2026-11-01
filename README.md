@@ -84,7 +84,7 @@ The shared component contract and type/spacing tokens live in `src/assets/styles
 
 ### The terminal
 
-`src/assets/term.js` is progressive enhancement over normal links. Remove its `<script>` tag and the site still works.
+The header terminal button uses an opaque theme surface, a stronger accent border and a bold symbol so it stays visible over the background image. `src/assets/term.js` is progressive enhancement over normal links. Remove its `<script>` tag and the site still works.
 
 - A tmux-style bar is pinned to the bottom of every page. The panel opens above it, never blocks the page, and only hides with `/`, `Esc`, `exit`, or the toggle. On the homepage it lives inline at `[data-term-dock]`.
 - **Pages come from the header nav.** `cd`, `ls`, and the tmux windows read `header nav a` (link text = name, `data-term-desc` = description). Add a page to the nav and the terminal knows about it.
@@ -157,7 +157,7 @@ Only on explicit instruction, enable the Labs entry in `templates/site.json`, re
 
 ### Styling
 
-Canonical tokens are in `src/assets/styles/tokens.css`; the generated `src/styles.css` bundles shared and page-specific modules. Cyber overrides live in `src/assets/cyber.css`, and Solarpunk/effect refinements live in `src/assets/themes.css`. The header and theme-control geometry are shared in `src/assets/styles/layout.css`. The preference is stored in `localStorage` under `sudo-sol-theme` as `light` or `cyber`. Solarpunk uses the botanical trellis and a letter-by-letter bloom on Build; Cyberpunk keeps the grid and Break glitch. The selector's leaf unfolds in Solarpunk and its circuit icon jitters briefly in Cyberpunk. Both selected highlights remain circular and fitted inside the pill; only the icon animates. Theme CSS/animation script URLs carry content versions so markup and styles refresh together. Build follows the bloom reference: gentle idle letter sway, springy lift and scale near the pointer, a green-to-gold colour progression, and five growing leaf sprouts. Keyboard focus blooms the word too. Animation pauses outside Solarpunk, when the word is offscreen, or when the tab is hidden. Reduced motion shows static green text without leaves or movement; without JavaScript the original text and link remain usable.
+Canonical tokens are in `src/assets/styles/tokens.css`; the generated `src/styles.css` bundles shared and page-specific modules. Cyber overrides live in `src/assets/cyber.css`, and Solarpunk/effect refinements live in `src/assets/themes.css`. The header and theme-control geometry are shared in `src/assets/styles/layout.css`. The preference is stored in `localStorage` under `sudo-sol-theme` as `light` or `cyber`. Solarpunk uses the approved generated terraced-landscape illustration and a letter-by-letter bloom on Build; Cyberpunk keeps the grid and Break glitch with moving light trails. The selector's leaf unfolds in Solarpunk and its circuit icon jitters briefly in Cyberpunk. Both selected highlights remain circular and fitted inside the pill; only the icon animates. Theme CSS/animation script URLs carry content versions so markup and styles refresh together. Build follows the bloom reference: gentle idle letter sway, springy lift and scale near the pointer, a green-to-gold colour progression, and five growing leaf sprouts. Keyboard focus blooms the word too. Animation pauses outside Solarpunk, when the word is offscreen, or when the tab is hidden. Reduced motion shows static green text without leaves or movement; without JavaScript the original text and link remain usable.
 
 ## Structure
 
@@ -178,3 +178,11 @@ Small enough to understand. Open enough to grow.
 The Cloudflare guide is now Markdown-owned in `src/notes/cloudflare-domain-github-pages/`; its page and archive entry are generated at build time. Direct `src/` preview omits Markdown-owned pages: build the full site to preview them. There is no separate drafts directory; `status: draft` creates an unlinked archive entry, but committed Markdown is public in the repository.
 
 Local AI agent instructions and state are ignored by Git. Repository build and authoring instructions remain in this README, DESIGN_GUIDELINES.md and .github/README.md.
+
+### Shared theme backgrounds
+
+The Solarpunk background is the approved generated illustration, optimized as `src/assets/solarpunk-landscape.webp` (about 172 KB). `src/assets/themes.css` owns its image, ivory wash and responsive focal position through `--solar-landscape`, `--solar-background-wash` and `--solar-background-position`. The retired trellis image is removed.
+
+Cyberpunk retains the CSS grid. `src/assets/cyber.css` owns both its grid spacing and `--cyber-trail-*` settings (count, speed in pixels/second, tail length in pixels, opacity and RGB colour). `src/assets/scripts/backgrounds.js` reads those CSS settings and draws a single decorative, pointer-inert canvas behind the content. Trails turn randomly at grid intersections, fade behind their leading tips, and cross the whole viewport. There are five trails with the original 220-pixel fading tails, rendered at most 30 times per second with pixel density capped at 1.5. Reduced motion, forced colours and hidden tabs stop the loop; switching to Solarpunk also releases the canvas bitmap. The static grid remains usable without JavaScript.
+
+The module is registered in the existing `templates/site.json` behaviors list and initialized by the existing sync-generated app bundle. Reuse these theme owners and properties when adjusting backgrounds; page-specific scripts, extra libraries and duplicate configuration files are unnecessary.

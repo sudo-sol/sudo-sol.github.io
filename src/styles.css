@@ -36,7 +36,7 @@
 * { box-sizing:border-box; }
 [hidden] { display:none!important; }
 html { scroll-behavior:smooth; scroll-padding-top:28px; }
-body { margin:0; background:var(--bg); color:var(--text); font:var(--font-body)/1.6 var(--sans); -webkit-font-smoothing:antialiased; }
+body { isolation:isolate; margin:0; background:var(--bg); color:var(--text); font:var(--font-body)/1.6 var(--sans); -webkit-font-smoothing:antialiased; }
 body::before { position:fixed; inset:0; pointer-events:none; content:""; background-image:radial-gradient(var(--line) .6px,transparent .6px); background-size:7px 7px; opacity:.12; z-index:-1; }
 a { color:inherit; text-decoration:none; }
 button,input,textarea,select { font:inherit; }
@@ -63,8 +63,8 @@ h1,.page-title { font:700 var(--font-page-title)/1.08 var(--ui); letter-spacing:
 .page-shell { max-width:var(--page-max); margin:auto; padding:0 var(--page-gutter); }
 .site-header { display:flex; align-items:center; gap:28px; min-height:var(--header-height); border-bottom:1px solid var(--line); }
 .wordmark { display:flex; align-items:center; gap:10px; font:700 20px var(--ui); letter-spacing:-.6px; white-space:nowrap; }
-.brand-mark { display:inline-flex; align-items:center; justify-content:center; width:36px; height:33px; padding:0; background:none; border:1px solid var(--line); border-radius:6px; font:15px var(--mono); color:var(--accent); transition:border-color .2s,background .2s; }
-.brand-mark:hover { border-color:var(--accent); background:var(--surface); }
+.brand-mark { display:inline-flex; align-items:center; justify-content:center; width:36px; height:33px; padding:0; background:var(--surface); border:2px solid var(--accent); border-radius:6px; font:700 15px var(--mono); color:var(--accent); transition:border-color .2s,background .2s; }
+.brand-mark:hover { border-color:var(--text); background:var(--surface-high); }
 .brand-mark i { font-style:normal; animation:blink 1.1s steps(1) infinite; }
 .site-header nav { margin-left:auto; display:flex; gap:6px; align-items:center; font:var(--font-nav)/1.4 var(--ui); }
 .site-header nav a { padding:8px 10px; border-radius:6px; color:var(--muted); transition:color .2s,background .2s; }

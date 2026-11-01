@@ -62,6 +62,7 @@
   ],
   "behaviors": [
     "common",
+    "backgrounds",
     "navigation",
     "home",
     "about",
