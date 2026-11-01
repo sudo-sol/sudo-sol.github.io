@@ -47,3 +47,5 @@ Hooks are local and can be bypassed; semantic accuracy still requires review. Th
 Markdown notes and adjacent images live in `src/notes/`; start from `src/notes/_template.md`. The content builder owns migrated pages and archive entries. Preview a full build to include them; the former drafts directory has been removed.
 
 AI-specific local instructions such as `AGENTS.md` are ignored and are not required inputs to completion checks. Reproducible procedures belong in the repository documentation.
+
+The staged checker resolves parent-directory link segments before looking up repository-relative paths in the Git index.

@@ -55,7 +55,7 @@ class Gate:
         path = self.root / name
         if Path(name).is_absolute() or not path.resolve().is_relative_to(self.root):
             raise ValueError('Path leaves repository: ' + name)
-        return path
+        return path.resolve()
 
     def exists(self, name):
         if self.staged:
@@ -117,7 +117,7 @@ class Gate:
                 if parts.scheme or parts.netloc or dest.startswith(('#', '/')):
                     continue
                 target = (Path(name).parent / parts.path).as_posix()
-                resolved = self.safe(target).resolve()
+                resolved = self.safe(target)
                 relative = resolved.relative_to(self.root).as_posix()
                 if self.staged:
                     exists = self.exists(relative) or any(p.startswith(relative.rstrip('/') + '/') for p in self.paths)
