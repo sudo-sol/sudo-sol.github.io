@@ -14,6 +14,7 @@ Owning documents and verification rules: [.github/README.md](.github/README.md).
 - `.github/workflows/documentation.yml`
 - `.github/workflows/pages.yml`
 - `.gitignore`
+- `CNAME`
 - `DESIGN_GUIDELINES.md`
 - `README.md`
 - `STRUCTURE.md`
