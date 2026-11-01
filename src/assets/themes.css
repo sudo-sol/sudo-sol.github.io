@@ -15,29 +15,20 @@ to{transform:rotate(0) scale(1);opacity:1}
 /* Break keeps its existing glitch only in Cyberpunk, including the startup burst. */
 :root[data-theme="light"] .home-page .glitch::before,:root[data-theme="light"] .home-page .glitch::after{content:none!important;opacity:0!important;animation:none!important;transform:none!important}
 :root[data-theme="light"] .home-page .glitch:hover,:root[data-theme="light"] .home-page .glitch:focus-visible{text-decoration:none}
-/* Living ink fills the actual Build letters; no overlay or change in geometry. */
-:root[data-theme="light"] .home-page .build-word { color:var(--accent); }
+/* Reference bloom: independent glyphs keep their layout boxes while leaves sprout. */
+.home-page .build-word { white-space:nowrap; }
+.build-word .bloom-char { display:inline-block; position:relative; }
+.build-word .bloom-glyph { display:inline-block; transform-origin:50% 100%; }
+.build-word .bloom-leaf { display:none; position:absolute; left:50%; top:.15em; width:.5em; height:.54em; transform-origin:50% 100%; pointer-events:none; }
+:root[data-theme="light"] .home-page .build-word { color:rgb(47,125,58); }
 :root[data-theme="light"] .home-page .build-word::after { content:none; }
-@supports ((background-clip:text) or (-webkit-background-clip:text)) {
-  :root[data-theme="light"] .home-page .build-word.solar-grow {
-    color:transparent;
-    background-image:linear-gradient(to top, var(--accent) 48%, var(--text) 52%);
-    background-size:100% 200%;
-    background-position:50% 100%;
-    background-repeat:no-repeat;
-    -webkit-background-clip:text;
-    background-clip:text;
-    animation:build-grow 1200ms cubic-bezier(.25,.65,.3,1) both;
-  }
-}
-@keyframes build-grow {
-  from { background-position:50% 0%; }
-  to { background-position:50% 100%; }
-}
+:root[data-theme="light"] .build-word .bloom-leaf { display:block; transform:translate(-50%,-72%) scale(.1); }
 @media(prefers-reduced-motion:reduce) {
-  .theme-choice *, .build-word { animation:none !important; transition:none !important; }
-  :root[data-theme="light"] .home-page .build-word.solar-grow { color:var(--accent); background:none; }
+  .theme-choice * { animation:none !important; transition:none !important; }
+  .build-word .bloom-glyph { transform:none !important; color:inherit !important; }
+  .build-word .bloom-leaf { display:none !important; }
 }
 @media(forced-colors:active) {
-  :root[data-theme="light"] .home-page .build-word.solar-grow { color:LinkText; background:none; animation:none; }
+  .build-word .bloom-glyph { color:LinkText !important; transform:none !important; }
+  .build-word .bloom-leaf { display:none !important; }
 }

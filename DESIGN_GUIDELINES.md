@@ -26,10 +26,10 @@ Authoring requires a Git checkout and Python 3; the content builder and regressi
 | Routes, active navigation, shortcut letters and registered pages | `templates/site.json` |
 | Common asset links and versions | `templates/assets.html` and the sync tool |
 | Public profile data and its native source view | `src/about.json`, `templates/source-peek.html` |
-| Build's growing-ink text fill | `src/assets/themes.css`, `src/assets/scripts/home.js` |
+| Build's letter bloom | `src/assets/themes.css`, `src/assets/scripts/home.js` |
 | Shared DOM/toast helpers | `src/assets/scripts/common.js` |
 | Keyboard navigation and shortcuts dialog | `src/assets/scripts/navigation.js` |
-| Typing, growing-ink/glitch lifecycle and source-peek Escape handling | `src/assets/scripts/home.js` |
+| Typing, bloom/glitch lifecycle and source-peek Escape handling | `src/assets/scripts/home.js` |
 | Table of contents and retained contact form | `src/assets/scripts/about.js` |
 | Data-driven filters and read time | `src/assets/scripts/content.js` |
 | Hidden traffic simulation | `src/assets/scripts/traffic.js` |
@@ -60,7 +60,7 @@ Use this structure for an ordinary page header, including Workbench, Notes and n
 - Let titles wrap naturally. Do not insert manual line breaks to create a different page layout. Very long article titles may need additional phone lines; keep their readability and shared size rather than forcing the gallery's arbitrary line limit.
 - Article back links and publication metadata may add rows while preserving the shared inner type/spacing. Actions, filters and metadata follow the intro in normal reading order. Their content can change header height; do not force equal-height empty header boxes.
 
-Home uses the same title/prompt scale across the full content width, with `.home-overview` below it. Its intro/actions and git-log card are two top-aligned columns above 900px and stack below that. The three headline words stay working links, and Build’s green ink must fill inside the actual letters without overlays or geometry changes.
+Home uses the same title/prompt scale across the full content width, with `.home-overview` below it. Its intro/actions and git-log card are two top-aligned columns above 900px and stack below that. The three headline words stay working links, and Build uses the reference letter bloom: glyphs lift within stable character boxes and decorative leaf sprouts stay absolute and pointer-inert. Keep the native project link and its accessible label.
 
 ## Type and spacing by role
 
@@ -87,7 +87,7 @@ Both themes use the same dimensions and type scale. Theme layers may change colo
 
 The theme pill uses 44×44px interactive targets, 22px icons, 1px padding and a 2px gap: 48px high overall. Active fills stay circular; only the icon animates. Do not reduce the targets to make the pill look smaller. Keep visible keyboard focus, native button activation and Left/Right/Home/End behavior.
 
-Solarpunk is `light`; Cyberpunk is `cyber`. Preserve saved-choice migration, the `t` shortcut and terminal aliases. Break's glitch is Cyberpunk-only; Build's growing ink is Solarpunk-only: a finite 1.2-second upward fill on load/theme entry and pointer/keyboard entry, settling to solid green. No JavaScript, unsupported text clipping and reduced motion retain the finished green word. Effects are enhancements: never delay a link, hide text awaiting JavaScript, intercept clicks with decoration, or move the headline's geometry. Reduced motion keeps the readable finished state without travel.
+Solarpunk is `light`; Cyberpunk is `cyber`. Preserve saved-choice migration, the `t` shortcut and terminal aliases. Break's glitch is Cyberpunk-only; Build's bloom is Solarpunk-only: gently swaying letters lift and sprout leaves near the pointer or on keyboard focus, changing from green toward gold. Reduced motion shows static green text without sprouts; without JavaScript the original green link remains. Pause the loop when hidden or offscreen. Effects are enhancements: never delay a link, hide text awaiting JavaScript, intercept clicks with decoration, or move the headline's geometry. Reduced motion keeps the readable finished state without travel.
 
 ## Adding or changing a page
 
