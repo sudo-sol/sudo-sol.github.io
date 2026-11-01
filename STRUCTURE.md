@@ -33,6 +33,8 @@ Owning documents and verification rules: [.github/README.md](.github/README.md).
 - `src/assets/fonts/README.md`
 - `src/assets/logos/README.md`
 - `src/assets/logos/accenture.svg`
+- `src/assets/logos/anna-university.svg`
+- `src/assets/logos/career-break.svg`
 - `src/assets/logos/lululemon.png`
 - `src/assets/logos/sfu.png`
 - `src/assets/logos/visier.png`

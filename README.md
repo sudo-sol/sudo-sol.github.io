@@ -9,7 +9,7 @@ Addy's personal site: experience, projects, notes, and the person behind the ter
 ## What is here
 
 - **Home:** a short intro, a working Build / Break / Understand headline, a public `src/about.json` source peek, the experience "git log" card, and an interactive terminal.
-- **Experience:** a git-graph timeline of roles, outcomes, and a toolbox, with a logo slot per company. Public-safe: outcomes only, with no incident or security specifics.
+- **Experience:** a git-graph timeline with role scope, selected contributions, supporting work, and a toolbox. All role details and the Simon Fraser University course list are visible without expanding sections. The timeline also includes the voluntary career break and the Anna University bachelor’s degree. Home’s git-log window mirrors the timeline’s company, education, and career-break entries with matching decorative commit hashes. Company logos and career highlights support scanning; role context explains the progression from hands-on infrastructure work to technical leadership. Keep employer details public-safe: describe recovery and security work at the outcome level, without internal incident mechanisms or access configurations.
 - **About:** a man-page-styled page (`man addy`) with the story, how I work, skills, interests, known bugs & features, and a contact form.
 - **Workbench:** project cards (status, problem, approach, outcome, stack, links) with a status filter.
 - **Notes:** the blog. A year-grouped archive with topic filters. New Markdown notes can be built locally (see [Build Markdown content locally](#build-markdown-content-locally)); existing HTML entries remain in place.
@@ -149,7 +149,7 @@ Entries marked with a dashed **SAMPLE** tag (and an `<!-- SAMPLE -->` comment) a
 
 ### Company logos
 
-Each experience entry has a `.co-logo` tile with a monogram. To use a real logo, add it to `src/assets/logos/` and replace the monogram with `<img src="/assets/logos/<name>.svg" alt="">`.
+Experience organization and education entries use `.co-logo` tiles; the career break uses an original circular pause emblem. Logo provenance and preparation are documented in `src/assets/logos/README.md`. Each tile can hold a monogram. To use a real logo, add it to `src/assets/logos/` and replace the monogram with `<img src="/assets/logos/<name>.svg" alt="">`.
 
 ### Bring labs back
 

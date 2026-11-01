@@ -10,6 +10,8 @@ the original brand colors and shapes remain intact.
 | `visier.png` | [Website brand icon](https://www.visier.com/favicon-512x512.png) | Original asset, unchanged. |
 | `sfu.png` | [University website logo](https://www.sfu.ca/etc/designs/clf/clientlibs/clf4/default/img/sfu-logo-only@2x.png) | Original asset, unchanged. |
 | `accenture.svg` | [Accenture website](https://www.accenture.com/en) | Extracted the self-contained purple symbol SVG from the header (`rad-global-nav__static-logo`), preserving its path and fill. |
+| `anna-university.svg` | [User-selected Seeklogo reference](https://images.seeklogo.com/logo-png/43/1/anna-university-logo-png_seeklogo-432131.png) | Red artwork traced into SVG paths with transparent background and interior spaces; no embedded bitmap or white rectangle. |
+| `career-break.svg` | Original site artwork | Amber circular pause emblem on a transparent canvas; matches the timeline logo footprint without implying activities during the break. |
 
 ## Lululemon image edit prompt
 
