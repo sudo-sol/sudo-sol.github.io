@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600" role="img" aria-labelledby="title desc">
+  <title id="title">A domain lookup and a website request</title>
+  <desc id="desc">Cloudflare Registrar maintains the registration. Through a recursive resolver, the browser looks up the name with Cloudflare DNS, receives GitHub Pages addresses, and connects directly to GitHub over HTTPS. Cloudflare's web proxy is off.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c5f78d"/></marker>
+    <style>
+      .bg{fill:#111510}.box{fill:#192018;stroke:#42503c;stroke-width:2}.accent{stroke:#c5f78d}.title{font:600 26px system-ui,sans-serif;fill:#eef1e8}.head{font:600 21px system-ui,sans-serif;fill:#eef1e8}.text{font:17px system-ui,sans-serif;fill:#b4beae}.mono{font:17px ui-monospace,monospace;fill:#c5f78d}.label{font:600 14px ui-monospace,monospace;letter-spacing:1px;fill:#b4beae}.line{fill:none;stroke:#c5f78d;stroke-width:2.5;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect class="bg" width="960" height="600" rx="16"/>
+  <text class="label" x="36" y="38">DOMAIN → DNS → WEBSITE</text>
+  <text class="title" x="36" y="76">The name and the website have different jobs.</text>
+  <rect class="box" x="36" y="102" width="888" height="86" rx="12"/>
+  <text class="head" x="60" y="136">Cloudflare Registrar</text>
+  <text class="text" x="60" y="164">Registration, renewal, contacts and delegation to Cloudflare nameservers</text>
+  <rect class="box" x="36" y="244" width="270" height="120" rx="12"/>
+  <text class="head" x="60" y="279">Visitor’s browser</text>
+  <text class="mono" x="60" y="312">example.com</text>
+  <text class="text" x="60" y="340">DNS via a resolver</text>
+  <rect class="box" x="626" y="244" width="298" height="120" rx="12"/>
+  <text class="head" x="650" y="279">Cloudflare DNS</text>
+  <text class="mono" x="650" y="312">A / AAAA / CNAME</text>
+  <text class="text" x="650" y="340">Authoritative answers</text>
+  <path class="line" d="M306 276H615"/>
+  <text class="label" x="334" y="260">1. LOOK UP THE NAME</text>
+  <path class="line" d="M626 330H317"/>
+  <text class="label" x="344" y="356">2. GET GITHUB IPs</text>
+  <rect class="box accent" x="626" y="430" width="298" height="120" rx="12"/>
+  <text class="head" x="650" y="466">GitHub Pages</text>
+  <text class="mono" x="650" y="498">HTTPS + site files</text>
+  <text class="text" x="650" y="526">Serves example.com</text>
+  <path class="line" d="M171 364V488H615"/>
+  <text class="label" x="210" y="473">3. CONNECT DIRECTLY OVER HTTPS</text>
+  <text class="text" x="36" y="580">DNS only: Cloudflare answers DNS. GitHub handles the web connection.</text>
+</svg>

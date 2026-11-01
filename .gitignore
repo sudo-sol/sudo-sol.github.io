@@ -12,3 +12,28 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+
+# Legacy local records remain excluded from public source.
+/memory/
+
+# Local design audits
+/.taste-skill/
+
+# Empty environment mounts; not website dependencies
+/.agents/
+/.aws/
+/.codex/
+
+# Local AI agent instructions and state
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.claude/
+.cursor/
+.cursorrules
+.github/copilot-instructions.md
+
+# Temporary linkedIn data
+/src/experience/linkedIn_history
+/src/experience/linkedIn/

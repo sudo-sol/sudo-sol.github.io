@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 480" role="img" aria-labelledby="t d">
+  <title id="t">tf-access-map architecture</title>
+  <desc id="d">Read-only collectors pull from Terraform Cloud, the Git host, the identity provider, Kubernetes, and the vendor status page into a local snapshot. A model combines it with the Terraform repo to build an access graph and findings, shown in a single static dashboard.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#c5f78d"/></marker>
+    <style>
+      .bg{fill:#111510}
+      .box{fill:#192018;stroke:#34402f;stroke-width:1.5}
+      .hot{stroke:#c5f78d}
+      .h{font:600 15px ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;fill:#c5f78d}
+      .s{font:600 13px Inter,"Segoe UI",Arial,sans-serif;fill:#eef1e8}
+      .m{font:12px ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;fill:#a1ab9b}
+      .k{font:500 11px ui-monospace,"Cascadia Code",Menlo,Consolas,monospace;fill:#a1ab9b;letter-spacing:1.5px}
+      .ln{stroke:#c5f78d;stroke-width:1.5;fill:none}
+      .dim{stroke:#34402f;stroke-width:1.5;fill:none}
+    </style>
+  </defs>
+  <rect class="bg" width="1120" height="480" rx="14"/>
+
+  <text class="k" x="20" y="48">SOURCES · READ-ONLY</text>
+  <g>
+    <rect class="box" x="20" y="64" width="200" height="46" rx="8"/><text class="s" x="36" y="92">Terraform Cloud API</text>
+    <rect class="box" x="20" y="124" width="200" height="46" rx="8"/><text class="s" x="36" y="152">Git host API</text>
+    <rect class="box" x="20" y="184" width="200" height="46" rx="8"/><text class="s" x="36" y="212">Identity provider</text>
+    <rect class="box" x="20" y="244" width="200" height="46" rx="8"/><text class="s" x="36" y="272">Kubernetes (agents)</text>
+    <rect class="box" x="20" y="304" width="200" height="46" rx="8"/><text class="s" x="36" y="332">Vendor status page</text>
+  </g>
+  <path class="dim" d="M220 87C245 87 245 207 262 207M220 147C245 147 245 207 262 207M220 207H262M220 267C245 267 245 207 262 207M220 327C245 327 245 207 262 207"/>
+  <path class="ln" d="M256 207H268" marker-end="url(#a)"/>
+
+  <rect class="box hot" x="272" y="112" width="180" height="190" rx="10"/>
+  <text class="h" x="290" y="144">collectors</text>
+  <text class="m" x="290" y="176">GET only</text>
+  <text class="m" x="290" y="200">endpoint allowlist</text>
+  <text class="m" x="290" y="224">my own login</text>
+  <text class="m" x="290" y="248">preflight check</text>
+  <text class="m" x="290" y="272">no secrets, ever</text>
+  <path class="ln" d="M452 207H492" marker-end="url(#a)"/>
+
+  <rect class="box" x="498" y="147" width="160" height="120" rx="10"/>
+  <text class="h" x="516" y="179">snapshot</text>
+  <text class="m" x="516" y="207">local JSON</text>
+  <text class="m" x="516" y="229">owner-only</text>
+  <text class="m" x="516" y="251">never committed</text>
+  <path class="ln" d="M658 207H698" marker-end="url(#a)"/>
+
+  <rect class="box hot" x="704" y="112" width="190" height="190" rx="10"/>
+  <text class="h" x="722" y="144">model</text>
+  <text class="m" x="722" y="176">access graph</text>
+  <text class="m" x="722" y="200">who-can · what-can</text>
+  <text class="m" x="722" y="224">declared vs actual</text>
+  <text class="m" x="722" y="248">findings</text>
+  <text class="m" x="722" y="272">health rules</text>
+  <path class="ln" d="M894 207H934" marker-end="url(#a)"/>
+
+  <rect class="box" x="704" y="366" width="190" height="60" rx="10"/>
+  <text class="s" x="722" y="392">Terraform repo (HCL)</text>
+  <text class="m" x="722" y="412">grants → file:line</text>
+  <path class="ln" d="M799 366V308" marker-end="url(#a)"/>
+
+  <rect class="box hot" x="940" y="112" width="160" height="190" rx="10"/>
+  <text class="h" x="958" y="144">dashboard</text>
+  <text class="m" x="958" y="176">one static HTML</text>
+  <text class="m" x="958" y="200">overview</text>
+  <text class="m" x="958" y="224">explore · teams</text>
+  <text class="m" x="958" y="248">findings · health</text>
+  <text class="m" x="958" y="272">CSV export</text>
+
+  <text class="k" x="20" y="456">READ-ONLY END TO END · RUNS UNDER MY OWN LOGIN · NO SERVER · NO STORED TOKENS</text>
+</svg>

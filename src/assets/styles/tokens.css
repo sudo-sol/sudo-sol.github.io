@@ -1,0 +1,30 @@
+/* Project values are based on the approved Experience page. See DESIGN_GUIDELINES.md. */
+@font-face { font-family:Play; src:url('/assets/fonts/Play-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:Play; src:url('/assets/fonts/Play-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; font-display:swap; }
+:root {
+  color-scheme:light;
+  --bg:#f2f1e9; --surface:#e9ebdf; --surface-high:#e0e5d7;
+  --text:#1b2519; --muted:#43533b; --line:#c5ceba; --accent:#3c651c; --accent-ink:#f4ffe9;
+  --warn:#874800; --err:#b3261e;
+  --ui:Play,"Segoe UI",Arial,sans-serif;
+  --sans:Inter,"Segoe UI",Arial,sans-serif;
+  --mono:"Cascadia Code","SFMono-Regular",Consolas,monospace;
+  --serif:Georgia,"Times New Roman",serif;
+  --font-page-title:clamp(48px,5.4vw,72px);
+  --title-emphasis:.82em; --tracking-page:-.0528em;
+  --font-body:16px; --font-lead:18px; --font-prompt:14px;
+  --font-content-title:26px; --font-item-title:20px; --font-reading:17px;
+  --font-card-copy:15px; --font-meta:13px; --font-meta-small:12px; --font-control:13px;
+  --theme-selected-bg:#d9e8c6; --theme-selected-ink:#315727; --theme-selected-edge:#b8cf9f;
+  --font-nav:15px; --font-section-label:14px; --font-archive-year:16px;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-7:28px; --space-8:32px; --space-10:40px; --space-14:56px;
+  --space-prompt:18px; --space-title:27px; --intro-top:56px;
+  --page-max:1320px; --page-gutter:56px; --header-height:106px; --measure-intro:700px;
+  --theme-target:44px; --theme-padding:1px; --theme-gap:2px;
+}
+@media(max-width:1050px) { :root { --page-gutter:32px; } }
+@media(max-width:820px) { :root { --header-height:92px; } }
+@media(max-width:560px) {
+  :root { --page-gutter:21px; --header-height:112px; --font-page-title:clamp(36px,9vw,50px); --tracking-page:-.04em; --intro-top:43px; --font-nav:14px; }
+}

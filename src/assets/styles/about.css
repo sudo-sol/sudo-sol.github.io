@@ -1,0 +1,53 @@
+/* ---------- About (man page frame, plain-English content) ---------- */
+/* Keep the manual frame, while sharing every page's prompt start and spacing. */
+.man-intro { padding-bottom:0; }
+.manbar { display:flex; justify-content:space-between; gap:20px; padding:10px 0; border-block:1px solid var(--line); font:600 12px var(--mono); letter-spacing:1px; color:var(--muted); }
+.manbar span:last-child { font-weight:400; font-style:italic; }
+.man { display:grid; grid-template-columns:180px minmax(0,1fr); gap:56px; padding:44px 0 20px; }
+.man article section { padding-bottom:40px; }
+.man article h2 { font:700 var(--font-section-label)/1.6 var(--mono); letter-spacing:2px; color:var(--accent); margin:0 0 14px; }
+.man-body { padding-left:7ch; max-width:calc(68ch + 7ch); }
+.man-body p { margin:0 0 14px; color:var(--muted); font-size:var(--font-reading); line-height:1.75; }
+.man-body strong { color:var(--text); font-weight:600; }
+.man-body p.hello { font-size:28px; line-height:1.35; letter-spacing:-.8px; color:var(--text); font-weight:600; margin-bottom:8px; }
+.values { list-style:none; margin:0; padding:0; display:grid; gap:12px; }
+.values li { display:grid; grid-template-columns:2ch 1fr; color:var(--muted); font-size:var(--font-reading); line-height:1.7; }
+.values li::before { content:"›"; color:var(--accent); font:600 17px var(--mono); }
+.man dl { margin:0; display:grid; grid-template-columns:max-content 1fr; gap:12px 32px; }
+.man dt { font:600 16px/1.7 var(--sans); color:var(--text); }
+.man dd { margin:0; color:var(--muted); font-size:16px; line-height:1.7; }
+.man cite { font-style:italic; color:var(--text); }
+.bugs { list-style:none; margin:0; padding:0; color:var(--muted); font-size:var(--font-reading); line-height:1.7; }
+.bugs li { display:grid; grid-template-columns:6ch 1fr auto; gap:0 18px; margin-bottom:10px; }
+.bugs li::before { content:attr(data-id); font:13px/2.2 var(--mono); color:var(--err); }
+.bugs .st { font:12px/2.4 var(--mono); color:var(--muted); opacity:.85; white-space:nowrap; }
+.bugs .st.feat { color:var(--accent); opacity:1; }
+.man-body p.see { display:flex; flex-wrap:wrap; gap:10px 24px; font-size:16px; }
+.see a { color:var(--text); border-bottom:1px solid var(--line); transition:color .2s, border-color .2s; }
+.see a:hover { color:var(--accent); border-color:var(--accent); }
+.man-end { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:10px 0; margin:12px 0 48px; border-block:1px solid var(--line); font:12px var(--mono); color:var(--muted); }
+.man-end .tag-end { background:var(--text); color:var(--bg); padding:1px 6px; font-weight:700; }
+
+/* Contact form (posts to Formspree once data-endpoint is set; see README) */
+form.contact { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:8px; max-width:68ch; }
+.field { display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--muted); }
+.field.full { grid-column:1/-1; }
+form.contact input,form.contact textarea { font:15px var(--sans); color:var(--text); background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:12px 14px; outline:none; transition:border-color .2s, box-shadow .2s; }
+form.contact textarea { min-height:140px; resize:vertical; }
+form.contact input:focus,form.contact textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px #c5f78d1f; }
+.hp { position:absolute; left:-9999px; }
+.send { grid-column:1/-1; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+form.contact .btn { background:var(--accent); color:var(--accent-ink); border-color:transparent; cursor:pointer; }
+form.contact .btn[disabled] { opacity:.6; cursor:progress; }
+.form-status { font-size:14px; color:var(--err); }
+.form-status.ok { color:var(--accent); }
+.man-body p.fine { font-size:13px; opacity:.85; margin-top:12px; }
+
+
+@media(max-width:900px) {
+ .man { grid-template-columns:1fr; gap:0; } .man-body { padding-left:2ch; }
+ .man dl { grid-template-columns:1fr; gap:2px; } .man dd { margin-bottom:12px; }
+ form.contact { grid-template-columns:1fr; } .bugs li { grid-template-columns:6ch 1fr; }
+ .bugs .st { grid-column:2; line-height:1.6; } .manbar span:last-child { display:none; }
+}
+@media(max-width:560px) { form.contact input,form.contact textarea { font-size:16px; } }

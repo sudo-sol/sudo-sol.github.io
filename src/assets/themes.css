@@ -1,0 +1,46 @@
+/* The selected Source + Play interface: two themes, one shared personal site. */
+:root[data-theme="light"] .theme-choice.is-switching .theme-icon{animation:leaf-unfold 600ms cubic-bezier(.2,.8,.2,1) both}
+:root[data-theme="cyber"] .theme-choice.is-switching .theme-icon{animation:circuit-connect 320ms steps(2) both}
+@keyframes leaf-unfold{from{transform:rotate(-18deg) scale(.72);opacity:.55}
+to{transform:rotate(0) scale(1);opacity:1}
+}
+@keyframes circuit-connect{0%,100%{transform:none;opacity:1}
+25%{transform:translateX(2px);opacity:.45}
+50%{transform:translateX(-2px);opacity:1}
+75%{transform:translateY(1px);opacity:.6}
+}
+/* One background owner per theme; generated landscape is self-hosted. */
+:root[data-theme="light"] {
+  --solar-landscape:url("/assets/solarpunk-landscape.webp");
+  --solar-background-wash:rgba(242,241,233,.5);
+  --solar-background-position:center;
+}
+:root[data-theme="light"] body::before {
+  background-image:linear-gradient(var(--solar-background-wash),var(--solar-background-wash)),var(--solar-landscape);
+  background-size:cover;
+  background-position:var(--solar-background-position);
+  opacity:1;
+}
+@media(max-width:560px) {
+  :root[data-theme="light"] { --solar-background-position:65% center; --solar-background-wash:rgba(242,241,233,.65); }
+}
+/* Break keeps its existing glitch only in Cyberpunk, including the startup burst. */
+:root[data-theme="light"] .home-page .glitch::before,:root[data-theme="light"] .home-page .glitch::after{content:none!important;opacity:0!important;animation:none!important;transform:none!important}
+:root[data-theme="light"] .home-page .glitch:hover,:root[data-theme="light"] .home-page .glitch:focus-visible{text-decoration:none}
+/* Reference bloom: independent glyphs keep their layout boxes while leaves sprout. */
+.home-page .build-word { white-space:nowrap; }
+.build-word .bloom-char { display:inline-block; position:relative; }
+.build-word .bloom-glyph { display:inline-block; transform-origin:50% 100%; }
+.build-word .bloom-leaf { display:none; position:absolute; left:50%; top:.15em; width:.5em; height:.54em; transform-origin:50% 100%; pointer-events:none; }
+:root[data-theme="light"] .home-page .build-word { color:rgb(47,125,58); }
+:root[data-theme="light"] .home-page .build-word::after { content:none; }
+:root[data-theme="light"] .build-word .bloom-leaf { display:block; transform:translate(-50%,-72%) scale(.1); }
+@media(prefers-reduced-motion:reduce) {
+  .theme-choice * { animation:none !important; transition:none !important; }
+  .build-word .bloom-glyph { transform:none !important; color:inherit !important; }
+  .build-word .bloom-leaf { display:none !important; }
+}
+@media(forced-colors:active) {
+  .build-word .bloom-glyph { color:LinkText !important; transform:none !important; }
+  .build-word .bloom-leaf { display:none !important; }
+}
