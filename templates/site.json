@@ -1,0 +1,77 @@
+{
+  "pages": [
+    "404.html",
+    "about/index.html",
+    "experience/index.html",
+    "index.html",
+    "labs/index.html",
+    "labs/traffic/index.html",
+    "notes/anatomy-of-a-note/index.html",
+    "notes/index.html",
+    "notes/tf-access-map/index.html",
+    "workbench/index.html"
+  ],
+  "navigation": [
+    {
+      "label": "experience",
+      "href": "/experience/",
+      "description": "where I've worked",
+      "key": "e",
+      "enabled": true
+    },
+    {
+      "label": "workbench",
+      "href": "/workbench/",
+      "description": "projects and case studies",
+      "key": "w",
+      "enabled": true
+    },
+    {
+      "label": "labs",
+      "href": "/labs/",
+      "description": "small interactive experiments",
+      "key": "l",
+      "enabled": false
+    },
+    {
+      "label": "notes",
+      "href": "/notes/",
+      "description": "things worth writing down",
+      "key": "n",
+      "enabled": true
+    },
+    {
+      "label": "about",
+      "href": "/about/",
+      "description": "the human behind the terminal",
+      "key": "a",
+      "enabled": true
+    }
+  ],
+  "styles": [
+    "tokens",
+    "base",
+    "layout",
+    "components",
+    "home",
+    "experience",
+    "workbench",
+    "notes",
+    "about",
+    "labs"
+  ],
+  "behaviors": [
+    "common",
+    "navigation",
+    "home",
+    "about",
+    "content",
+    "traffic"
+  ],
+  "page_kinds": {
+    "index.html": "home",
+    "about/index.html": "manual",
+    "404.html": "utility",
+    "labs/traffic/index.html": "demo"
+  }
+}

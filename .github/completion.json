@@ -19,15 +19,28 @@
   "rules": [
     {
       "patterns": [
-        "*.html",
-        "*.js",
-        "*.css",
-        "assets/*",
-        "about/*",
-        "experience/*",
-        "notes/*",
-        "workbench/*",
-        "labs/*"
+        "templates/*",
+        "src/assets/styles/*",
+        "src/assets/scripts/*",
+        "scripts/sync_site.py",
+        "tests/*"
+      ],
+      "owners": [
+        "DESIGN_GUIDELINES.md",
+        "README.md"
+      ]
+    },
+    {
+      "patterns": [
+        "src/*.html",
+        "src/*.js",
+        "src/*.css",
+        "src/assets/*",
+        "src/about/*",
+        "src/experience/*",
+        "src/notes/*",
+        "src/workbench/*",
+        "src/labs/*"
       ],
       "owners": [
         "README.md"
@@ -43,6 +56,10 @@
     }
   ],
   "required_text": [
+    {
+      "path": "README.md",
+      "text": "python3 scripts/sync_site.py --check"
+    },
     {
       "path": "README.md",
       "text": "python3 -m http.server 4173 --bind 127.0.0.1"

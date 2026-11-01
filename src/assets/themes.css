@@ -1,0 +1,43 @@
+/* The selected Source + Play interface: two themes, one shared personal site. */
+:root[data-theme="light"] .theme-choice.is-switching .theme-icon{animation:leaf-unfold 600ms cubic-bezier(.2,.8,.2,1) both}
+:root[data-theme="cyber"] .theme-choice.is-switching .theme-icon{animation:circuit-connect 320ms steps(2) both}
+@keyframes leaf-unfold{from{transform:rotate(-18deg) scale(.72);opacity:.55}
+to{transform:rotate(0) scale(1);opacity:1}
+}
+@keyframes circuit-connect{0%,100%{transform:none;opacity:1}
+25%{transform:translateX(2px);opacity:.45}
+50%{transform:translateX(-2px);opacity:1}
+75%{transform:translateY(1px);opacity:.6}
+}
+/* The botanical trellis is the daylight counterpart to the cyber grid. */
+:root[data-theme="light"] body{isolation:isolate}
+:root[data-theme="light"] body::before{background-image:url("/assets/solar-pattern.svg");background-size:224px 224px;opacity:.09}
+/* Break keeps its existing glitch only in Cyberpunk, including the startup burst. */
+:root[data-theme="light"] .home-page .glitch::before,:root[data-theme="light"] .home-page .glitch::after{content:none!important;opacity:0!important;animation:none!important;transform:none!important}
+:root[data-theme="light"] .home-page .glitch:hover,:root[data-theme="light"] .home-page .glitch:focus-visible{text-decoration:none}
+/* Living ink fills the actual Build letters; no overlay or change in geometry. */
+:root[data-theme="light"] .home-page .build-word { color:var(--accent); }
+:root[data-theme="light"] .home-page .build-word::after { content:none; }
+@supports ((background-clip:text) or (-webkit-background-clip:text)) {
+  :root[data-theme="light"] .home-page .build-word.solar-grow {
+    color:transparent;
+    background-image:linear-gradient(to top, var(--accent) 48%, var(--text) 52%);
+    background-size:100% 200%;
+    background-position:50% 100%;
+    background-repeat:no-repeat;
+    -webkit-background-clip:text;
+    background-clip:text;
+    animation:build-grow 1200ms cubic-bezier(.25,.65,.3,1) both;
+  }
+}
+@keyframes build-grow {
+  from { background-position:50% 0%; }
+  to { background-position:50% 100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .theme-choice *, .build-word { animation:none !important; transition:none !important; }
+  :root[data-theme="light"] .home-page .build-word.solar-grow { color:var(--accent); background:none; }
+}
+@media(forced-colors:active) {
+  :root[data-theme="light"] .home-page .build-word.solar-grow { color:LinkText; background:none; animation:none; }
+}

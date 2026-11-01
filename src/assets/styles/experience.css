@@ -1,0 +1,47 @@
+.graph { --logo-size:72px; --timeline-x:100px; --content-start:132px; position:relative; padding-left:var(--content-start); max-width:960px; }
+.graph::before { content:""; position:absolute; left:var(--timeline-x); top:calc(var(--logo-size) / 2); bottom:24px; width:2px; background:var(--line); }
+.commit { position:relative; padding-bottom:40px; }
+.commit::before { content:""; position:absolute; left:calc(var(--timeline-x) - var(--content-start) - 5px); top:calc(var(--logo-size) / 2 - 6px); width:12px; height:12px; border-radius:50%; background:var(--bg); border:2px solid var(--accent); }
+.commit.head::before { background:var(--accent); box-shadow:0 0 0 5px #c5f78d22; }
+.commit.root::before { top:7px; border-style:dashed; border-color:var(--muted); }
+.meta { display:flex; flex-wrap:wrap; gap:4px 12px; font:12px var(--mono); color:var(--muted); margin:0 0 6px; }
+.meta .h { color:var(--warn); }
+.meta .ref { color:var(--accent); }
+.commit h3 { font-size:24px; letter-spacing:-.8px; line-height:1.3; margin:0 0 12px; font-weight:600; }
+.commit h3 .at { color:var(--muted); font-weight:400; }
+
+ul.diff { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+ul.diff li { display:grid; grid-template-columns:2.4ch 1fr; color:var(--muted); font-size:16px; line-height:1.65; }
+ul.diff li::before { content:"+"; color:var(--accent); font:600 15px/1.75 var(--mono); }
+ul.diff strong { color:var(--text); font-weight:600; }
+.roles { display:grid; gap:26px; margin-top:4px; padding-left:18px; border-left:1px dashed var(--line); }
+.role h4 { font-size:18px; font-weight:600; letter-spacing:-.3px; margin:0 0 2px; }
+.role .when { font:12px var(--mono); color:var(--muted); margin:0 0 10px; }
+.root-msg { color:var(--muted); font:15px var(--mono); margin:0; }
+.tools { display:grid; grid-template-columns:max-content 1fr; gap:14px 32px; max-width:960px; margin:0 0 64px; }
+.tools dt { font-weight:600; font-size:var(--font-card-copy); line-height:30px; }
+.tools dd { margin:0; display:flex; flex-wrap:wrap; gap:6px; }
+.tools dd span { font:12px/1 var(--mono); padding:8px 10px; border:1px solid var(--line); border-radius:4px; background:var(--surface); color:var(--text); }
+
+/* ---------- Experience: official logos to the left of the timeline ---------- */
+.commit.has-logo { min-height:calc(var(--logo-size) + 40px); }
+.co-logo { position:absolute; top:0; left:calc(0px - var(--content-start)); width:var(--logo-size); height:var(--logo-size); display:grid; place-items:center; background:transparent; }
+.co-logo img { display:block; width:76%; height:76%; object-fit:contain; }
+.co-logo--lululemon img { width:100%; height:100%; }
+
+
+.stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:32px 0 0; border:1px solid var(--line); border-radius:12px; background:var(--surface); overflow:hidden; }
+.stat { min-width:0; padding:22px 24px; }
+.stat+.stat { border-left:1px solid var(--line); }
+.stat b { display:block; font-size:clamp(25px,2.6vw,34px); line-height:1.2; font-weight:650; letter-spacing:-1.2px; overflow-wrap:anywhere; }
+.stat h2 { margin:10px 0 8px; font:700 14px/1.45 var(--ui); color:var(--text); letter-spacing:0; }
+.stat p { margin:0; color:var(--muted); font:13px/1.65 var(--sans); }
+.xp .section-label { margin:56px 0 26px; padding-top:26px; border-top:1px solid var(--line); }
+.role-more { margin-top:14px; }
+.role-more summary { width:fit-content; max-width:100%; cursor:pointer; color:var(--accent); font:12px/1.7 var(--mono); padding:5px 0; }
+.role-more[open] summary { margin-bottom:10px; }
+.toolbox-intro { color:var(--muted); font-size:14px; margin:0 0 22px; }
+@media(max-width:1100px) { .stats { grid-template-columns:repeat(2,minmax(0,1fr)); } .stat:nth-child(odd) { border-left:0; } .stat:nth-child(n+3) { border-top:1px solid var(--line); } }
+@media(max-width:900px) { .tools { grid-template-columns:1fr; gap:2px; } .tools dd { margin-bottom:12px; } }
+@media(max-width:760px) { .stats { grid-template-columns:1fr; } .stat { padding:20px; } .stat+.stat { border-left:0; border-top:1px solid var(--line); } .stat b { font-size:30px; } }
+@media(max-width:560px) { .graph { --logo-size:44px; --timeline-x:60px; --content-start:80px; } }

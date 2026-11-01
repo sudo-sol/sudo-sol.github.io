@@ -13,9 +13,23 @@ node_modules/
 .env.*
 !.env.example
 
-# Note drafts stay local until published (anything committed is public on Pages)
-drafts/*
-!drafts/_template.md
 
-# Private local coordination briefs; never serve/publish as website source.
+# Legacy local records remain excluded from public source.
 /memory/
+
+# Local design audits
+/.taste-skill/
+
+# Empty environment mounts; not website dependencies
+/.agents/
+/.aws/
+/.codex/
+
+# Local AI agent instructions and state
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+.claude/
+.cursor/
+.cursorrules
+.github/copilot-instructions.md
