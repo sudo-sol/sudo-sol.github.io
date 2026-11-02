@@ -1,6 +1,8 @@
 ---
 title: "From a Cloudflare domain to GitHub Pages"
-emphasis: "GitHub Pages"
+emphasis:
+  - "Cloudflare"
+  - "GitHub"
 summary: "Buy a domain on Cloudflare, take care of the essentials, and connect it to GitHub Pages with the right DNS records and HTTPS."
 date: "2026-10-27"
 tags: "cloudflare, dns, github-pages"

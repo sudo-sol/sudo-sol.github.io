@@ -23,7 +23,9 @@
         "src/assets/styles/*",
         "src/assets/scripts/*",
         "scripts/sync_site.py",
-        "tests/*"
+        "tests/*",
+        "scripts/refresh_content.py",
+        "scripts/build_content.py"
       ],
       "owners": [
         "DESIGN_GUIDELINES.md",
@@ -51,7 +53,7 @@
         ".github/*"
       ],
       "owners": [
-        ".github/README.md"
+        ".github/COMPLETION.md"
       ]
     }
   ],
@@ -63,6 +65,10 @@
     {
       "path": "README.md",
       "text": "python3 -m http.server 4173 --bind 127.0.0.1"
+    },
+    {
+      "path": "README.md",
+      "text": "python3 scripts/refresh_content.py --check"
     }
   ]
 }

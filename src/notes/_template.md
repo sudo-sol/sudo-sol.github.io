@@ -1,9 +1,11 @@
 ---
-# Copy this file to src/notes/<slug>/note.md (the file name becomes the URL: /notes/<slug>/).
-# Fill in the fields, write the body, then run the content builder.
+# Copy this file to src/notes/<slug>/note.md (the folder name becomes the URL: /notes/<slug>/).
+# Fill in the fields, write the body, then run python3 scripts/refresh_content.py.
 title: Keeping secrets out of Terraform state
-# Optional: the last few words of the title to set in the upright terminal accent. The builder currently renders a plain title.
-emphasis: Terraform state
+# Optional: exact, case-sensitive title phrases to colour with the theme accent.
+# A single string works too: emphasis: Terraform state
+emphasis:
+  - Terraform state
 summary: One or two sentences. Used under the title, in the notes archive, and in link previews.
 date: 2026-11-02
 tags: terraform, security

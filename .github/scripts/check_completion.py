@@ -178,8 +178,8 @@ def main():
                 text = path.read_text()
             else:
                 text = '# Source structure\n\nGenerated from tracked and non-ignored source paths. Do not edit the generated block.\n' + \
-                       'Owning documents and verification rules: [.github/README.md](' + \
-                       ('../' * len(Path(gate.config['inventory']).parent.parts)) + '.github/README.md).\n\n' + START + '\n' + END + '\n'
+                       'Owning documents and verification rules: [.github/COMPLETION.md](' + \
+                       ('../' * len(Path(gate.config['inventory']).parent.parts)) + '.github/COMPLETION.md).\n\n' + START + '\n' + END + '\n'
                 # The new inventory must list itself on its first generation.
                 gate.paths = sorted(set(gate.paths + [gate.config['inventory']]))
                 block = gate.inventory_block()

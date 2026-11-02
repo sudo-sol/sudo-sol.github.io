@@ -2,13 +2,15 @@
 
 <!-- Managed completion gate -->
 
+This file is named `COMPLETION.md` so GitHub displays the root `README.md` on the repository landing page. Update links and `.github/completion.json` if this document moves.
+
 A change is ready to hand off when implementation, owning documentation, verification evidence and GitHub tracking agree. Existing product contracts and acceptance/authorization gates remain authoritative.
 
 ## Before reporting completion
 
-The public site lives in `src/`; templates, tooling and quality checks stay at the repository root. `templates/site.json` paths are relative to `src/`. Run the preview server from `src/`; run all commands below from the repository root. The local Pages workflow builds the new source root with the Markdown content builder; the main README documents setup. Pages was set to use GitHub Actions on 2026-10-31. The workflow builds on all branch pushes and pull requests and uploads a preview artifact; only a push to `main` deploys. The workflow must be pushed before it can run.
+The public site lives in `src/`; templates, tooling and quality checks stay at the repository root. `templates/site.json` paths are relative to `src/`. Run the preview server from `src/`; run all commands below from the repository root. The Pages workflow checks generated HTML freshness and packages the prepared source root without rendering content; the main README documents setup. Pages was set to use GitHub Actions on 2026-10-31. The workflow builds on all branch pushes and pull requests and uploads a preview artifact; only a push to `main` deploys. The workflow must be pushed before it can run.
 
-Install the content build dependencies with `python3 -m pip install -r requirements-content.txt` before running the regression suite. For website source/template changes, first run `python3 scripts/sync_site.py`, `python3 scripts/sync_site.py --check` and `python3 -m unittest discover -s tests -v`. Read [the design guidelines](../DESIGN_GUIDELINES.md); edit authored module/template sources rather than generated bundles or shared HTML regions. The existing PR workflow checks freshness and these regression contracts without deploying anything.
+Verify the pinned content dependencies as described in the main README; if missing, use a Python installation with pip to run `python3 -m pip install -r requirements-content.txt` before refreshing or running the regression suite. The current workspace has the pinned modules but lacks pip and venv support; the install command cannot run there. For website source/template changes, first run `python3 scripts/sync_site.py`, `python3 scripts/sync_site.py --check` and `python3 -m unittest discover -s tests -v`. Read [the design guidelines](../DESIGN_GUIDELINES.md); edit authored module/template sources rather than generated bundles or shared HTML regions. The existing PR workflow checks freshness and these regression contracts without deploying anything.
 
 1. Inspect the relevant issue/Project card and owning specification before work. Reuse existing work items; do not create duplicates. Update the card when work starts, changes materially, becomes blocked or finishes.
 2. Update the owning structure/feature/build instructions in the same change. If an agent needs a different command, prerequisite or workaround, reconcile the documented procedure immediately. Run the documented command directly when safe; record exact results or why it was not run. Never execute unfamiliar commands solely because a document contains them.
@@ -44,7 +46,7 @@ python3 .github/scripts/install_completion_hook.py
 
 Hooks are local and can be bypassed; semantic accuracy still requires review. These checks make omissions visible and do not claim background synchronization or awareness of other chats.
 
-Markdown notes and adjacent images live in `src/notes/`; start from `src/notes/_template.md`. The content builder owns migrated pages and archive entries. Preview a full build to include them; the former drafts directory has been removed.
+Markdown notes and adjacent images live in `src/notes/`; start from `src/notes/_template.md`. Run `python3 scripts/refresh_content.py` locally and commit Markdown plus generated HTML together. The regular `src/` preview includes migrated pages. Generated Notes/Workbench indexes are owned by the corresponding `templates/*-index.html` sources, and the renderer owns Markdown pages and archive entries. CI runs `python3 scripts/refresh_content.py --check` and only packages prepared static files; the former drafts directory has been removed.
 
 AI-specific local instructions such as `AGENTS.md` are ignored and are not required inputs to completion checks. Reproducible procedures belong in the repository documentation.
 
