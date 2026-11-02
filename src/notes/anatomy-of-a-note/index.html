@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How every post on sudo-sol is put together, and the template to copy for the next one.">
+  <meta name="description" content="The reading-layout reference for Markdown notes on sudo-sol.">
   <meta name="theme-color" content="#f2f1e9">
   <meta property="og:title" content="The anatomy of a note / sudo-sol">
-  <meta property="og:description" content="How every post on sudo-sol is put together, and the template to copy for the next one.">
+  <meta property="og:description" content="The reading-layout reference for Markdown notes on sudo-sol.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://sudosol.dev/notes/anatomy-of-a-note/">
   <meta property="article:published_time" content="2026-10-26">
@@ -24,11 +24,10 @@
 <!-- shared:assets:end -->
 </head>
 <!--
-  NOTE TEMPLATE. To write a new note:
-  1. Copy this folder to notes/<slug>/.
-  2. Update <title>, description, og:*, canonical, article:published_time, and the header below.
-  3. Write the sections (keep the ids in sync with the "on this page" links).
-  4. Add the note to notes/index.html under its year.
+  HTML reading-layout reference and renderer shell; excluded from publication packages.
+  To write a note, copy src/notes/_template.md to src/notes/<slug>/note.md.
+  Edit its front matter/body, put images beside it and run scripts/refresh_content.py.
+  Edit Markdown rather than generated note HTML. See README: Build Markdown content locally.
 -->
 <body class="interior-page post-page" data-term-chips="ls, open choices, cd ~/notes, help">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -64,7 +63,7 @@
         <header class="post-head page-intro">
           <p class="prompt" aria-hidden="true"><span class="u">~/notes</span>$ cat anatomy-of-a-note.md<span class="cursor"></span></p>
           <h1 class="page-title" id="post-title">The anatomy of <span class="terminal-em">a note.</span></h1>
-          <p class="lede">How every post here is put together, and the template to copy for the next one.</p>
+          <p class="lede">How every post here is put together, with a Markdown template for the next one.</p>
           <p class="post-meta"><time datetime="2026-10-26">Oct 26, 2026</time><span data-read-time>1 min read</span><span>#writing</span><span>#meta</span><span class="tag sample">sample</span></p>
         </header>
 
@@ -72,7 +71,7 @@
           <div class="post-body">
             <aside class="takeaway" aria-label="Key takeaway">
               <b>tl;dr</b>
-              <p>Every note follows the same shape: <strong>the problem, the context, the choices, what happened, and what I'd do next.</strong> Copy this page to start a new one.</p>
+              <p>Every note follows the same shape: <strong>the problem, the context, the choices, what happened, and what I'd do next.</strong> Start a new note from the Markdown template described in the README.</p>
             </aside>
 
             <section id="problem" data-term-item="problem" data-term-desc="start here" aria-labelledby="h-problem">

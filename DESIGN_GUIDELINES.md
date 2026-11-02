@@ -4,7 +4,7 @@ This is the design contract for current and future pages. Read it before changin
 
 ## Source of truth
 
-The base site is plain, checked-in HTML/CSS/JavaScript inside `src/`. `scripts/refresh_content.py` generates Markdown note pages and Workbench cards directly into `src/`, and `scripts/build_content.py` packages the prepared files without rendering; see the README for content authoring and build commands. Templates and tooling stay at the repository root. It needs no application server, package install or runtime template engine. Author shared code in the following sources, then run:
+The base site is plain, checked-in HTML/CSS/JavaScript inside `src/`. `scripts/refresh_content.py` generates Markdown note pages and Workbench cards directly into `src/`, and `scripts/build_content.py` packages the prepared files without rendering; see the README for content authoring and build commands. Templates and tooling stay at the repository root. Serving the prepared `src/` site needs no application server, package install or runtime template engine; authoring and refresh need the Python dependencies below. Author shared code in the following sources, then run:
 
 ```sh
 python3 scripts/sync_site.py
@@ -124,3 +124,7 @@ Solarpunk uses the approved generated `src/assets/solarpunk-landscape.webp` illu
 Cyberpunk uses the approved generated `src/assets/cyber-circuitry.webp` in a fixed, decorative viewport layer, with a proportional centred cover crop. Keep the centre dark and the cyan/magenta details at the edges, with a subtle dark wash for reading. `src/assets/cyber.css` owns `--cyber-circuitry`, `--cyber-background-wash` and `--cyber-grid-size` (the fallback static grid). Narrow screens crop toward the quiet centre; do not stretch the artwork or add motion. Moving background trails and their canvas module have been removed. Keep other approved theme effects in their existing owners.
 
 The shared header terminal button uses a solid theme surface, 2px accent border and bold symbol for contrast over background imagery. Its hover state uses the higher surface token and text-coloured edge; retain its native button action and visible keyboard focus.
+
+## README artwork
+
+`src/assets/readme-banner.svg` is original static vector artwork, using one continuous, full-width text composition clipped into balanced diagonal theme regions: Solarpunk ivory and leaf-textured green lettering on the left, Cyberpunk navy and circuit-textured light lettering on the right. Shared SVG headline and description definitions keep the lettering aligned through the slanted centre split; the terminal icon and sudo-sol brand sit at the top left. Do not create separate captions or repeat the slogan on each side. Keep the terminal brand, Build / Break / Understand headline and experience/projects/notes description. It uses system font fallbacks, an accessible title and description, and no embedded or external images, scripts or font requests. Edit this SVG directly rather than generating a bitmap replacement.

@@ -1,4 +1,4 @@
-![sudo-sol / Build. Break. Understand.](src/assets/readme-banner.svg)
+![sudo-sol — Build. Break. Understand. Solarpunk leaves and Cyberpunk circuitry.](src/assets/readme-banner.svg)
 
 # sudo-sol
 
@@ -10,7 +10,7 @@ Addy's personal site: experience, projects, notes, and the person behind the ter
 
 - **Home:** a short intro, a working Build / Break / Understand headline, a public `src/about.json` source peek, the experience "git log" card, and an interactive terminal.
 - **Experience:** a git-graph timeline with role scope, selected contributions, supporting work, and a toolbox. All role details and the Simon Fraser University course list are visible without expanding sections. The timeline also includes the voluntary career break and the Anna University bachelor’s degree. Home’s git-log window mirrors the timeline’s company, education, and career-break entries with matching decorative commit hashes. Role summaries pair scope with selected, substantiated contributions from the supplied career history; SRE I and internship work retain distinct attribution. Keep dates and metrics aligned with that history, and link project stories only when approved public material exists. Company logos and career highlights support scanning; role context explains the progression from hands-on infrastructure work to technical leadership. Keep employer details public-safe: describe recovery and security work at the outcome level, without internal incident mechanisms or access configurations.
-- **About:** a man-page-styled page (`man addy`) with the story, how I work, skills, interests, known bugs & features, and a contact form.
+- **About:** a man-page-styled page (`man addy`) with the story, how I work, skills, interests, known bugs & features, LinkedIn contact and an email form marked coming soon.
 - **Workbench:** project cards (status, problem, approach, outcome, stack, links) with a status filter.
 - **Notes:** the blog. A year-grouped archive with topic filters. Markdown notes are refreshed into checked-in HTML locally (see [Build Markdown content locally](#build-markdown-content-locally)); existing HTML entries remain in place.
 - **Labs (hidden for now):** `src/labs/` still exists, but its shared navigation entry is disabled. See [Bring labs back](#bring-labs-back).
@@ -34,7 +34,9 @@ python3 -m unittest discover -s tests -v
 
 Edit unique page content in `src/`, and shared code in `src/assets/styles/`, `src/assets/scripts/` and `templates/`. `src/styles.css`, `src/app.js` and marked shared HTML regions are generated and checked in; the sync command bundles the small modules and versions asset URLs. No package installation or runtime templating is needed to serve the site. The contents of `src/` are the complete checked-in static site, including Markdown-generated HTML. Both the sync command and `scripts/refresh_content.py` refresh Markdown entries alongside shared output. The resulting site requires no runtime framework.
 
-Navigation in `templates/site.json` drives the header, keyboard destinations and terminal tabs. `templates/header.html`, `footer.html` and `theme-picker.html` own repeated chrome. Home's public JSON peek is also generated from its single source. Unique page content and SEO metadata remain directly editable.
+Before refreshing an existing checkout, run `python3 scripts/sync_site.py --check` and inspect any differences in generated files. Refresh replaces generated HTML; it does not merge or preserve direct edits to it. Move intended edits into the owning Markdown or template first, and save a backup when necessary. A generated-file ownership comment is not evidence that local edits are disposable.
+
+Navigation in `templates/site.json` drives the header, keyboard destinations and terminal tabs. `templates/header.html`, `footer.html` and `theme-picker.html` own repeated chrome. Home's public JSON peek is also generated from its single source. Unique hand-written page content and SEO metadata remain directly editable. Markdown-owned note pages and the Notes/Workbench indexes are regenerated from their owning Markdown/template sources.
 
 ## Preview locally
 
@@ -78,7 +80,8 @@ The repository was configured to use GitHub Actions for Pages on 2026-10-31. Kee
 | `src/assets/theme.js` | Solarpunk/Cyberpunk selection, persistence and legacy migration (loaded in `<head>` to avoid a flash) |
 | `src/assets/cyber.css` | The cyber theme skin (purely visual) |
 | `src/assets/term.js`, `src/assets/term.css` | The site-wide terminal |
-| `src/assets/` | Also the favicon and README banner |
+| `src/assets/readme-banner.svg` | Original, editable README artwork: one continuous headline across balanced, diagonally divided Solarpunk/Cyberpunk regions, with the terminal brand at top left; accessible static SVG with no external assets |
+| `src/assets/` | Also the favicon, theme backgrounds and other public assets |
 
 The shared component contract and type/spacing tokens live in `src/assets/styles/`; page-specific modules retain their reading, manual, timeline and project layouts. Theme state is in `src/assets/theme.js`; theme-specific visuals and growing-ink effect are in `src/assets/cyber.css` and `src/assets/themes.css`. The public profile in `src/about.json` renders into Home through the sync command. Play files and their licence are in `src/assets/fonts/`.
 
@@ -235,4 +238,5 @@ Cyberpunk uses the approved generated `src/assets/cyber-circuitry.webp` (about 3
 Note articles use the available desktop width with a fluid reading column and a wider table of contents on the right. At 900px and below, the TOC is hidden and the article fills one column. Current-page navigation uses pink-red holographic corner brackets, a burgundy fill and a bright label in Cyberpunk; Solarpunk uses an opaque sage tab, deep-green text and a vine with two leaves underneath. The bracket lock-on (380ms) and vine growth (550ms) play once when the state appears, with static highlights for reduced motion. Decorative pseudo-elements sit outside the text without widening the mobile navigation. Forced-colour mode uses an outline instead of the decorations.
 
 The repository landing README lives at the root. Completion instructions are named `.github/COMPLETION.md` because GitHub prioritizes a README in `.github/` over a root README; see [GitHub’s README selection rules](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes). Keep completion links and `.github/completion.json` pointing to that document.
+
 The root `CNAME` preserves the existing `sudosol.dev` domain record from `main`. Actions hosting uses the repository Pages settings; this file is outside the deployed `src/` tree. Keep it in the source inventory so pull-request merge checks see the same source files as the branch.

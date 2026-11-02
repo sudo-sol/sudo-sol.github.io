@@ -1,1 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title desc"><title id="title">sudo-sol / the workbench</title><desc id="desc">Build. Break. Understand. A personal space for systems and experiments.</desc><defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#34402f" stroke-width=".6"/></pattern></defs><rect width="1200" height="340" rx="16" fill="#111510"/><rect width="1200" height="340" rx="16" fill="url(#grid)"/><rect x="48" y="45" width="43" height="35" rx="5" fill="#20291e" stroke="#34402f"/><text x="57" y="69" fill="#c5f78d" font-family="monospace" font-size="22">&gt;_</text><text x="107" y="70" fill="#eef1e8" font-family="Arial,sans-serif" font-size="25" font-weight="700">sudo-sol.</text><text x="48" y="168" fill="#eef1e8" font-family="Arial,sans-serif" font-size="60" font-weight="700" letter-spacing="-2">Build. Break. Understand.</text><text x="51" y="220" fill="#a1ab9b" font-family="Arial,sans-serif" font-size="22">A personal workbench for systems and ideas worth trying.</text><text x="51" y="290" fill="#c5f78d" font-family="monospace" font-size="13" letter-spacing="2">SYSTEMS / EXPERIMENTS / USEFUL LITTLE THINGS</text><g fill="none" stroke="#c5f78d" opacity=".65"><circle cx="1050" cy="165" r="70"/><circle cx="1050" cy="165" r="103" stroke-dasharray="3 8"/><path d="M980 165h140M1050 95v140"/><circle cx="1050" cy="165" r="23" fill="#20291e"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">sudo-sol — Build. Break. Understand.</title>
+  <desc id="desc">One continuous headline across a slanted theme divider, with a terminal badge at the top left: Solarpunk leaf-textured lettering and an ivory background on the left; Cyberpunk circuit-textured lettering and a dark background on the right.</desc>
+  <defs>
+    <clipPath id="frame"><rect width="1200" height="360" rx="16"/></clipPath>
+    <clipPath id="solar-half"><path d="M0 0H650L550 360H0Z"/></clipPath>
+    <clipPath id="cyber-half"><path d="M650 0H1200V360H550Z"/></clipPath>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#00f0ff" stroke-opacity=".06"/></pattern>
+    <pattern id="solar-ink" width="110" height="100" patternUnits="userSpaceOnUse">
+      <rect width="110" height="100" fill="#315727"/>
+      <path d="M-10 100Q42 47 110 6M34 60L22 33M58 39L84 48M78 25L75 5" fill="none" stroke="#648c43" stroke-width="1.3" opacity=".55"/>
+    </pattern>
+    <pattern id="cyber-ink" width="120" height="80" patternUnits="userSpaceOnUse">
+      <rect width="120" height="80" fill="#bff5f5"/>
+      <path d="M0 25H40L52 13H120M0 60H76L90 46H120" fill="none" stroke="#259da7" stroke-width="1" opacity=".4"/>
+      <path d="M8 0V9H31M89 80V68H108" fill="none" stroke="#e9417b" stroke-width="1.5" opacity=".55"/>
+    </pattern>
+    <!-- One set of lettering coordinates: each half styles the same composition. -->
+    <text id="headline" x="600" y="192" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="84" font-weight="700" letter-spacing="-3" textLength="1092" lengthAdjust="spacingAndGlyphs">Build. Break. Understand.</text>
+    <text id="summary" x="600" y="259" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="23">Experience, projects and notes from behind the terminal.</text>
+  </defs>
+  <g clip-path="url(#frame)" aria-hidden="true">
+    <rect width="1200" height="360" fill="#f2f1e9"/>
+    <path d="M650 0H1200V360H550Z" fill="#05060d"/>
+    <path d="M650 0H1200V360H550Z" fill="url(#grid)"/>
+    <!-- Organic edges become angular routing across the same baseline. -->
+    <g clip-path="url(#solar-half)">
+      <path d="M-20 53Q78 5 176 29T370 20M-20 70Q73 23 174 47T380 38" fill="none" stroke="#c5d2b6" stroke-width="1.5"/>
+      <path d="M0 328Q100 291 204 321T407 319Q503 294 560 325" fill="none" stroke="#78965b" stroke-width="2"/>
+      <path d="M0 345Q100 311 204 339T407 337Q503 312 555 343" fill="none" stroke="#becdaa" stroke-width="1.5"/>
+      <g fill="#c2d5ab">
+        <path d="M71 309Q46 276 67 256Q88 282 71 309Z"/>
+        <path d="M72 309Q96 276 117 287Q101 314 72 309Z"/>
+        <path d="M327 335Q302 304 321 283Q345 309 327 335Z"/>
+        <path d="M328 335Q352 307 375 318Q354 342 328 335Z"/>
+      </g>
+      <use href="#headline" fill="url(#solar-ink)"/>
+      <use href="#summary" fill="#43533b"/>
+    </g>
+    <g clip-path="url(#cyber-half)">
+      <path d="M560 325H707L734 298H901L931 328H1200M555 343H715L742 316H892L922 346H1200" fill="none" stroke="#078692" stroke-width="1.5"/>
+      <path d="M1200 26H1097L1073 50H969M1200 44H1105L1081 68H988" fill="none" stroke="#16737e" stroke-width="1.5"/>
+      <path d="M1200 283H1152L1127 308H1044" fill="none" stroke="#ff2a6d" stroke-width="3"/>
+      <g fill="none" stroke="#00a8b2" stroke-width="1.5"><circle cx="969" cy="50" r="3"/><circle cx="988" cy="68" r="3"/><circle cx="901" cy="298" r="3"/></g>
+      <use href="#headline" fill="url(#cyber-ink)"/>
+      <use href="#summary" fill="#a6c0d3"/>
+    </g>
+    <g font-family="Arial,Helvetica,sans-serif">
+      <rect x="52" y="38" width="42" height="34" rx="6" fill="#dfeacb" stroke="#91ab75"/>
+      <text x="61" y="61" fill="#3c651c" font-family="monospace" font-size="21">&gt;_</text>
+      <text x="108" y="63" fill="#1b2519" font-size="26" font-weight="700">sudo-sol.</text>
+    </g>
+  </g>
+</svg>
