@@ -13,12 +13,12 @@
   <title>Notes / sudo-sol</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <!-- shared:assets:start -->
-  <link rel="stylesheet" href="/styles.css?v=b7c0a14ed65b">
+  <link rel="stylesheet" href="/styles.css?v=12a11f755de3">
   <link rel="stylesheet" href="/assets/term.css?v=394105ec6afa">
-  <link rel="stylesheet" href="/assets/cyber.css?v=f710b538a7c3">
-  <link rel="stylesheet" href="/assets/themes.css?v=f37a59d1d5a3">
+  <link rel="stylesheet" href="/assets/cyber.css?v=d05ded899bd0">
+  <link rel="stylesheet" href="/assets/themes.css?v=ff68ec76c7f4">
   <script src="/assets/theme.js?v=43b4675c167e"></script>
-  <script src="/app.js?v=2eda6d62b24d" defer></script>
+  <script src="/app.js?v=1cd07f91b418" defer></script>
   <script src="/assets/term.js?v=f0fa56f2c5df" defer></script>
 <!-- shared:assets:end -->
 </head>
@@ -55,16 +55,12 @@
         <header class="page-intro" aria-labelledby="notes-title"><p class="prompt" aria-hidden="true"><span class="u">~/notes</span>$ ls<span class="cursor"></span></p><h1 class="page-title" id="notes-title">Some things are <span class="terminal-em">worth writing down.</span></h1><p class="lede">Write-ups on incidents, infrastructure, and the tools I build. The problem, the choices, what worked, and what I'd try next.</p></header>
         <div class="filters" data-filter="#posts" data-filter-key="tags" role="group" aria-label="Filter notes by topic" hidden></div>
         <div id="posts">
-          <!--
-            Newest first, grouped by year. One <li class="post-item"> per note.
-            data-tags: space-separated topics (they become the filter buttons).
-            Drafts: add class "draft", swap the <time> for <span class="when">draft</span>, and leave the title unlinked.
-            New post: copy notes/anatomy-of-a-note/ to notes/<slug>/ (see README → "Build Markdown content locally").
-          -->
+          <!-- Markdown entries are generated; edit note.md and run scripts/refresh_content.py. -->
           <section class="year" data-filter-group aria-labelledby="y-2026">
             <h2 class="year-label" id="y-2026">2026</h2>
             <ol class="posts">
-              <li class="post-item" data-tags="terraform security tooling">
+              <li class="post-item" data-tags="cloudflare dns github-pages"><time datetime="2026-10-27">Oct 27</time><div><h3><a href="/notes/cloudflare-domain-github-pages/" data-term-item="cloudflare-domain-github-pages">From a Cloudflare domain to GitHub Pages</a></h3><p>Buy a domain on Cloudflare, take care of the essentials, and connect it to GitHub Pages with the right DNS records and HTTPS.</p><p class="post-meta"><span>6 min read</span><span>#cloudflare</span><span>#dns</span><span>#github-pages</span></p></div></li>
+<li class="post-item" data-tags="terraform security tooling">
                 <time datetime="2026-10-26">Oct 26</time>
                 <div>
                   <h3><a href="/notes/tf-access-map/" data-term-item="tf-access-map" data-term-desc="who can change what in Terraform Cloud">Mapping who can change what in Terraform Cloud</a></h3>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Personal projects, from apps I use every day to work in progress: the problems behind them, my approach, and where they stand.">
+  <meta name="theme-color" content="#f2f1e9">
+  <meta property="og:title" content="Workbench / sudo-sol">
+  <meta property="og:description" content="Personal projects, from apps I use every day to work in progress: the problems behind them, my approach, and where they stand.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sudosol.dev/workbench/">
+  <link rel="canonical" href="https://sudosol.dev/workbench/">
+  <title>Workbench / sudo-sol</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<!-- shared:assets:start -->
+  <link rel="stylesheet" href="/styles.css?v=b7c0a14ed65b">
+  <link rel="stylesheet" href="/assets/term.css?v=394105ec6afa">
+  <link rel="stylesheet" href="/assets/cyber.css?v=f710b538a7c3">
+  <link rel="stylesheet" href="/assets/themes.css?v=f37a59d1d5a3">
+  <script src="/assets/theme.js?v=43b4675c167e"></script>
+  <script src="/app.js?v=2eda6d62b24d" defer></script>
+  <script src="/assets/term.js?v=f0fa56f2c5df" defer></script>
+<!-- shared:assets:end -->
+</head>
+<body class="interior-page" data-term-chips="ls, open ascend, open pulse, cd notes, help">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-shell">
+    <!-- shared:header:start -->
+<header class="site-header">
+  <div class="wordmark"><button class="brand-mark" type="button" data-term-open aria-label="Open terminal" title="Terminal ( / )">&gt;<i aria-hidden="true">_</i></button><a href="/" aria-label="sudo-sol home" data-nav-key="h" data-nav-label="home">sudo-sol<span class="accent">.</span></a></div>
+  <nav aria-label="Main navigation">
+    <a href="/experience/" data-term-desc="where I&#x27;ve worked" data-nav-key="e" data-nav-label="experience">experience</a>
+    <a href="/workbench/" aria-current="page" data-term-desc="projects and case studies" data-nav-key="w" data-nav-label="workbench">workbench</a>
+    <a href="/notes/" data-term-desc="things worth writing down" data-nav-key="n" data-nav-label="notes">notes</a>
+    <a href="/about/" data-term-desc="the human behind the terminal" data-nav-key="a" data-nav-label="about">about</a>
+  </nav>
+  <div class="theme-picker" role="group" aria-label="Theme">
+  <button class="theme-choice" type="button" data-theme-choice="light" aria-label="Solarpunk theme" aria-pressed="true" title="Solarpunk">
+  <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M20 4C13 3 5 7 5 14a5 5 0 0 0 5 5C17 19 21 11 20 4Z"/>
+  <path d="m4 21 11-11"/>
+  </svg>
+  </button>
+  <button class="theme-choice" type="button" data-theme-choice="cyber" aria-label="Cyberpunk theme" aria-pressed="false" title="Cyberpunk">
+  <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="7" y="7" width="10" height="10" rx="1"/>
+  <path d="M9 3v4m6-4v4M9 17v4m6-4v4M3 9h4m-4 6h4m10-6h4m-4 6h4"/>
+  <path d="M10 10h4v4h-4z"/>
+  </svg>
+  </button>
+  </div>
+</header>
+<!-- shared:header:end -->
+    <main id="main"><section class="workbench-section" aria-labelledby="workbench-title">
+        <header class="page-intro" aria-labelledby="workbench-title"><p class="prompt" aria-hidden="true"><span class="u">~/workbench</span>$ ls<span class="cursor"></span></p><h1 class="page-title" id="workbench-title">Things I've <span class="terminal-em">been building.</span></h1><p class="lede">Personal projects, from tools I use every day to apps still taking shape. The problems behind them, the approach I took, and where they stand.</p></header>
+        <div class="filters" data-filter="#projects" data-filter-key="status" role="group" aria-label="Filter projects by status" hidden></div>
+        <div class="proj-list" id="projects">
+          <!--
+            Legacy cards live here. New entries use workbench/<slug>/project.md and scripts/refresh_content.py.
+            Keep cards ordered: building, planned, shipped.
+            data-status: building | planned | shipped (drives the badge colour and the filter).
+            Facts: problem, approach, outcome (numbers beat adjectives), next (drop it once shipped).
+          -->
+
+          <article class="proj" id="ascend" data-status="building" data-term-item="ascend" data-term-desc="a personal app for following through on goals" aria-labelledby="p-ascend">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">building</span><span><time datetime="2026-10">Oct 2026</time> – present</span><span>personal project</span></p>
+              <h2 id="p-ascend">Ascend</h2>
+              <p class="proj-sum">An app I'm building to turn personal goals into something I can keep showing up for, with a clearer sense of progress along the way.</p>
+              <ul class="stack" aria-label="Stack"><li>Java</li><li>JavaScript</li><li>Android WebView</li><li>SQLite</li><li>HTML / CSS</li></ul>
+              <p class="proj-links"><span class="soon">in development</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>I had goals I cared about, but starting a routine and keeping it going were different problems. I wanted a clearer next step and a reason to come back when the initial motivation wore off.</dd>
+              <dt>approach</dt><dd>I'm building one place to turn those goals into manageable daily actions and see the effort add up. The focus is on following through and getting back into a routine after a missed day.</dd>
+              <dt>outcome</dt><dd><strong>A working Android version, still under development.</strong> The next step is to use it over time and learn whether it helps me stay consistent.</dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="private-agent" data-status="planned" data-term-item="private-agent" data-term-desc="a private AI assistant with context from my own apps" aria-labelledby="p-private-agent">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">planned</span><span>idea recorded <time datetime="2026-10">Oct 2026</time></span></p>
+              <h2 id="p-private-agent">Private AI agent</h2>
+              <p class="proj-sum">A personal assistant that runs AI locally, understands context from Pulse, Ascend, and future apps, and helps me manage everyday life while keeping my data on hardware I control.</p>
+              <ul class="stack" aria-label="Proposed stack"><li>Python</li><li>llama.cpp</li><li>SQLite</li><li>Linux</li><li>Docker</li><li>WireGuard</li></ul>
+              <p class="proj-links"><span class="soon">proposed stack · hardware pending</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>My apps can hold useful pieces of my life, but I want an assistant that can connect that context and help me act on it, without depending on cloud AI processing.</dd>
+              <dt>approach</dt><dd>Run the model and personal context locally, with limited, permissioned access to my apps and approval before it makes changes. The goal is offline operation at home, plus access from away through a private encrypted connection when a network is available.</dd>
+              <dt>challenge</dt><dd><strong>Enough local compute for useful offline AI.</strong> Model quality, response time, and memory requirements need to be tested before choosing a powerful enough machine.</dd>
+              <dt>next</dt><dd>Benchmark local models and size the hardware, then prototype read-only context from my apps before adding actions or remote access.</dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="home-server" data-status="planned" data-term-item="home-server" data-term-desc="a NAS and home automation platform for the future agent" aria-labelledby="p-home-server">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">planned</span><span>idea recorded <time datetime="2026-10">Oct 2026</time></span></p>
+              <h2 id="p-home-server">Home server &amp; automation</h2>
+              <p class="proj-sum">A NAS home server and local home automation setup, with a longer-term goal of connecting both to my private AI agent.</p>
+              <ul class="stack" aria-label="Proposed stack"><li>Linux</li><li>OpenZFS</li><li>Samba</li><li>Home Assistant</li><li>MQTT</li></ul>
+              <p class="proj-links"><span class="soon">proposed stack · hardware pending</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>I want a home base for files, backups, and everyday automation, with room to connect those services to the personal apps and assistant I'm building.</dd>
+              <dt>approach</dt><dd>Build the NAS and home automation services first, with local control and recoverable backups. Keep them useful on their own, then add a permissioned connection to the offline agent.</dd>
+              <dt>challenge</dt><dd><strong>Hardware capacity for the wider setup.</strong> The eventual offline AI workload needs substantial local compute, alongside storage and always-on home services. Memory, power use, noise, and keeping those services responsive will shape the build.</dd>
+              <dt>next</dt><dd>Size the storage and compute requirements, validate backup recovery, and start with a small set of local automations before integrating the agent.</dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="pulse" data-status="shipped" data-term-item="pulse" data-term-desc="one personal app for everyday life, used daily" aria-labelledby="p-pulse">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">shipped</span><span>built <time datetime="2026-08">Aug</time> – <time datetime="2026-10">Oct 2026</time></span><span>in daily use</span></p>
+              <h2 id="p-pulse">Pulse</h2>
+              <p class="proj-sum">One app for my everyday life. I built Pulse because I was tired of needing a separate app for everything, and now I use it day to day.</p>
+              <ul class="stack" aria-label="Stack"><li>Kotlin</li><li>Jetpack Compose</li><li>Room / SQLite</li><li>SQLCipher</li><li>WorkManager</li></ul>
+              <p class="proj-links"><span class="soon">built for my own use</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>My tasks, calendar, habits, notes, and recordings each needed their own app. Keeping track of my life meant switching between tools, even when everything belonged to the same day.</dd>
+              <dt>approach</dt><dd>I brought those everyday needs into one personal app, shaped around how I actually organize my life. The aim was to spend less time managing separate tools and have one place to return to throughout the day.</dd>
+              <dt>outcome</dt><dd><strong>Built and used in my daily life.</strong> Pulse is the personal app I wanted for myself: one place for everyday planning and information.</dd>
+              <dt>next</dt><dd>Keep using it and improving it. Once the offline agent is ready, I'll integrate it to make the most of its capabilities.</dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="access-map" data-status="shipped" data-term-item="access-map" data-term-desc="my own tool for a big Terraform access audit" aria-labelledby="p-access-map">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">shipped</span><span>built Sep – Oct 2026</span><span>personal tool</span></p>
+              <h2 id="p-access-map">tf-access-map</h2>
+              <p class="proj-sum">A read-only dashboard I built for myself to untangle a large access problem: who can change what across a Terraform Cloud estate, how they got that access, and whether the platform is healthy right now.</p>
+              <ul class="stack" aria-label="Stack"><li>Python</li><li>HCP Terraform API</li><li>GitLab API</li><li>Microsoft Graph</li><li>Kubernetes</li><li>HTML / CSS / JS</li></ul>
+              <p class="proj-links"><a href="/notes/tf-access-map/">case study →</a><span class="soon">built for my own use</span></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>I had to work out, across thousands of workspaces and hundreds of teams, <em>"who can apply to this, or read its state, and how?"</em> Access chained through SSO groups, teams, projects, and org-wide permissions, and some of it was never written in code. By hand, that was weeks of clicking through a UI.</dd>
+              <dt>approach</dt><dd>Read-only collectors with an endpoint allowlist snapshot Terraform Cloud, Git, the identity provider, and the agents' Kubernetes pods, using my own login. A model turns the snapshot into an access graph, and a strict HCL evaluator finds where each grant is declared. One static page shows it all, with no server to run.</dd>
+              <dt>outcome</dt><dd><strong>Weeks of manual auditing done in days.</strong> Its first run matched the manual numbers exactly. Surfaced access granted outside code, teams that can read all state, and auto-apply workspaces with unprotected deploy branches. <strong>Zero writes, no stored tokens, 150+ tests.</strong></dd>
+            </dl>
+          </article>
+
+          <article class="proj" id="sudo-sol" data-status="shipped" data-term-item="sudo-sol" data-term-desc="this site" aria-labelledby="p-site">
+            <header class="proj-head">
+              <p class="proj-meta"><span class="status">shipped</span><span>started Oct 2026</span><span>updated Oct 2026</span></p>
+              <h2 id="p-site">sudo-sol.github.io</h2>
+              <p class="proj-sum">This site: experience, projects, and notes, with a real terminal on every page.</p>
+              <ul class="stack" aria-label="Stack"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>GitHub Pages</li></ul>
+              <p class="proj-links"><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">repo ↗<span class="sr-only"> (opens in a new tab)</span></a><a href="/">live →</a></p>
+            </header>
+            <dl class="proj-facts">
+              <dt>problem</dt><dd>I wanted one place for my experience, projects, and notes that feels like how I work, without a framework to keep patched.</dd>
+              <dt>approach</dt><dd>Plain HTML, CSS, and JavaScript. One folder per page, a shared terminal that builds itself from the header nav, and two themes: Solarpunk and Cyberpunk.</dd>
+              <dt>outcome</dt><dd><strong>Plain files, self-hosted fonts, no tracking.</strong> Every page still works with JavaScript off.</dd>
+            </dl>
+          </article>
+        </div>
+      </section></main>
+    <!-- shared:footer:start -->
+<footer class="site-footer"><a class="footer-brand" href="/">sudo-sol<span class="accent">.</span></a><span>A work in progress. Always.</span><a href="https://github.com/sudo-sol/sudo-sol.github.io" target="_blank" rel="noopener noreferrer">Explore the source <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a></footer>
+<!-- shared:footer:end -->
+  </div>
+</body>
+</html>

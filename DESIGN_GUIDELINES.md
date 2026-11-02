@@ -4,7 +4,7 @@ This is the design contract for current and future pages. Read it before changin
 
 ## Source of truth
 
-The base site is plain, checked-in HTML/CSS/JavaScript inside `src/`. `scripts/build_content.py` can add Markdown notes and workbench entries to a separate site output; see the README for content authoring and build commands. Templates and tooling stay at the repository root. It needs no application server, package install or runtime template engine. Author shared code in the following sources, then run:
+The base site is plain, checked-in HTML/CSS/JavaScript inside `src/`. `scripts/refresh_content.py` generates Markdown note pages and Workbench cards directly into `src/`, and `scripts/build_content.py` packages the prepared files without rendering; see the README for content authoring and build commands. Templates and tooling stay at the repository root. Serving the prepared `src/` site needs no application server, package install or runtime template engine; authoring and refresh need the Python dependencies below. Author shared code in the following sources, then run:
 
 ```sh
 python3 scripts/sync_site.py
@@ -12,7 +12,7 @@ python3 scripts/sync_site.py --check
 python3 -m unittest discover -s tests -v
 ```
 
-Authoring requires a Git checkout and Python 3; the content builder and regression suite additionally need `requirements-content.txt`. The sync tool only reads local sources; it never publishes or fetches data. From `src/`, preview with the README's `python3 -m http.server 4173 --bind 127.0.0.1` command.
+Authoring requires a Git checkout, Python 3 and the dependencies in `requirements-content.txt`; the shared sync now refreshes Markdown too. The sync tool reads only local sources; it never publishes or fetches data. From `src/`, preview with the README's `python3 -m http.server 4173 --bind 127.0.0.1` command.
 
 | Concern | Edit here |
 | --- | --- |
@@ -36,9 +36,8 @@ Authoring requires a Git checkout and Python 3; the content builder and regressi
 | Theme state/persistence | `src/assets/theme.js` |
 | Working terminal service and its own interface styling | `src/assets/term.js`, `src/assets/term.css` |
 | Theme-specific colour, background and effects | `src/assets/cyber.css`, `src/assets/themes.css` |
-| Shared Cyberpunk trail lifecycle | `src/assets/scripts/backgrounds.js`, registered in `templates/site.json` |
 
-`src/styles.css` and `src/app.js` are generated, readable concatenations with source comments. Shared HTML regions are marked `shared:*`. Edit their source, not the generated output. Page-specific content and SEO metadata stay directly editable outside those regions. Avoid adding an override at the bottom of a file to defeat another module; change the component that owns the rule.
+`src/styles.css` and `src/app.js` are generated, readable concatenations with source comments. Shared HTML regions are marked `shared:*`. Edit their source, not the generated output. Page-specific content and SEO metadata stay directly editable outside those regions, except the generated Notes/Workbench indexes and Markdown-owned note pages. Author the indexes in `templates/notes-index.html` and `templates/workbench-index.html`, and note bodies in their `note.md` sources. Avoid adding an override at the bottom of a file to defeat another module; change the component that owns the rule.
 
 The sync tool updates shared regions, bundles authored modules, and content-versions every common asset. It also renders the profile fallback from the same public JSON file. Its read-only check fails if generated output is stale, a public page is unregistered, or an ordinary page skips the shared title/prompt/lead structure. Explicit page-kind exceptions preserve Home, About’s manual, the utility page and the hidden demo; they do not define alternate ordinary header sizes. Header navigation is the single route source for ordinary links, keyboard shortcuts and terminal tabs.
 
@@ -59,7 +58,7 @@ Use this structure for an ordinary page header, including Workbench, Notes and n
 - Page title: Play, weight 700, `clamp(48px, 5.4vw, 72px)`; at 560px and below, `clamp(36px, 9vw, 50px)`. Leading is 1.08. Emphasis is upright at .82em in the theme accent. No decorative italics.
 - Prompt: 14px monospace. Lead: 18px body face, 1.75 leading, maximum 700px. Match these values across pages; do not shrink individual intros to make a particular sentence fit.
 - Let titles wrap naturally. Do not insert manual line breaks to create a different page layout. Very long article titles may need additional phone lines; keep their readability and shared size rather than forcing the gallery's arbitrary line limit.
-- Article back links and publication metadata may add rows while preserving the shared inner type/spacing. Actions, filters and metadata follow the intro in normal reading order. Their content can change header height; do not force equal-height empty header boxes.
+- Article publication metadata may add rows while preserving the shared inner type/spacing. Actions, filters and metadata follow the intro in normal reading order. Their content can change header height; do not force equal-height empty header boxes.
 
 Home uses the same title/prompt scale across the full content width, with `.home-overview` below it. Its intro/actions and git-log card are two top-aligned columns above 900px and stack below that. The three headline words stay working links, and Build uses the reference letter bloom: glyphs lift within stable character boxes and decorative leaf sprouts stay absolute and pointer-inert. Keep the native project link and its accessible label.
 
@@ -108,14 +107,24 @@ Keep source-peek data public-safe. Do not copy private memory, employer details,
 - Run `sync_site.py --check`, the regression suite, appropriate JavaScript syntax checks, and the repository completion workflow. Keep README and this guide aligned with actual commands and contracts.
 - Preserve the site's deliberate terminal identity when using Taste Skill. Its generic bans on monospace, prompt labels, compact UI, panel lines and text-led pages are not reasons to redesign the approved site. Record retained style findings and genuine regressions separately.
 
+Note article layouts fill the desktop page shell: a fluid reading column, a right TOC column of at least 240px / 28% of the layout, and a responsive 32–56px gap. At 900px and below, hide the TOC and use one full-width reading column. Avoid fixed character-width grid tracks that leave a third unused column.
+
+Current-page header links keep `aria-current` as their source of state. Cyberpunk uses pink-red corner brackets around the link, an opaque burgundy fill and a brighter label; no left marker crosses the text. Solarpunk uses an opaque pale-sage tab, deep-green text and a small vine/leaf underline. Link dimensions and padding stay shared; decoration uses pointer-inert pseudo-elements outside the label so phone links do not grow or overlap their text. Brackets lock on once in 380ms and the vine grows once in 550ms; reduced motion shows the final static state. Forced colours use a system-colour outline. Shared geometry belongs in `layout.css`, Cyberpunk appearance in `cyber.css`, and Solarpunk appearance plus accessibility overrides in `themes.css`.
+
 Article images, including plain Markdown images outside figures, must fit their reading column with `max-width:100%` and proportional height. Wide tables and code blocks scroll inside their own containers.
 
-Markdown notes are authored in `src/notes/<slug>/note.md` with adjacent images, starting from `src/notes/_template.md`. Use the content builder for full-site previews; generated note routes are not registered as checked-in HTML in `templates/site.json`. No separate drafts directory is used.
+Note article headers start with the terminal prompt, without a top back link. Markdown title accents use optional `emphasis` (a string or list of exact case-sensitive phrases); reuse `terminal-em`, preserve plain metadata/archive titles, escape title content and reject unmatched or overlapping phrases.
+
+Markdown notes are authored in `src/notes/<slug>/note.md` with adjacent images, starting from `src/notes/_template.md`. Run `python3 scripts/refresh_content.py` and commit generated HTML with its Markdown source; the ordinary `src/` preview includes these pages. Generated note routes are recognized by their ownership comment and are not registered in `templates/site.json`. Refresh updates shared chrome on these pages too, preserves legacy HTML, and validates Notes/Workbench links before modifying output. Project Markdown produces cards, not separate detail pages. No separate drafts directory is used.
 
 ## Theme backgrounds
 
 Solarpunk uses the approved generated `src/assets/solarpunk-landscape.webp` illustration. Its image, wash and responsive focal position are CSS properties in `src/assets/themes.css`. Keep the ivory wash strong enough for reading content. The previous repeated trellis has been removed.
 
-Cyberpunk grid spacing and trail tuning live together in `src/assets/cyber.css`: `--cyber-grid-size` and `--cyber-trail-*`. The shared background module reads these settings rather than maintaining a separate grid definition. Its single noninteractive canvas stays behind content, caps density and frame rate, and stops for reduced motion, forced colours, hidden documents and the other theme. Trails may cross the whole viewport at equal brightness; shared CSS properties control their count (five) and original 220-pixel tail length. Use the existing behaviors configuration and sync command; do not add per-page background implementations.
+Cyberpunk uses the approved generated `src/assets/cyber-circuitry.webp` in a fixed, decorative viewport layer, with a proportional centred cover crop. Keep the centre dark and the cyan/magenta details at the edges, with a subtle dark wash for reading. `src/assets/cyber.css` owns `--cyber-circuitry`, `--cyber-background-wash` and `--cyber-grid-size` (the fallback static grid). Narrow screens crop toward the quiet centre; do not stretch the artwork or add motion. Moving background trails and their canvas module have been removed. Keep other approved theme effects in their existing owners.
 
 The shared header terminal button uses a solid theme surface, 2px accent border and bold symbol for contrast over background imagery. Its hover state uses the higher surface token and text-coloured edge; retain its native button action and visible keyboard focus.
+
+## README artwork
+
+`src/assets/readme-banner.svg` is original static vector artwork, using one continuous, full-width text composition clipped into balanced diagonal theme regions: Solarpunk ivory and leaf-textured green lettering on the left, Cyberpunk navy and circuit-textured light lettering on the right. Shared SVG headline and description definitions keep the lettering aligned through the slanted centre split; the terminal icon and sudo-sol brand sit at the top left. Do not create separate captions or repeat the slogan on each side. Keep the terminal brand, Build / Break / Understand headline and experience/projects/notes description. It uses system font fallbacks, an accessible title and description, and no embedded or external images, scripts or font requests. Edit this SVG directly rather than generating a bitmap replacement.

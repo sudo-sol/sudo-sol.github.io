@@ -1,4 +1,4 @@
-name: Build and deploy Pages
+name: Check and deploy prepared Pages
 on:
   push:
   pull_request:
@@ -20,9 +20,10 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m pip install -r requirements-content.txt
-      - run: python scripts/sync_site.py --check
+      - run: python scripts/refresh_content.py --check
       - run: python -m unittest discover -s tests -v
-      - run: python scripts/build_content.py --output _site
+      - name: Package prepared static files
+        run: python scripts/build_content.py --output _site
       - name: Upload preview site
         uses: actions/upload-artifact@v4
         with:

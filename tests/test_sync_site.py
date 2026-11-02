@@ -28,6 +28,8 @@ class SharedSiteTests(unittest.TestCase):
             target = self.root / 'src' / path
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(SOURCE / 'src' / path, target)
+        for folder in ['notes', 'workbench']:
+            shutil.copytree(SOURCE / 'src' / folder, self.root / 'src' / folder, dirs_exist_ok=True)
         self.run_command(['git', 'init', '-q'])
 
     def run_command(self, command, success=True):

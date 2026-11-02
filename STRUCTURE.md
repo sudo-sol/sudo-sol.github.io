@@ -1,12 +1,12 @@
 # Source structure
 
 Generated from tracked and non-ignored source paths. Do not edit the generated block.
-Owning documents and verification rules: [.github/README.md](.github/README.md).
+Owning documents and verification rules: [.github/COMPLETION.md](.github/COMPLETION.md).
 
 <!-- source-inventory:start -->
 - `.editorconfig`
 - `.gitattributes`
-- `.github/README.md`
+- `.github/COMPLETION.md`
 - `.github/completion.json`
 - `.github/pull_request_template.md`
 - `.github/scripts/check_completion.py`
@@ -20,12 +20,14 @@ Owning documents and verification rules: [.github/README.md](.github/README.md).
 - `STRUCTURE.md`
 - `requirements-content.txt`
 - `scripts/build_content.py`
+- `scripts/refresh_content.py`
 - `scripts/sync_site.py`
 - `src/.nojekyll`
 - `src/404.html`
 - `src/about.json`
 - `src/about/index.html`
 - `src/app.js`
+- `src/assets/cyber-circuitry.webp`
 - `src/assets/cyber.css`
 - `src/assets/favicon.svg`
 - `src/assets/fonts/OFL.txt`
@@ -42,7 +44,6 @@ Owning documents and verification rules: [.github/README.md](.github/README.md).
 - `src/assets/readme-banner.svg`
 - `src/assets/resume.pdf`
 - `src/assets/scripts/about.js`
-- `src/assets/scripts/backgrounds.js`
 - `src/assets/scripts/common.js`
 - `src/assets/scripts/content.js`
 - `src/assets/scripts/home.js`
@@ -72,6 +73,7 @@ Owning documents and verification rules: [.github/README.md](.github/README.md).
 - `src/notes/cloudflare-domain-github-pages/dns-record-editor.svg`
 - `src/notes/cloudflare-domain-github-pages/domain-flow.svg`
 - `src/notes/cloudflare-domain-github-pages/github-verify-dns.png`
+- `src/notes/cloudflare-domain-github-pages/index.html`
 - `src/notes/cloudflare-domain-github-pages/note.md`
 - `src/notes/index.html`
 - `src/notes/tf-access-map/architecture.svg`
@@ -80,13 +82,16 @@ Owning documents and verification rules: [.github/README.md](.github/README.md).
 - `src/notes/tf-access-map/index.html`
 - `src/notes/tf-access-map/overview.png`
 - `src/styles.css`
+- `src/workbench/_template.md`
 - `src/workbench/index.html`
 - `templates/assets.html`
 - `templates/footer.html`
 - `templates/header.html`
+- `templates/notes-index.html`
 - `templates/site.json`
 - `templates/source-peek.html`
 - `templates/theme-picker.html`
+- `templates/workbench-index.html`
 - `tests/fixtures/content/notes/test-note/diagram.svg`
 - `tests/fixtures/content/notes/test-note/note.md`
 - `tests/fixtures/content/workbench/test-project/project.md`

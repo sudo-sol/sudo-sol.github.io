@@ -16,10 +16,9 @@
 /* ---------- Notes: a single post ---------- */
 .post { padding:0 0 70px; }
 .post-head { margin-bottom:36px; }
-.post-head .back-link { margin:0 0 14px; }
 .post-head .prompt .u { color:var(--accent); }
 .post-head .post-meta { padding-top:16px; border-top:1px solid var(--line); }
-.post-layout { display:grid; grid-template-columns:minmax(0,70ch) 190px; gap:72px; }
+.post-layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(240px,28%); gap:clamp(32px,4vw,56px); }
 .post-body { font-size:var(--font-reading); line-height:1.8; color:var(--text); color:color-mix(in srgb, var(--text) 82%, var(--muted)); }
 .post-body section { scroll-margin-top:24px; }
 .post-body h2 { font-size:var(--font-content-title); font-weight:600; letter-spacing:-.6px; line-height:1.3; color:var(--text); margin:38px 0 12px; }

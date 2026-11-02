@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How every post on sudo-sol is put together, and the template to copy for the next one.">
+  <meta name="description" content="The reading-layout reference for Markdown notes on sudo-sol.">
   <meta name="theme-color" content="#f2f1e9">
   <meta property="og:title" content="The anatomy of a note / sudo-sol">
-  <meta property="og:description" content="How every post on sudo-sol is put together, and the template to copy for the next one.">
+  <meta property="og:description" content="The reading-layout reference for Markdown notes on sudo-sol.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://sudosol.dev/notes/anatomy-of-a-note/">
   <meta property="article:published_time" content="2026-10-26">
@@ -14,21 +14,20 @@
   <title>The anatomy of a note / sudo-sol</title>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <!-- shared:assets:start -->
-  <link rel="stylesheet" href="/styles.css?v=b7c0a14ed65b">
+  <link rel="stylesheet" href="/styles.css?v=12a11f755de3">
   <link rel="stylesheet" href="/assets/term.css?v=394105ec6afa">
-  <link rel="stylesheet" href="/assets/cyber.css?v=f710b538a7c3">
-  <link rel="stylesheet" href="/assets/themes.css?v=f37a59d1d5a3">
+  <link rel="stylesheet" href="/assets/cyber.css?v=d05ded899bd0">
+  <link rel="stylesheet" href="/assets/themes.css?v=ff68ec76c7f4">
   <script src="/assets/theme.js?v=43b4675c167e"></script>
-  <script src="/app.js?v=2eda6d62b24d" defer></script>
+  <script src="/app.js?v=1cd07f91b418" defer></script>
   <script src="/assets/term.js?v=f0fa56f2c5df" defer></script>
 <!-- shared:assets:end -->
 </head>
 <!--
-  NOTE TEMPLATE. To write a new note:
-  1. Copy this folder to notes/<slug>/.
-  2. Update <title>, description, og:*, canonical, article:published_time, and the header below.
-  3. Write the sections (keep the ids in sync with the "on this page" links).
-  4. Add the note to notes/index.html under its year.
+  HTML reading-layout reference and renderer shell; excluded from publication packages.
+  To write a note, copy src/notes/_template.md to src/notes/<slug>/note.md.
+  Edit its front matter/body, put images beside it and run scripts/refresh_content.py.
+  Edit Markdown rather than generated note HTML. See README: Build Markdown content locally.
 -->
 <body class="interior-page post-page" data-term-chips="ls, open choices, cd ~/notes, help">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -62,10 +61,9 @@
     <main id="main">
       <article class="post" aria-labelledby="post-title">
         <header class="post-head page-intro">
-          <a class="back-link" href="/notes/">← ~/notes</a>
           <p class="prompt" aria-hidden="true"><span class="u">~/notes</span>$ cat anatomy-of-a-note.md<span class="cursor"></span></p>
           <h1 class="page-title" id="post-title">The anatomy of <span class="terminal-em">a note.</span></h1>
-          <p class="lede">How every post here is put together, and the template to copy for the next one.</p>
+          <p class="lede">How every post here is put together, with a Markdown template for the next one.</p>
           <p class="post-meta"><time datetime="2026-10-26">Oct 26, 2026</time><span data-read-time>1 min read</span><span>#writing</span><span>#meta</span><span class="tag sample">sample</span></p>
         </header>
 
@@ -73,7 +71,7 @@
           <div class="post-body">
             <aside class="takeaway" aria-label="Key takeaway">
               <b>tl;dr</b>
-              <p>Every note follows the same shape: <strong>the problem, the context, the choices, what happened, and what I'd do next.</strong> Copy this page to start a new one.</p>
+              <p>Every note follows the same shape: <strong>the problem, the context, the choices, what happened, and what I'd do next.</strong> Start a new note from the Markdown template described in the README.</p>
             </aside>
 
             <section id="problem" data-term-item="problem" data-term-desc="start here" aria-labelledby="h-problem">

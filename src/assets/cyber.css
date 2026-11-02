@@ -5,15 +5,15 @@
   --bg:#05060d;--surface:#0a0f1f;--surface-high:#0e1530;
   --text:#e6f7ff;--muted:#86a1bf;--line:rgba(0,240,255,.22);
   --accent:#00f0ff;--accent-ink:#00141a;--warn:#f5e663;--err:#ff2a6d;
-  /* Shared grid/trail settings; backgrounds.js reads these same CSS properties. */
-  --cyber-grid-size:44px; --cyber-trail-count:5; --cyber-trail-speed:55;
-  --cyber-trail-tail:220; --cyber-trail-opacity:.9; --cyber-trail-rgb:0,240,255;
+  --cyber-grid-size:44px;
+  --cyber-circuitry:url("/assets/cyber-circuitry.webp");
+  --cyber-background-wash:rgba(5,6,13,.12);
   --cy:#00f0ff;--mag:#ff2a6d;--yl:#f5e663;--ok:#39ff88;
   --theme-selected-bg:var(--cy);--theme-selected-ink:#00141a;--theme-selected-edge:#7df7ff;
   --mono:"JetBrains Mono","Cascadia Code","SFMono-Regular",Consolas,monospace;
 }
 :root[data-theme=cyber] body{background:#05060d radial-gradient(1100px 560px at 85% -10%,rgba(255,42,109,.14),transparent 60%),radial-gradient(900px 520px at 5% 110%,rgba(0,240,255,.11),transparent 60%) fixed}
-:root[data-theme=cyber] body::before{opacity:1;background-image:linear-gradient(rgba(0,240,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.05) 1px,transparent 1px);background-size:var(--cyber-grid-size) var(--cyber-grid-size);-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+:root[data-theme=cyber] body::before{opacity:1;background-image:linear-gradient(var(--cyber-background-wash),var(--cyber-background-wash)),var(--cyber-circuitry),linear-gradient(rgba(0,240,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(0,240,255,.05) 1px,transparent 1px);background-size:cover,cover,var(--cyber-grid-size) var(--cyber-grid-size),var(--cyber-grid-size) var(--cyber-grid-size);background-position:center;background-repeat:no-repeat,no-repeat,repeat,repeat;-webkit-mask-image:none;mask-image:none}
 :root[data-theme=cyber] body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;background:repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0 1px,transparent 1px 3px);opacity:.4}
 :root[data-theme=cyber] ::selection{background:var(--mag);color:#000}
 
@@ -23,9 +23,13 @@
 :root[data-theme=cyber] .wordmark>a,:root[data-theme=cyber] .footer-brand{text-transform:uppercase;letter-spacing:.18em;animation:cy-glitch 6s infinite}
 :root[data-theme=cyber] .accent{color:var(--mag)}
 :root[data-theme=cyber] header nav a{text-transform:uppercase;letter-spacing:.1em;font-size:var(--font-nav);border-radius:0}
-:root[data-theme=cyber] header nav a:hover,:root[data-theme=cyber] header nav a[aria-current]{color:#fff;background:linear-gradient(90deg,rgba(255,42,109,.18),transparent);box-shadow:inset 3px 0 0 var(--mag);text-shadow:0 0 8px rgba(255,42,109,.7)}
+:root[data-theme=cyber] header nav a:hover{color:#fff0f5;background:#28101d;text-shadow:0 0 8px rgba(255,42,109,.4)}
+:root[data-theme=cyber] .site-header nav a[aria-current]{color:#fff0f5;background:#28101d;text-shadow:0 0 8px rgba(255,42,109,.4);box-shadow:none}
+:root[data-theme=cyber] .site-header nav a[aria-current]::after{inset:-3px -5px;border-radius:0;background:linear-gradient(var(--mag),var(--mag)) left top/9px 2px no-repeat,linear-gradient(var(--mag),var(--mag)) left top/2px 9px no-repeat,linear-gradient(var(--mag),var(--mag)) right top/9px 2px no-repeat,linear-gradient(var(--mag),var(--mag)) right top/2px 9px no-repeat,linear-gradient(var(--mag),var(--mag)) left bottom/9px 2px no-repeat,linear-gradient(var(--mag),var(--mag)) left bottom/2px 9px no-repeat,linear-gradient(var(--mag),var(--mag)) right bottom/9px 2px no-repeat,linear-gradient(var(--mag),var(--mag)) right bottom/2px 9px no-repeat;filter:drop-shadow(0 0 3px rgba(255,42,109,.45));animation:nav-lock-on 380ms ease-out both}
+@keyframes nav-lock-on{0%{opacity:.2;transform:scale(1.12)}45%{opacity:1}65%{opacity:.5}100%{opacity:1;transform:scale(1)}}
 :root[data-theme=cyber] .section-head h2::before,:root[data-theme=cyber] article h2::before,:root[data-theme=cyber] .xp .section-label::before{content:"// ";color:var(--mag);text-shadow:0 0 10px var(--mag)}
 :root[data-theme=cyber] article h2,:root[data-theme=cyber] .kicker{text-shadow:0 0 10px rgba(0,240,255,.45)}
+
 
 /* controls */
 :root[data-theme=cyber] .brand-mark{border-radius:0;border-color:var(--cy);box-shadow:0 0 14px rgba(0,240,255,.45),inset 0 0 10px rgba(0,240,255,.25);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:40px}
@@ -69,8 +73,3 @@
 :root[data-theme=cyber] .filters button[aria-pressed=true]{background:var(--cy);border-color:var(--cy);color:#000;box-shadow:0 0 12px rgba(0,240,255,.4)}
 :root[data-theme=cyber] [data-status=building] .status{text-shadow:0 0 8px rgba(0,240,255,.6)}
 :root[data-theme=cyber] .year-label,:root[data-theme=cyber] .post-body h2::before{color:var(--mag);text-shadow:0 0 10px rgba(255,42,109,.6)}
-
-/* Decorative fixed canvas, behind content and aligned with the existing grid. */
-.theme-trails { display:none; position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:-1; }
-:root[data-theme="cyber"] .theme-trails { display:block; }
-@media(prefers-reduced-motion:reduce), (forced-colors:active) { .theme-trails { display:none !important; } }
