@@ -72,4 +72,9 @@
 :root[data-theme=cyber] .status,:root[data-theme=cyber] .filters button,:root[data-theme=cyber] .stack li,:root[data-theme=cyber] .tag{border-radius:0}
 :root[data-theme=cyber] .filters button[aria-pressed=true]{background:var(--cy);border-color:var(--cy);color:#000;box-shadow:0 0 12px rgba(0,240,255,.4)}
 :root[data-theme=cyber] [data-status=building] .status{text-shadow:0 0 8px rgba(0,240,255,.6)}
-:root[data-theme=cyber] .year-label,:root[data-theme=cyber] .post-body h2::before{color:var(--mag);text-shadow:0 0 10px rgba(255,42,109,.6)}
+:root[data-theme=cyber] .year-label,:root[data-theme=cyber] .post-body :is(h2,h3,h4,h5,h6)::before{color:var(--mag);text-shadow:0 0 10px rgba(255,42,109,.6)}
+:root[data-theme=cyber] .post-body h2::before{content:"// "}
+:root[data-theme=cyber] .post-body h3::before{content:"/// "}
+:root[data-theme=cyber] .post-body h4::before{content:"//// "}
+:root[data-theme=cyber] .post-body h5::before{content:"///// "}
+:root[data-theme=cyber] .post-body h6::before{content:"////// "}

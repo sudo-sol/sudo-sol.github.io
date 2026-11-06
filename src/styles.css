@@ -412,7 +412,11 @@ ul.diff strong { color:var(--text); font-weight:600; }
 .post-body { font-size:var(--font-reading); line-height:1.8; color:var(--text); color:color-mix(in srgb, var(--text) 82%, var(--muted)); }
 .post-body section { scroll-margin-top:24px; }
 .post-body h2 { font-size:var(--font-content-title); font-weight:600; letter-spacing:-.6px; line-height:1.3; color:var(--text); margin:38px 0 12px; }
-.post-body h2::before { content:"## "; font:500 .68em var(--mono); color:var(--accent); vertical-align:2px; }
+.post-body :is(h2,h3,h4,h5,h6)::before { content:"## "; font:500 .68em var(--mono); color:var(--accent); vertical-align:2px; }
+.post-body h3::before { content:"### "; }
+.post-body h4::before { content:"#### "; }
+.post-body h5::before { content:"##### "; }
+.post-body h6::before { content:"###### "; }
 .post-body p { margin:0 0 16px; }
 .post-body ul,.post-body ol { margin:0 0 16px; padding-left:22px; }
 .post-body li { margin-bottom:6px; }
