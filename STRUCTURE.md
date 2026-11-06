@@ -75,7 +75,15 @@ Owning documents and verification rules: [.github/COMPLETION.md](.github/COMPLET
 - `src/notes/cloudflare-domain-github-pages/github-verify-dns.png`
 - `src/notes/cloudflare-domain-github-pages/index.html`
 - `src/notes/cloudflare-domain-github-pages/note.md`
+- `src/notes/cyberpunk-2077-morality/images/night_city.png`
+- `src/notes/cyberpunk-2077-morality/images/storm_konpeki_plaza.png`
+- `src/notes/cyberpunk-2077-morality/index.html`
+- `src/notes/cyberpunk-2077-morality/note.md`
 - `src/notes/index.html`
+- `src/notes/pulse-one-place-for-my-day/images/pulse-notes.jpg`
+- `src/notes/pulse-one-place-for-my-day/images/pulse-today.jpg`
+- `src/notes/pulse-one-place-for-my-day/index.html`
+- `src/notes/pulse-one-place-for-my-day/note.md`
 - `src/notes/tf-access-map/architecture.svg`
 - `src/notes/tf-access-map/findings.png`
 - `src/notes/tf-access-map/health.png`
