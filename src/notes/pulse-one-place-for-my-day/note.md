@@ -1,7 +1,7 @@
 ---
 title: "Pulse: one place for the pieces of my day"
 emphasis:
-  - "Pulse"
+  - "Pulse:"
 summary: "Why I built a personal Android app to bring tasks, calendar, habits, notes, and recordings together, and why it needs to work without AI for now"
 date: "2026-11-03"
 tags: "android, personal-projects, local-first"
